@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Index</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      :root {
+        --bg: #faf9f7;
+        --ink: #0b0b0b;
+        --muted: #6b6b6b;
+        --card: #ffffff;
+        --line: rgba(0, 0, 0, 0.08);
+        --accent: #1a1a1a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          'Noto Sans KR',
+          sans-serif;
+        color: var(--ink);
+        background: radial-gradient(1200px 800px at 10% 5%, #ffffff 0%, #f5f3f0 60%, #eee8e1 100%);
+        letter-spacing: 0.02em;
+      }
+      .frame {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        padding: 6vh 6vw 8vh;
+        gap: 40px;
+      }
+      header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 18px;
+      }
+      .brand {
+        font-size: clamp(28px, 5vw, 56px);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .subtitle {
+        font-size: clamp(12px, 1.5vw, 14px);
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+      .gallery {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .tile {
+        position: relative;
+        display: block;
+        padding: 22px 20px 18px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--card);
+        text-decoration: none;
+        color: inherit;
+        overflow: hidden;
+        transform: translateY(0);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      }
+      .tile:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+        border-color: rgba(0, 0, 0, 0.18);
+      }
+      .tile:focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 2px;
+      }
+      .tile .label {
+        font-size: clamp(18px, 2.2vw, 24px);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .tile .meta {
+        margin-top: 8px;
+        font-size: 12px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .arrow {
+        margin-left: auto;
+        font-size: 14px;
+        transition: transform 0.18s ease;
+        transform: translateX(0);
+      }
+      .tile:hover .arrow {
+        transform: translateX(4px);
+      }
+      footer {
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .tile,
+        .arrow {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <header>
+        <div>
+          <div class="brand">PROJECT INDEX</div>
+        </div>
+        <div class="subtitle">root / index.html</div>
+      </header>
+
+      <main class="gallery" id="gallery" aria-label="폴더 목록"></main>
+
+      <footer>
+        <span>© inseok</span>
+      </footer>
+    </div>
+
+    <script>
+      const FOLDERS = ['murmuring'];
+
+      const gallery = document.getElementById('gallery');
+
+      const toTitle = (name) => name.replace(/[-_]/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+
+      FOLDERS.forEach((folder) => {
+        const href = `./${folder}/index.html`;
+        const title = toTitle(folder);
+        gallery.insertAdjacentHTML(
+          'beforeend',
+          `
+        <a class="tile" href="${href}">
+          <div class="label">${title}</div>
+          <div class="meta">
+            <span>${title}</span>
+            <span class="arrow">→</span>
+          </div>
+        </a>
+      `
+        );
+      });
+    </script>
+  </body>
+</html>
