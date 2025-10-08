@@ -1,0 +1,19 @@
+node_modules
+package-lock.json
+.build
+.dist
+coverage
+.tmp
+.DS_Store
+.eslintcache
+*.log
+
+# Bundles / compiled
+**/dist
+**/build
+**/out
+
+# Generated
+**/.turbo
+**/.next
+**/.cache
