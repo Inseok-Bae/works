@@ -1,0 +1,102 @@
+:root {
+  --content-width: min(720px, 92vw);
+  --content-max-height: 60vh; /* 각 코드블록의 최대 높이로 사용 */
+}
+
+/* ===== 컨테이너 ===== */
+#codes {
+  width: var(--content-width);
+  margin: 12px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+#codes > summary {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+  list-style-position: inside;
+  padding: 4px 0;
+}
+
+/* 바깥 상자 스크롤 제거 (코드 블록만 스크롤) */
+#codes .codes_body {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  text-align: left;
+  /* overflow 및 max-height 제거/비활성화 */
+  overflow: visible;  /* 필요 없으면 이 줄 자체를 삭제해도 됨 */
+  max-height: none;
+}
+
+#codes .codes_body h5 {
+  text-align: left;
+  margin: 12px 0 4px;
+}
+
+/* ===== 코드 블록: X/Y 스크롤 주체 ===== */
+#codes .codes_body pre,
+.readme-block pre {
+  width: 100%;
+  max-width: 100%;
+  max-height: var(--content-max-height); /* 세로 스크롤 한도 */
+  overflow: auto;                        /* X/Y 스크롤 */
+  white-space: pre;                      /* 줄바꿈 금지 → 가로 넘침 유도 */
+  -webkit-overflow-scrolling: touch;
+  margin: 12px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 12px;
+  text-align: left;
+  box-sizing: border-box;
+
+  /* scrollbar-gutter: stable;  브라우저 지원 시 스크롤바 자리 고정하고 싶으면 주석 해제 */
+}
+
+/* 긴 라인이 실제로 pre를 가로로 넘치게 만드는 설정 */
+#codes .codes_body pre code,
+#codes .codes_body pre code.hljs,
+.readme-block pre code,
+.readme-block pre code.hljs {
+  display: inline-block;     /* 내용 길이만큼 가로폭 */
+  min-width: max-content;    /* 긴 라인 → pre 가로 넘침 발생 */
+  white-space: inherit;      /* pre와 동일(줄바꿈 금지) */
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* ===== README 블록(바깥 스크롤 제거) ===== */
+.readme-block {
+  width: var(--content-width);
+  margin: 16px auto;
+  color: #334155;
+  line-height: 1.6;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+
+  /* 바깥 스크롤 제거 */
+  max-height: none;
+  overflow: visible;
+}
+
+.readme-block img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px auto;
+}
+
+.readme-block a {
+  color: #0d6efd;
+  text-decoration: underline;
+}

@@ -29,6 +29,20 @@ function copyIfExists(src, dest) {
   }
 }
 
+function copyDirectory(src, dest) {
+  if (!existsSync(src)) return;
+  mkdirSync(dest, { recursive: true });
+  for (const entry of readdirSync(src)) {
+    const from = join(src, entry);
+    const to = join(dest, entry);
+    if (isDirectory(from)) {
+      copyDirectory(from, to);
+    } else {
+      copyFileSync(from, to);
+    }
+  }
+}
+
 function discoverEntries() {
   const found = {};
   for (const entry of readdirSync(root)) {
@@ -53,6 +67,7 @@ async function copyStatics(entries) {
     copyIfExists(join(srcFolder, 'styles.css'), join(outFolder, 'styles.css'));
   }
   copyIfExists(join(root, 'index.html'), join(outDir, 'index.html'));
+  copyDirectory(join(root, 'style'), join(outDir, 'style'));
 }
 
 const rawPlugin = {
@@ -111,6 +126,11 @@ async function run({ watch }) {
         filename.startsWith('.')
       )
         return;
+      if (filename.startsWith('style')) {
+        copyDirectory(join(root, 'style'), join(outDir, 'style'));
+        console.log('Style updated:', filename);
+        return;
+      }
       if (filename.endsWith('index.html') || filename.endsWith('styles.css')) {
         await copyStatics(entries);
         console.log('Static updated:', filename);
