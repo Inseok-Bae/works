@@ -54,12 +54,6 @@
         font-weight: 700;
         letter-spacing: -0.02em;
       }
-      .subtitle {
-        font-size: clamp(12px, 1.5vw, 14px);
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
-      }
       .gallery {
         display: grid;
         gap: 18px;
@@ -137,7 +131,6 @@
         <div>
           <div class="brand">PROJECT INDEX</div>
         </div>
-        <div class="subtitle">root / index.html</div>
       </header>
 
       <main class="gallery" id="gallery" aria-label="폴더 목록"></main>
@@ -148,7 +141,7 @@
     </div>
 
     <script>
-      const FOLDERS = ['murmuring'];
+      const FOLDERS = ['murmuring', 'division'];
 
       const gallery = document.getElementById('gallery');
 
