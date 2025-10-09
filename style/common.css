@@ -1,9 +1,8 @@
 :root {
   --content-width: min(720px, 92vw);
-  --content-max-height: 60vh; /* 각 코드블록의 최대 높이로 사용 */
+  --content-max-height: 60vh;
 }
 
-/* ===== 컨테이너 ===== */
 #codes {
   width: var(--content-width);
   margin: 12px auto 0;
@@ -23,14 +22,11 @@
   padding: 4px 0;
 }
 
-/* 바깥 상자 스크롤 제거 (코드 블록만 스크롤) */
 #codes .codes_body {
   width: var(--content-width);
   box-sizing: border-box;
   margin-top: 12px;
   text-align: left;
-  max-height: none;
-  overflow: visible;
 }
 
 #codes .codes_body h5 {
@@ -38,14 +34,13 @@
   margin: 12px 0 4px;
 }
 
-/* ===== 코드 블록: X/Y 스크롤 주체 ===== */
 #codes .codes_body pre,
 .readme-block pre {
+  width: 100%;
   max-width: 100%;
-  max-height: var(--content-max-height); /* 세로 스크롤 한도 */
-  overflow-x: auto;                      /* 가로 스크롤 */
-  overflow-y: auto;                      /* 세로 스크롤 */
-  white-space: pre;                      /* 줄바꿈 금지 → 가로 넘침 유도 */
+  max-height: var(--content-max-height);
+  overflow-x: auto;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   margin: 12px 0;
   border: 1px solid #e5e7eb;
@@ -54,23 +49,24 @@
   padding: 12px;
   text-align: left;
   box-sizing: border-box;
-
-  /* scrollbar-gutter: stable;  브라우저 지원 시 스크롤바 자리 고정하고 싶으면 주석 해제 */
+  font-size: 13px;
+  line-height: 1.5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 
-/* 긴 라인이 실제로 pre를 가로로 넘치게 만드는 설정 */
 #codes .codes_body pre code,
 #codes .codes_body pre code.hljs,
 .readme-block pre code,
 .readme-block pre code.hljs {
   display: inline-block;
-  min-width: 100%;
+  min-width: max-content;
   white-space: inherit;
   word-break: normal;
   overflow-wrap: normal;
+  font-size: inherit;
+  line-height: inherit;
 }
 
-/* ===== README 블록(바깥 스크롤 제거) ===== */
 .readme-block {
   width: var(--content-width);
   margin: 16px auto;
@@ -82,8 +78,6 @@
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   background: #f9fafb;
-  max-height: none;
-  overflow: visible;
 }
 
 .readme-block img {
