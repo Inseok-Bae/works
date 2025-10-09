@@ -6,7 +6,7 @@ import {
   observable,
   render_readme,
   runInAction
-} from "../chunks/chunk-PSCTGFNY.js";
+} from "../chunks/chunk-UQQF453R.js";
 
 // raw-file:/home/qodls/code/works/division/acting.js
 var acting_default = "import { Being } from '../models/being';\n\nexport const acting = () => {\n  new Being();\n\n  return { world: Being.world };\n};\n";

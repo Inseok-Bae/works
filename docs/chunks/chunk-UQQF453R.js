@@ -56443,7 +56443,7 @@ function occasionally(callback) {
 function get_random_int(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function get_random_increase(prev = 0, normalRange = [1, 10], spikeRange = [110, 150], spikeChance = 0.01) {
+function get_random_increase(prev = 0, normalRange = [1, 10], spikeRange = [110, 150], spikeChance = 0.05) {
   if (Math.random() < spikeChance) {
     const [minS, maxS] = spikeRange;
     const spike = Math.random() * (maxS - minS) + minS;
@@ -56496,4 +56496,4 @@ export {
   add_codes,
   render_readme
 };
-//# sourceMappingURL=chunk-PSCTGFNY.js.map
+//# sourceMappingURL=chunk-UQQF453R.js.map

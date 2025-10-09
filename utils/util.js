@@ -1,4 +1,4 @@
-import hljs from "highlight.js";
+import hljs from 'highlight.js';
 
 export function occasionally(callback) {
   if (Math.random() < 0.5) {
@@ -16,7 +16,7 @@ export function get_random_increase(
   prev = 0,
   normalRange = [1, 10],
   spikeRange = [110, 150],
-  spikeChance = 0.01
+  spikeChance = 0.05
 ) {
   if (Math.random() < spikeChance) {
     const [minS, maxS] = spikeRange;
