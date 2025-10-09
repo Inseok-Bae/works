@@ -26,12 +26,11 @@
 /* 바깥 상자 스크롤 제거 (코드 블록만 스크롤) */
 #codes .codes_body {
   width: var(--content-width);
-  max-height: var(--content-max-height);
-  overflow-y: auto;
-  overflow-x: hidden;
   box-sizing: border-box;
   margin-top: 12px;
   text-align: left;
+  max-height: none;
+  overflow: visible;
 }
 
 #codes .codes_body h5 {
@@ -83,8 +82,8 @@
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   background: #f9fafb;
-  max-height: var(--content-max-height);
-  overflow: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 .readme-block img {
