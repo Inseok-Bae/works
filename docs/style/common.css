@@ -25,13 +25,13 @@
 
 /* 바깥 상자 스크롤 제거 (코드 블록만 스크롤) */
 #codes .codes_body {
-  width: 100%;
+  width: var(--content-width);
+  max-height: var(--content-max-height);
+  overflow-y: auto;
+  overflow-x: hidden;
   box-sizing: border-box;
   margin-top: 12px;
   text-align: left;
-  /* overflow 및 max-height 제거/비활성화 */
-  overflow: visible;  /* 필요 없으면 이 줄 자체를 삭제해도 됨 */
-  max-height: none;
 }
 
 #codes .codes_body h5 {
@@ -42,10 +42,10 @@
 /* ===== 코드 블록: X/Y 스크롤 주체 ===== */
 #codes .codes_body pre,
 .readme-block pre {
-  width: 100%;
   max-width: 100%;
   max-height: var(--content-max-height); /* 세로 스크롤 한도 */
-  overflow: auto;                        /* X/Y 스크롤 */
+  overflow-x: auto;                      /* 가로 스크롤 */
+  overflow-y: auto;                      /* 세로 스크롤 */
   white-space: pre;                      /* 줄바꿈 금지 → 가로 넘침 유도 */
   -webkit-overflow-scrolling: touch;
   margin: 12px 0;
@@ -64,9 +64,9 @@
 #codes .codes_body pre code.hljs,
 .readme-block pre code,
 .readme-block pre code.hljs {
-  display: inline-block;     /* 내용 길이만큼 가로폭 */
-  min-width: max-content;    /* 긴 라인 → pre 가로 넘침 발생 */
-  white-space: inherit;      /* pre와 동일(줄바꿈 금지) */
+  display: inline-block;
+  min-width: 100%;
+  white-space: inherit;
   word-break: normal;
   overflow-wrap: normal;
 }
@@ -83,10 +83,8 @@
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   background: #f9fafb;
-
-  /* 바깥 스크롤 제거 */
-  max-height: none;
-  overflow: visible;
+  max-height: var(--content-max-height);
+  overflow: auto;
 }
 
 .readme-block img {
