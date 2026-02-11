@@ -1,13 +1,12 @@
 import {
   __publicField,
-  add_codes,
   autorun,
   get_random_int,
   observable,
   occasionally,
   reaction,
   render_readme
-} from "../chunks/chunk-2ZSWFXZ7.js";
+} from "../chunks/chunk-RJNSBOXS.js";
 
 // node_modules/@kurkle/color/dist/color.esm.js
 function round(v) {
@@ -18637,18 +18636,6 @@ function update_graph_presenter(conversationsChart, data) {
   conversationsChart.update("active");
 }
 
-// raw-file:C:\Users\qodls\Desktop\source\works\models\conversations.js
-var conversations_default = "import { observable } from 'mobx';\r\n\r\nexport class Conversations {\r\n  constructor() {\r\n    this.records = observable([]);\r\n  }\r\n\r\n  push({ content, by }) {\r\n    this.records.push({ content, by, when: new Date() });\r\n  }\r\n\r\n  getLastRecord() {\r\n    return this.records[this.records.length - 1];\r\n  }\r\n\r\n  getContents() {\r\n    return this.records.map(({ content }) => content);\r\n  }\r\n}\r\n";
-
-// raw-file:C:\Users\qodls\Desktop\source\works\models\speaker.js
-var speaker_default = "import { reaction } from 'mobx';\r\nimport { occasionally, get_random_int } from '../utils/util';\r\n\r\nexport class Speaker {\r\n  constructor({ public_conversations, name }) {\r\n    this.delay = get_random_int(1000, 3000);\r\n    this.ownContent = get_random_int(1, 10);\r\n    this.public_conversations = public_conversations;\r\n    this.name = name;\r\n    this.join();\r\n  }\r\n\r\n  join() {\r\n    reaction(\r\n      () => this.public_conversations.getLastRecord(),\r\n      async (_) => {\r\n        try {\r\n          const result = occasionally(() => {\r\n            return this.think(this.public_conversations.getContents());\r\n          });\r\n          this.speak(result);\r\n        } catch (_) {\r\n          this.speak(this.ownContent);\r\n        }\r\n      },\r\n      { delay: this.delay }\r\n    );\r\n  }\r\n\r\n  think(materials) {\r\n    try {\r\n      return occasionally(() => {\r\n        const lastMemory = get_random_int(1, 3) * -1;\r\n        const content = materials.slice(lastMemory).reduce((a, b) => a + b, 1);\r\n        return this.ownContent > content ? this.ownContent : content;\r\n      });\r\n    } catch (_) {\r\n      return this.ownContent;\r\n    }\r\n  }\r\n\r\n  speak(something) {\r\n    this.public_conversations.push({ content: something, by: this.name });\r\n  }\r\n}\r\n";
-
-// raw-file:C:\Users\qodls\Desktop\source\works\models\murmurer.js
-var murmurer_default = "import { Speaker } from './speaker';\r\nimport { occasionally } from '../utils/util';\r\nimport { observable } from 'mobx';\r\n\r\nexport class Murmurer extends Speaker {\r\n  constructor({ public_conversations, name }) {\r\n    super({ public_conversations, name });\r\n    this.delay = this.delay * 10 + 3000;\r\n    this.ownContent = 0;\r\n    this.regret = observable([]);\r\n    this.limit = 10;\r\n  }\r\n\r\n  speak(something) {\r\n    try {\r\n      occasionally(() => {\r\n        super.speak(something > this.limit ? this.limit : something);\r\n        try {\r\n          occasionally(() => {\r\n            const spoken = something;\r\n            this.regret.push({ content: spoken, when: new Date(), by: this.name });\r\n          });\r\n        } catch (_) {\r\n          // what the hell i'm doing here\r\n        }\r\n      });\r\n    } catch (_) {\r\n      const unspoken = something;\r\n      this.regret.push({ content: unspoken, when: new Date(), by: this.name });\r\n    }\r\n  }\r\n}\r\n";
-
-// raw-file:C:\Users\qodls\Desktop\source\works\murmuring\acting.js
-var acting_default = "import { Conversations } from '../models/conversations';\r\nimport { Speaker } from '../models/speaker';\r\nimport { Murmurer } from '../models/murmurer';\r\n\r\nexport const acting = () => {\r\n  const public_conversations = new Conversations();\r\n\r\n  new Speaker({\r\n    public_conversations,\r\n    name: 'speaker',\r\n  });\r\n  const mumurer = new Murmurer({\r\n    public_conversations,\r\n    name: 'murmurer',\r\n  });\r\n\r\n  public_conversations.push({ content: 0, by: 'wind' });\r\n\r\n  return {\r\n    public_conversations,\r\n    murmurer_regret: mumurer.regret,\r\n  };\r\n};\r\n";
-
 // raw-file:C:\Users\qodls\Desktop\source\works\murmuring\README.md
 var README_default = "\uB300\uD654\uC5D0\uC11C \uB0B4\uAC00 \uBC49\uB294 \uB9D0\uB4E4\uC740 \uC911\uC5BC\uAC70\uB9BC\uC5D0 \uAC00\uAE5D\uB2E4. \uB610\uD55C \uC2F1\uAC81\uB2E4.\r\n\uBE44\uC2B7\uD55C \uCE5C\uAD6C\uC640 \uB09C \uC6B0\uB9AC\uB97C \uC5B8\uC194\uD2F0\uC5BC\uC2A4\uB77C\uACE0 \uBD80\uB974\uACE4 \uD588\uB2E4.\r\n\r\n---\r\n\r\nThe things I say are more like murmurs in a conversation \u2014 quiet, almost flavorless.\r\nA friend who\u2019s much like me and I used to call ourselves the Unsalted.\r\n";
 
@@ -18829,15 +18816,6 @@ var regret_graph_presenter = init_graph_presenter({
   legends: [makeSpeakerLegend("murmurer")],
   data: toData(murmurer_regret)
 });
-add_codes(
-  [
-    { title: "Model > Conversations", source: conversations_default },
-    { title: "Model > Speaker", source: speaker_default },
-    { title: "Model > Murmurer", source: murmurer_default },
-    { title: "Acting", source: acting_default }
-  ],
-  "codes"
-);
 render_readme("readme_section", README_default);
 autorun(() => {
   update_graph_presenter(conversations_graph_presenter, toData(public_conversations.records));

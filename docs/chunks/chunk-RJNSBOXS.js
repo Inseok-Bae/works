@@ -56453,24 +56453,6 @@ function get_random_increase(prev = 0, normalRange = [1, 10], spikeRange = [110,
   const normalIncrease = Math.floor(Math.random() * (maxN - minN + 1)) + minN;
   return prev + normalIncrease;
 }
-function add_codes(list, code_area_id) {
-  const container = document.getElementById(code_area_id);
-  if (!container) return;
-  let body = container.querySelector(".codes_body");
-  if (!body) {
-    body = document.createElement("div");
-    body.className = "codes_body";
-    container.appendChild(body);
-  }
-  body.innerHTML = "";
-  list.forEach(({ title, source }) => {
-    const highlighted = es_default.highlight(source, { language: "javascript" }).value;
-    body.insertAdjacentHTML(
-      "beforeend",
-      `<h5>${title}</h5><pre><code class="language-js">${highlighted}</code></pre>`
-    );
-  });
-}
 function render_readme(target, source, language = "markdown") {
   const element = typeof target === "string" ? document.getElementById(target) : target;
   if (!element) return;
@@ -56493,7 +56475,6 @@ export {
   occasionally,
   get_random_int,
   get_random_increase,
-  add_codes,
   render_readme
 };
-//# sourceMappingURL=chunk-2ZSWFXZ7.js.map
+//# sourceMappingURL=chunk-RJNSBOXS.js.map
