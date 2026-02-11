@@ -65,6 +65,7 @@ async function copyStatics(entries) {
     mkdirSync(outFolder, { recursive: true });
     copyIfExists(join(srcFolder, 'index.html'), join(outFolder, 'index.html'));
     copyIfExists(join(srcFolder, 'styles.css'), join(outFolder, 'styles.css'));
+    copyDirectory(join(srcFolder, 'assets'), join(outFolder, 'assets'));
   }
   copyIfExists(join(root, 'index.html'), join(outDir, 'index.html'));
   copyDirectory(join(root, 'style'), join(outDir, 'style'));
@@ -131,7 +132,12 @@ async function run({ watch }) {
         console.log('Style updated:', filename);
         return;
       }
-      if (filename.endsWith('index.html') || filename.endsWith('styles.css')) {
+      const normalized = filename.replaceAll('\\', '/');
+      if (
+        normalized.endsWith('index.html') ||
+        normalized.endsWith('styles.css') ||
+        normalized.includes('/assets/')
+      ) {
         await copyStatics(entries);
         console.log('Static updated:', filename);
         // Force browser refresh by touching a file that live-server watches

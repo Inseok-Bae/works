@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Violet Cloud And Sharp Boundaries</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" defer src="./index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="stage" aria-label="world canvas"></canvas>
+
+      <aside id="panel" aria-label="controls">
+        <header class="panel-header">
+          <div class="panel-title">Violet Cloud / Sharp Boundaries</div>
+        </header>
+
+        <section class="panel-section">
+          <div class="section-title">Metrics</div>
+          <div id="metrics" class="metrics"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">Controls</div>
+          <div class="controls">
+            <button id="zoomToggle" type="button">Toggle Zoom</button>
+            <button id="commitPainting" type="button">Commit Painting</button>
+            <button id="resetSoft" type="button">Soft Reset</button>
+            <button id="listenHold" type="button">Listen (hold)</button>
+          </div>
+          <div class="hint">
+            <div class="hint-line">Listen: press and hold</div>
+            <div class="hint-line">Stroke: one finger = sharpen, two fingers = smudge</div>
+            <div class="hint-line">Pinch (or wheel): pull ear (temporary orientation assist)</div>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">Interpretation</div>
+          <div id="conceptualLog" class="conceptual-log" aria-live="polite"></div>
+        </section>
+
+        <article id="readme_section"></article>
+
+        <footer class="panel-footer">
+          <span>Log entries: <strong id="logCount">0</strong></span>
+          <span class="muted">console transport + localStorage</span>
+        </footer>
+      </aside>
+    </div>
+  </body>
+</html>
