@@ -1,3 +1,5 @@
+@import '../style/common.css';
+
 .graph_presenter_container {
   position: relative;
   margin-bottom: 10px;
@@ -11,16 +13,14 @@
   font-size: clamp(12px, 1.5vw, 20px);
 }
 
-/* 세로 스택 컨테이너 */
 #conversations_presenter {
   height: 400px;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* 메시지 간 간격 */
-  padding: 8px 10px; /* 선택 */
+  gap: 8px;
+  padding: 8px 10px;
 }
 
-/* 각 메시지 라인(한 줄) */
 .msg {
   display: flex;
   width: 100%;
@@ -30,11 +30,10 @@
     margin 240ms ease,
     padding 240ms ease,
     transform 240ms ease;
-  max-height: 200px; /* 말풍선 한두 줄 기준 여유치; 더 길면 400 등으로 */
+  max-height: 200px;
   will-change: max-height, opacity, margin, padding, transform;
 }
 
-/* 왼쪽/오른쪽 정렬 결정 */
 .msg.left {
   justify-content: flex-start;
 }
@@ -42,7 +41,6 @@
   justify-content: flex-end;
 }
 
-/* 새로 들어올 때: 살짝 아래에서 페이드 인 */
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
@@ -57,7 +55,6 @@
   animation: fadeSlideIn 220ms ease-out both;
 }
 
-/* 맨 위 제거할 때: 위로 접히며 사라짐 (나머지가 자연스럽게 위로 올라옴) */
 .msg.leaving {
   max-height: 0;
   opacity: 0;
@@ -78,18 +75,17 @@
   align-items: flex-end;
 }
 
-/* 말풍선 기본(선택) */
 .bubble {
   width: 100%;
   min-height: 10px;
   padding: 8px 12px;
   border-radius: 14px;
-  background: #f2f3f5; /* 좌 기본 색 */
+  background: #f2f3f5;
   line-height: 1.4;
   word-break: break-word;
 }
 .msg.right .bubble {
-  background: #cfe9ff; /* 우 기본 색 */
+  background: #cfe9ff;
 }
 
 .meta {
@@ -98,28 +94,7 @@
 }
 .meta--top {
   margin: 0 0 4px;
-} /* 스피커 이름 */
+}
 .meta--bottom {
   margin: 4px 0 0;
-} /* 시간 */
-
-/* 코드 영역만 가로 스크롤 (페이지 전체는 스크롤 X) */
-#codes pre {
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch; /* 모바일 부드러운 스크롤 */
-  margin: 12px 0; /* 선택 */
-  border: 1px solid #e5e7eb; /* 선택 */
-  border-radius: 8px; /* 선택 */
-  background: #f8fafc; /* 선택 */
-  padding: 12px; /* 선택 */
-}
-
-/* 줄바꿈 없이 보존 -> 긴 줄은 가로 스크롤로 */
-#codes pre code,
-#codes pre code.hljs {
-  white-space: pre;
-  word-break: normal;
-  overflow-wrap: normal;
 }

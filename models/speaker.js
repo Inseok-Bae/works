@@ -1,10 +1,10 @@
 import { reaction } from 'mobx';
-import { occasionally, getRandomInt } from '../utils/util';
+import { occasionally, get_random_int } from '../utils/util';
 
 export class Speaker {
   constructor({ public_conversations, name }) {
-    this.delay = getRandomInt(1000, 3000);
-    this.ownContent = getRandomInt(1, 10);
+    this.delay = get_random_int(1000, 3000);
+    this.ownContent = get_random_int(1, 10);
     this.public_conversations = public_conversations;
     this.name = name;
     this.join();
@@ -30,7 +30,7 @@ export class Speaker {
   think(materials) {
     try {
       return occasionally(() => {
-        const lastMemory = getRandomInt(1, 3) * -1;
+        const lastMemory = get_random_int(1, 3) * -1;
         const content = materials.slice(lastMemory).reduce((a, b) => a + b, 1);
         return this.ownContent > content ? this.ownContent : content;
       });
