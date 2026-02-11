@@ -1,5 +1,14 @@
 @import '../style/common.css';
 
+:root {
+  --readme-bg: linear-gradient(180deg, #f9fcff 0%, #f3f8ff 100%);
+  --readme-border: #d6e3f3;
+  --readme-text: #2f3f54;
+  --readme-shadow: 0 8px 20px rgba(111, 137, 167, 0.14);
+  --readme-scroll-thumb: rgba(110, 142, 179, 0.55);
+  --readme-scroll-track: rgba(110, 142, 179, 0.16);
+}
+
 .graph_presenter_container {
   position: relative;
   margin-bottom: 10px;

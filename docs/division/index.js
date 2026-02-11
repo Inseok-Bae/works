@@ -1,18 +1,11 @@
 import {
   __publicField,
-  add_codes,
   autorun,
   get_random_increase,
   observable,
   render_readme,
   runInAction
-} from "../chunks/chunk-2ZSWFXZ7.js";
-
-// raw-file:C:\Users\qodls\Desktop\source\works\division\acting.js
-var acting_default = "import { Being } from '../models/being';\r\n\r\nexport const acting = () => {\r\n  new Being();\r\n\r\n  return { world: Being.world };\r\n};\r\n";
-
-// raw-file:C:\Users\qodls\Desktop\source\works\models\being.js
-var being_default = "import { observable, runInAction } from 'mobx';\r\nimport { get_random_increase } from '../utils/util';\r\n\r\nexport class Being {\r\n  static world = observable.map();\r\n  static EPHEMERAL_LIFETIME_MS = 2000;\r\n  static TICK_MS = 700;\r\n  static SPAWN_PERIOD_MS = 700;\r\n\r\n  constructor({ replica_count = 2, origin = null } = {}) {\r\n    this.id = Symbol('Being');\r\n    this.created_at = Date.now();\r\n    this.replica_count = replica_count;\r\n    this.last_spawn_at = this.created_at;\r\n    this.autonomy = get_random_increase(0);\r\n    this.origin = origin;\r\n    this.is_permanent = !origin || this.autonomy >= origin.autonomy + 100;\r\n\r\n    runInAction(() => {\r\n      Being.world.set(this.id, this);\r\n    });\r\n\r\n    if (this.is_permanent) {\r\n      this.autonomy = 0;\r\n      this.act();\r\n    } else {\r\n      this.life_time = Date.now() + Being.EPHEMERAL_LIFETIME_MS + Math.floor(Math.random() * 300);\r\n    }\r\n  }\r\n\r\n  act() {\r\n    const now = Date.now();\r\n    this.pull(now);\r\n    this.spawn(now);\r\n    setTimeout(() => this.act(), Being.TICK_MS);\r\n  }\r\n\r\n  spawn(now) {\r\n    if (now - this.last_spawn_at < Being.SPAWN_PERIOD_MS) return;\r\n\r\n    for (let i = 0; i < this.replica_count; i++) {\r\n      new Being({ replica_count: this.replica_count, origin: this });\r\n    }\r\n\r\n    this.last_spawn_at = now;\r\n  }\r\n\r\n  pull(now = Date.now()) {\r\n    const to_delete = [];\r\n    for (const b of Being.world.values()) {\r\n      if (b.origin !== this || b.is_permanent) continue;\r\n      if (now >= b.life_time) to_delete.push(b.id);\r\n    }\r\n    runInAction(() => {\r\n      for (const id of to_delete) Being.world.delete(id);\r\n    });\r\n  }\r\n}\r\n";
+} from "../chunks/chunk-RJNSBOXS.js";
 
 // raw-file:C:\Users\qodls\Desktop\source\works\division\README.md
 var README_default = "\uADF8\uB4E4\uC740 \uC790\uC2E0\uC774 \uB0A8\uB4E4\uACFC \uB2E4\uB974\uAE38 \uBC14\uB780\uB2E4. \uC774\uAC83\uC740 \uCC9C\uC131\uC774\uB2E4.\r\n\uD558\uC9C0\uB9CC \uC9D1\uB2E8\uC758 \uC911\uB825\uC744 \uC774\uAE30\uC9C0 \uBABB\uD55C \uB300\uB2E4\uC218\uB294 \uD68C\uADC0\uD558\uC5EC \uAC19\uC544\uC9C4\uB2E4.\r\n\r\n\uADF8\uB4E4\uC740 \uB0A8\uB4E4\uC774 \uC790\uC2E0\uC758 \uC77C\uBD80\uAC00 \uB418\uAE38 \uBC14\uB780\uB2E4.\r\n\uB3C5\uB9BD\uC5D0 \uC131\uACF5\uD55C \uC774\uB4E4\uC740 \uB3C5\uB9BD\uB41C \uC9D1\uB2E8\uC774 \uB418\uACE0, \uADF8 \uC911 \uC77C\uBD80\uAC00 \uBE60\uC838\uB098\uC640 \uD328\uD134\uC744 \uBC18\uBCF5\uD55C\uB2E4.\r\n\r\n---\r\n\r\nThey wish to be different from others \u2014 it is in their nature.\r\nYet most cannot overcome the gravity of the group, and they return to sameness.\r\n\r\nThey wish others to become part of themselves.\r\nThose who succeed in independence form their own groups, and some from within break away \u2014 repeating the same pattern.\r\n";
@@ -165,13 +158,6 @@ var compute_target = (node, center_point, nodes2, canvas2) => {
 
 // division/index.js
 var { world } = acting();
-add_codes(
-  [
-    { title: "Model > Being", source: being_default },
-    { title: "Acting", source: acting_default }
-  ],
-  "codes"
-);
 var canvas = document.getElementById("world_canvas");
 var ctx = canvas.getContext("2d");
 render_readme("readme_section", README_default);

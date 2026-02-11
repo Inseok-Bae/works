@@ -1,5 +1,14 @@
 @import '../style/common.css';
 
+:root {
+  --readme-bg: linear-gradient(180deg, #f7fafc 0%, #f2f6fb 100%);
+  --readme-border: #d7dde6;
+  --readme-text: #1f2937;
+  --readme-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  --readme-scroll-thumb: rgba(120, 136, 159, 0.55);
+  --readme-scroll-track: rgba(120, 136, 159, 0.16);
+}
+
 #world {
   display: flex;
   flex-direction: column;

@@ -1,14 +1,10 @@
 import { autorun } from 'mobx';
 import { init_graph_presenter, update_graph_presenter } from './chart.js';
-import conversation_model_source from '../models/conversations.js?raw';
-import speaker_model_source from '../models/speaker.js?raw';
-import murmurer_model_source from '../models/murmurer.js?raw';
-import acting_source from './acting.js?raw';
 import readme_source from './README.md?raw';
 import { acting } from './acting';
 import { toData, makeSpeakerLegend, speakerNames } from './utils.js';
 import { appendMessage } from './chat.js';
-import { add_codes, render_readme } from '../utils/util.js';
+import { render_readme } from '../utils/util.js';
 
 const { public_conversations, murmurer_regret } = acting();
 
@@ -33,16 +29,6 @@ const regret_graph_presenter = init_graph_presenter({
   legends: [makeSpeakerLegend('murmurer')],
   data: toData(murmurer_regret),
 });
-
-add_codes(
-  [
-    { title: 'Model > Conversations', source: conversation_model_source },
-    { title: 'Model > Speaker', source: speaker_model_source },
-    { title: 'Model > Murmurer', source: murmurer_model_source },
-    { title: 'Acting', source: acting_source },
-  ],
-  'codes'
-);
 
 render_readme('readme_section', readme_source);
 

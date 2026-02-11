@@ -1,9 +1,7 @@
 import { autorun } from 'mobx';
-import acting_source from './acting.js?raw';
-import being_source from '../models/being.js?raw';
 import readme_source from './README.md?raw';
 import { acting } from './acting';
-import { add_codes, render_readme } from '../utils/util.js';
+import { render_readme } from '../utils/util.js';
 import { GOLD, BLUE, OUT_DURATION, IN_DURATION, RELOAD_THRESHOLD, EPHEM_RADIUS } from './config.js';
 import {
   next_ephem_angle,
@@ -16,13 +14,6 @@ import {
 } from './layout.js';
 
 const { world } = acting();
-add_codes(
-  [
-    { title: 'Model > Being', source: being_source },
-    { title: 'Acting', source: acting_source },
-  ],
-  'codes'
-);
 
 const canvas = document.getElementById('world_canvas');
 const ctx = canvas.getContext('2d');

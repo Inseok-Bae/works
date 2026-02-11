@@ -13,6 +13,12 @@
   --panel: rgba(8, 6, 18, 0.72);
   --line: rgba(245, 243, 255, 0.14);
   --shadow: rgba(0, 0, 0, 0.38);
+  --readme-bg: linear-gradient(180deg, rgba(16, 12, 30, 0.78) 0%, rgba(8, 6, 18, 0.8) 100%);
+  --readme-border: rgba(245, 243, 255, 0.16);
+  --readme-text: rgba(245, 243, 255, 0.9);
+  --readme-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  --readme-scroll-thumb: rgba(203, 179, 255, 0.5);
+  --readme-scroll-track: rgba(203, 179, 255, 0.15);
 }
 
 * {
@@ -228,21 +234,12 @@ button:active {
 }
 
 .readme-block {
-  width: 100%;
   margin: 0;
-  background: rgba(0, 0, 0, 0.16);
-  border-color: var(--line);
-  color: var(--ink);
 }
 
 .readme-block pre {
-  background: rgba(0, 0, 0, 0.22);
-  border-color: var(--line);
-}
-
-.readme-block pre code,
-.readme-block pre code.hljs {
-  color: inherit;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 kbd {
