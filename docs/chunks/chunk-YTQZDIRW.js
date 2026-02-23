@@ -56708,8 +56708,16 @@ var translations_default = {
     bleeding: {
       documentTitle: "\uBC88\uC9D0",
       canvasAria: "\uBC88\uC9D0 \uC7A5\uBA74",
-      hudAria: "\uC81C\uC5B4 \uBC0F \uB85C\uADF8",
+      hudAria: "\uAC10\uC815\uC758 \uD750\uB984",
       title: "\uBC88\uC9D0",
+      emotion: {
+        caption: "\uAC10\uC815\uC758 \uD750\uB984",
+        joy: "\uAE30\uC068",
+        sadness: "\uC2AC\uD514",
+        anger: "\uBD84\uB178",
+        loss: "\uC0C1\uC2E4",
+        void: "\uACF5"
+      },
       buttons: {
         view: "\uBCF4\uAE30 \uC804\uD658",
         pause: "\uC77C\uC2DC\uC815\uC9C0",
@@ -56843,8 +56851,16 @@ var translations_default = {
     bleeding: {
       documentTitle: "Bleeding Colors",
       canvasAria: "Bleeding colors scene",
-      hudAria: "Controls and log",
+      hudAria: "Emotional flow",
       title: "Bleeding Colors",
+      emotion: {
+        caption: "Emotional flow",
+        joy: "Joy",
+        sadness: "Sadness",
+        anger: "Anger",
+        loss: "Loss",
+        void: "Void"
+      },
       buttons: {
         view: "Toggle View",
         pause: "Pause",
@@ -56978,8 +56994,16 @@ var translations_default = {
     bleeding: {
       documentTitle: "\u6E17\u8272",
       canvasAria: "\u6E17\u8272\u573A\u666F",
-      hudAria: "\u63A7\u5236\u4E0E\u65E5\u5FD7",
+      hudAria: "\u60C5\u7EEA\u6D41\u52A8",
       title: "\u6E17\u8272",
+      emotion: {
+        caption: "\u60C5\u7EEA\u6D41\u52A8",
+        joy: "\u559C\u60A6",
+        sadness: "\u60B2\u4F24",
+        anger: "\u6124\u6012",
+        loss: "\u5931\u843D",
+        void: "\u7A7A"
+      },
       buttons: {
         view: "\u5207\u6362\u89C6\u56FE",
         pause: "\u6682\u505C",
@@ -57113,8 +57137,16 @@ var translations_default = {
     bleeding: {
       documentTitle: "\u306B\u3058\u307F",
       canvasAria: "\u306B\u3058\u307F\u306E\u5834\u9762",
-      hudAria: "\u64CD\u4F5C\u3068\u30ED\u30B0",
+      hudAria: "\u611F\u60C5\u306E\u6D41\u308C",
       title: "\u306B\u3058\u307F",
+      emotion: {
+        caption: "\u611F\u60C5\u306E\u6D41\u308C",
+        joy: "\u559C\u3073",
+        sadness: "\u60B2\u3057\u307F",
+        anger: "\u6012\u308A",
+        loss: "\u55AA\u5931",
+        void: "\u7A7A"
+      },
       buttons: {
         view: "\u8868\u793A\u5207\u66FF",
         pause: "\u4E00\u6642\u505C\u6B62",
@@ -57361,4 +57393,4 @@ export {
   initThoughtOverlay,
   initI18n
 };
-//# sourceMappingURL=chunk-KILQO7KM.js.map
+//# sourceMappingURL=chunk-YTQZDIRW.js.map

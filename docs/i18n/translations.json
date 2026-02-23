@@ -111,8 +111,16 @@
     "bleeding": {
       "documentTitle": "번짐",
       "canvasAria": "번짐 장면",
-      "hudAria": "제어 및 로그",
+      "hudAria": "감정의 흐름",
       "title": "번짐",
+      "emotion": {
+        "caption": "감정의 흐름",
+        "joy": "기쁨",
+        "sadness": "슬픔",
+        "anger": "분노",
+        "loss": "상실",
+        "void": "공"
+      },
       "buttons": {
         "view": "보기 전환",
         "pause": "일시정지",
@@ -246,8 +254,16 @@
     "bleeding": {
       "documentTitle": "Bleeding Colors",
       "canvasAria": "Bleeding colors scene",
-      "hudAria": "Controls and log",
+      "hudAria": "Emotional flow",
       "title": "Bleeding Colors",
+      "emotion": {
+        "caption": "Emotional flow",
+        "joy": "Joy",
+        "sadness": "Sadness",
+        "anger": "Anger",
+        "loss": "Loss",
+        "void": "Void"
+      },
       "buttons": {
         "view": "Toggle View",
         "pause": "Pause",
@@ -381,8 +397,16 @@
     "bleeding": {
       "documentTitle": "渗色",
       "canvasAria": "渗色场景",
-      "hudAria": "控制与日志",
+      "hudAria": "情绪流动",
       "title": "渗色",
+      "emotion": {
+        "caption": "情绪流动",
+        "joy": "喜悦",
+        "sadness": "悲伤",
+        "anger": "愤怒",
+        "loss": "失落",
+        "void": "空"
+      },
       "buttons": {
         "view": "切换视图",
         "pause": "暂停",
@@ -516,8 +540,16 @@
     "bleeding": {
       "documentTitle": "にじみ",
       "canvasAria": "にじみの場面",
-      "hudAria": "操作とログ",
+      "hudAria": "感情の流れ",
       "title": "にじみ",
+      "emotion": {
+        "caption": "感情の流れ",
+        "joy": "喜び",
+        "sadness": "悲しみ",
+        "anger": "怒り",
+        "loss": "喪失",
+        "void": "空"
+      },
       "buttons": {
         "view": "表示切替",
         "pause": "一時停止",
