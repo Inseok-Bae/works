@@ -7,6 +7,24 @@
   --readme-shadow: 0 8px 20px rgba(111, 137, 167, 0.14);
   --readme-scroll-thumb: rgba(110, 142, 179, 0.55);
   --readme-scroll-track: rgba(110, 142, 179, 0.16);
+  --thought-overlay-bg: rgba(10, 16, 28, 0.64);
+  --thought-card-bg: linear-gradient(170deg, rgba(246, 251, 255, 0.97) 0%, rgba(237, 245, 255, 0.98) 100%);
+  --thought-card-border: rgba(136, 167, 201, 0.45);
+  --thought-card-text: #10233d;
+  --thought-close-bg: rgba(21, 59, 103, 0.08);
+  --language-switcher-bg: rgba(16, 35, 61, 0.95);
+  --language-switcher-text: rgba(246, 251, 255, 0.96);
+  --language-switcher-border: rgba(246, 251, 255, 0.28);
+  --language-switcher-item-bg: rgba(255, 255, 255, 0.08);
+  --language-switcher-item-hover: rgba(255, 255, 255, 0.18);
+  --thought-menu-toggle-bg: var(--language-switcher-bg);
+  --thought-menu-toggle-text: var(--language-switcher-text);
+  --thought-menu-toggle-border: var(--language-switcher-border);
+  --thought-menu-bg: var(--language-switcher-bg);
+  --thought-menu-text: var(--language-switcher-text);
+  --thought-menu-border: var(--language-switcher-border);
+  --thought-menu-item-bg: var(--language-switcher-item-bg);
+  --thought-menu-item-hover-bg: var(--language-switcher-item-hover);
 }
 
 .graph_presenter_container {

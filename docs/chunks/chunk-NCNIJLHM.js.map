@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../utils/programmatic-log-transport.js"],
+  "sourcesContent": ["export function createProgrammaticLogTransport({ project, sender } = {}) {\r\n  const projectName = project || 'unknown-project';\r\n  const sendFn =\r\n    typeof sender === 'function'\r\n      ? sender\r\n      : (envelope) => {\r\n          console.log('[programmatic-log]', envelope);\r\n        };\r\n\r\n  return {\r\n    send(entry) {\r\n      const envelope = {\r\n        channel: 'programmatic',\r\n        project: projectName,\r\n        sentAt: Date.now(),\r\n        payload: entry,\r\n      };\r\n      sendFn(envelope);\r\n    },\r\n  };\r\n}\r\n"],
+  "mappings": ";AAAO,SAAS,+BAA+B,EAAE,SAAS,OAAO,IAAI,CAAC,GAAG;AACvE,QAAM,cAAc,WAAW;AAC/B,QAAM,SACJ,OAAO,WAAW,aACd,SACA,CAAC,aAAa;AACZ,YAAQ,IAAI,sBAAsB,QAAQ;AAAA,EAC5C;AAEN,SAAO;AAAA,IACL,KAAK,OAAO;AACV,YAAM,WAAW;AAAA,QACf,SAAS;AAAA,QACT,SAAS;AAAA,QACT,QAAQ,KAAK,IAAI;AAAA,QACjB,SAAS;AAAA,MACX;AACA,aAAO,QAAQ;AAAA,IACjB;AAAA,EACF;AACF;",
+  "names": []
+}

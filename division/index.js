@@ -2,6 +2,8 @@ import { autorun } from 'mobx';
 import readme_source from './README.md?raw';
 import { acting } from './acting';
 import { render_readme } from '../utils/util.js';
+import { initThoughtOverlay } from '../utils/thought-overlay.js';
+import { initI18n } from '../utils/i18n.js';
 import { GOLD, BLUE, OUT_DURATION, IN_DURATION, RELOAD_THRESHOLD, EPHEM_RADIUS } from './config.js';
 import {
   next_ephem_angle,
@@ -14,10 +16,12 @@ import {
 } from './layout.js';
 
 const { world } = acting();
+initI18n();
 
 const canvas = document.getElementById('world_canvas');
 const ctx = canvas.getContext('2d');
 render_readme('readme_section', readme_source);
+initThoughtOverlay();
 
 const resize_canvas = () => {
   const dpr = window.devicePixelRatio || 1;

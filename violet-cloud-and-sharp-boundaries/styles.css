@@ -19,6 +19,27 @@
   --readme-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
   --readme-scroll-thumb: rgba(203, 179, 255, 0.5);
   --readme-scroll-track: rgba(203, 179, 255, 0.15);
+  --thought-overlay-bg: rgba(4, 2, 10, 0.7);
+  --thought-card-bg: linear-gradient(170deg, rgba(18, 10, 34, 0.94) 0%, rgba(8, 6, 18, 0.96) 100%);
+  --thought-card-border: rgba(203, 179, 255, 0.34);
+  --thought-card-text: rgba(245, 243, 255, 0.9);
+  --thought-head-border: rgba(245, 243, 255, 0.16);
+  --thought-close-bg: rgba(245, 243, 255, 0.08);
+  --thought-close-text: rgba(245, 243, 255, 0.94);
+  --thought-close-border: rgba(245, 243, 255, 0.2);
+  --language-switcher-bg: rgba(10, 7, 22, 0.96);
+  --language-switcher-text: rgba(245, 243, 255, 0.94);
+  --language-switcher-border: rgba(203, 179, 255, 0.36);
+  --language-switcher-item-bg: rgba(245, 243, 255, 0.08);
+  --language-switcher-item-hover: rgba(245, 243, 255, 0.16);
+  --thought-menu-toggle-bg: var(--language-switcher-bg);
+  --thought-menu-toggle-text: var(--language-switcher-text);
+  --thought-menu-toggle-border: var(--language-switcher-border);
+  --thought-menu-bg: var(--language-switcher-bg);
+  --thought-menu-text: var(--language-switcher-text);
+  --thought-menu-border: var(--language-switcher-border);
+  --thought-menu-item-bg: var(--language-switcher-item-bg);
+  --thought-menu-item-hover-bg: var(--language-switcher-item-hover);
 }
 
 * {
@@ -34,14 +55,7 @@ body {
   margin: 0;
   background: radial-gradient(1200px 900px at 10% 0%, #2b0c5a 0%, var(--bg0) 40%, #000 100%);
   color: var(--ink);
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    'Noto Sans KR',
-    sans-serif;
+  font-family: var(--font-sans);
 }
 
 #app {
@@ -231,22 +245,6 @@ button:active {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
-}
-
-.readme-block {
-  margin: 0;
-}
-
-#readme_section.readme-block {
-  flex: 0 0 auto;
-  min-height: 300px;
-  max-height: min(72vh, 760px);
-  overflow-y: auto;
-}
-
-.readme-block pre {
-  font-size: 13px;
-  line-height: 1.65;
 }
 
 kbd {

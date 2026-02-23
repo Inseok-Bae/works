@@ -2,13 +2,15 @@ import {
   __publicField,
   autorun,
   get_random_increase,
+  initI18n,
+  initThoughtOverlay,
   observable,
   render_readme,
   runInAction
-} from "../chunks/chunk-RJNSBOXS.js";
+} from "../chunks/chunk-KILQO7KM.js";
 
 // raw-file:C:\Users\qodls\Desktop\source\works\division\README.md
-var README_default = "\uADF8\uB4E4\uC740 \uC790\uC2E0\uC774 \uB0A8\uB4E4\uACFC \uB2E4\uB974\uAE38 \uBC14\uB780\uB2E4. \uC774\uAC83\uC740 \uCC9C\uC131\uC774\uB2E4.\r\n\uD558\uC9C0\uB9CC \uC9D1\uB2E8\uC758 \uC911\uB825\uC744 \uC774\uAE30\uC9C0 \uBABB\uD55C \uB300\uB2E4\uC218\uB294 \uD68C\uADC0\uD558\uC5EC \uAC19\uC544\uC9C4\uB2E4.\r\n\r\n\uADF8\uB4E4\uC740 \uB0A8\uB4E4\uC774 \uC790\uC2E0\uC758 \uC77C\uBD80\uAC00 \uB418\uAE38 \uBC14\uB780\uB2E4.\r\n\uB3C5\uB9BD\uC5D0 \uC131\uACF5\uD55C \uC774\uB4E4\uC740 \uB3C5\uB9BD\uB41C \uC9D1\uB2E8\uC774 \uB418\uACE0, \uADF8 \uC911 \uC77C\uBD80\uAC00 \uBE60\uC838\uB098\uC640 \uD328\uD134\uC744 \uBC18\uBCF5\uD55C\uB2E4.\r\n\r\n---\r\n\r\nThey wish to be different from others \u2014 it is in their nature.\r\nYet most cannot overcome the gravity of the group, and they return to sameness.\r\n\r\nThey wish others to become part of themselves.\r\nThose who succeed in independence form their own groups, and some from within break away \u2014 repeating the same pattern.\r\n";
+var README_default = "\uADF8\uB4E4\uC740 \uC790\uC2E0\uC774 \uB0A8\uB4E4\uACFC \uB2E4\uB974\uAE38 \uBC14\uB780\uB2E4. \uC774\uAC83\uC740 \uCC9C\uC131\uC774\uB2E4.\r\n\uD558\uC9C0\uB9CC \uC9D1\uB2E8\uC758 \uC911\uB825\uC744 \uC774\uAE30\uC9C0 \uBABB\uD55C \uB300\uB2E4\uC218\uB294 \uD68C\uADC0\uD558\uC5EC \uAC19\uC544\uC9C4\uB2E4.\r\n\r\n\uADF8\uB4E4\uC740 \uB0A8\uB4E4\uC774 \uC790\uC2E0\uC758 \uC77C\uBD80\uAC00 \uB418\uAE38 \uBC14\uB780\uB2E4.\r\n\uB3C5\uB9BD\uC5D0 \uC131\uACF5\uD55C \uC774\uB4E4\uC740 \uB3C5\uB9BD\uB41C \uC9D1\uB2E8\uC774 \uB418\uACE0, \uADF8 \uC911 \uC77C\uBD80\uAC00 \uBE60\uC838\uB098\uC640 \uD328\uD134\uC744 \uBC18\uBCF5\uD55C\uB2E4.\r\n\r\n---\r\n\r\nThey wish to be different from others \u2014 it is in their nature.\r\nYet most cannot overcome the gravity of the group, and they return to sameness.\r\n\r\nThey wish others to become part of themselves.\nThose who succeed in independence form their own groups, and some break away from within \u2014 repeating the same pattern.\n";
 
 // models/being.js
 var _Being = class _Being {
@@ -158,9 +160,11 @@ var compute_target = (node, center_point, nodes2, canvas2) => {
 
 // division/index.js
 var { world } = acting();
+initI18n();
 var canvas = document.getElementById("world_canvas");
 var ctx = canvas.getContext("2d");
 render_readme("readme_section", README_default);
+initThoughtOverlay();
 var resize_canvas = () => {
   const dpr = window.devicePixelRatio || 1;
   const target = Math.min(window.innerWidth * 0.92, 720);

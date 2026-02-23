@@ -1,12 +1,17 @@
 import {
+  createProgrammaticLogTransport
+} from "../chunks/chunk-NCNIJLHM.js";
+import {
   autorun,
+  initI18n,
+  initThoughtOverlay,
   observable,
   render_readme,
   runInAction
-} from "../chunks/chunk-RJNSBOXS.js";
+} from "../chunks/chunk-KILQO7KM.js";
 
 // raw-file:C:\Users\qodls\Desktop\source\works\violet-cloud-and-sharp-boundaries\README.md
-var README_default = "\uAC11\uC791\uC2A4\uB7F0 \uD734\uAC00\uB97C \uB9C8\uCE58\uACE0 \uD55C \uBA87 \uB144\uC740 \uB354 \uC9D1\uC774\uB77C\uACE0 \uBD80\uB97C \uC218 \uC788\uB294 \uACF3\uC73C\uB85C \uB3CC\uC544\uAC00\uBA74\uC11C, \uCD5C\uADFC \uB4E4\uC5B4 \uB2E4\uC2DC \uCC3E\uC544 \uB4E3\uAE30 \uC2DC\uC791\uD55C \uC774\uC18C\uB77C\uC758 \uB178\uB798\uB97C \uB4E3\uB294\uB2E4. \uC5B4\uB9B4 \uC801 \uC5C4\uB9C8\uAC00 \uD2C0\uC5B4\uB450\uC5C8\uB358 \uC774\uC18C\uB77C\uC758 \uB178\uB798\uB294 \uC7A0\uB4E4\uAE30 \uC804 \uC774\uC5B4\uD3F0\uC73C\uB85C \uC62E\uACA8 \uB4E4\uC5B4\uC640 \uC774\uC720 \uC5C6\uB294 \uB098\uC758 \uC6B0\uC6B8\uC5D0, \uB290\uB9BF\uB290\uB9BF\uD558\uACE0, \uB3D9\uD0DC \uB208\uAE54 \uAC19\uB2E4\uB358 \uB208\uBE5B\uC5D0 \uD070 \uBAAB\uC744 \uD588\uB2E4. \uC5C4\uB9C8\uB294 \uC774 \uB178\uB798 \uC18D\uC73C\uB85C \uB354 \uD30C\uACE0 \uB4E4\uC5B4\uAC14\uACE0, \uB098\uB294 \uC774 \uBCF4\uB78F\uBE5B \uBB49\uAC8C \uAD6C\uB984\uC5D0\uC11C \uBE60\uC838\uB098\uC640\uC57C \uD588\uB2E4. \uD750\uB9BF\uD55C \uACBD\uACC4\uB4E4\uC744 \uAC01\uC9C0\uAC8C \uB2E4\uB4EC\uACE0 \uBA85\uD655\uD55C \uBA54\uC2DC\uC9C0\uB97C \uC804\uB2EC\uD574\uC57C \uD588\uB2E4. \uAC01\uC9C4 \uAC83\uC740 \uB531\uB531\uD574\uC9C0\uACE0, \uCE58\uC11D \uAC19\uC740 \uAC83\uB4E4\uC774 \uB418\uC5B4\uC11C \uB0C4\uC0C8\uB97C \uBFDC\uC5B4 \uC5B4\uC9C0\uB7FD\uAC8C \uD558\uACE0 \uAC77\uB294 \uC640\uC911\uC5D0\uB3C4 \uADC0\uB97C \uC591\uCABD\uC73C\uB85C \uCB49 \uC7A1\uC544\uB2F9\uACA8 \uC5B4\uB514\uB85C \uAC00\uC57C \uD560 \uC9C0 \uAC08\uD53C\uB97C \uC7A1\uC744 \uC218 \uC5C6\uC5C8\uB358 \uAC83\uC774\uB2E4. \uADF8\uB7EC\uB358 \uC5B4\uB290 \uB0A0\uC5D0 \uC774 \uBB49\uAC8C\uBB49\uAC1C\uD558\uACE0 \uBAA8\uD638\uD55C \uBAA9\uC18C\uB9AC\uAC00 \uB2E4\uC2DC \uB4E4\uB9B0 \uAC83\uC774\uB2E4. \uCEE4\uB2E4\uB780 \uBCF4\uB77C\uC0C9 \uADF8\uB9BC\uC744 \uC0AC\uC11C \uBCBD\uC5D0\uB2E4 \uAC78\uC5B4\uC57C \uD560 \uC218\uB3C4 \uC788\uACA0\uB2E4.\n\n---\n\nAfter finishing a sudden vacation, as I head back to a place I can still call home for the next few years, I find myself listening again to Lee Sora's songs. When I was young, the Lee Sora my mother used to play would move into my earphones before sleep and took a big part in my causeless sadness\u2014its slow pace, and the gaze people joked looked like a pollack's dead eyes. My mother sank deeper into these songs, and I had to climb out of those violet, billowing clouds. I had to sharpen blurred boundaries into hard edges and deliver a clear message. But what becomes angular becomes hard; it turns into something like tartar, giving off a smell that makes you dizzy, so that even while walking you end up pulling your ears outward with both hands, unable to find where you're supposed to go. And then one day, that smudgy, ambiguous voice returned. I might have to buy a large violet painting and hang it on the wall.\n";
+var README_default = "\uAC11\uC791\uC2A4\uB7F0 \uD734\uAC00\uB97C \uB9C8\uCE58\uACE0 \uD55C \uBA87 \uB144\uC740 \uB354 \uC9D1\uC774\uB77C\uACE0 \uBD80\uB97C \uC218 \uC788\uB294 \uACF3\uC73C\uB85C \uB3CC\uC544\uAC00\uBA74\uC11C, \uCD5C\uADFC \uB4E4\uC5B4 \uB2E4\uC2DC \uCC3E\uC544 \uB4E3\uAE30 \uC2DC\uC791\uD55C \uC774\uC18C\uB77C\uC758 \uB178\uB798\uB97C \uB4E3\uB294\uB2E4. \uC5B4\uB9B4 \uC801 \uC5C4\uB9C8\uAC00 \uD2C0\uC5B4\uB450\uC5C8\uB358 \uC774\uC18C\uB77C\uC758 \uB178\uB798\uB294 \uC7A0\uB4E4\uAE30 \uC804 \uC774\uC5B4\uD3F0\uC73C\uB85C \uC62E\uACA8 \uB4E4\uC5B4\uC640 \uC774\uC720 \uC5C6\uB294 \uB098\uC758 \uC6B0\uC6B8\uC5D0, \uB290\uB9BF\uB290\uB9BF\uD558\uACE0, \uB3D9\uD0DC \uB208\uAE54 \uAC19\uB2E4\uB358 \uB208\uBE5B\uC5D0 \uD070 \uBAAB\uC744 \uD588\uB2E4. \uC5C4\uB9C8\uB294 \uC774 \uB178\uB798 \uC18D\uC73C\uB85C \uB354 \uD30C\uACE0 \uB4E4\uC5B4\uAC14\uACE0, \uB098\uB294 \uC774 \uBCF4\uB78F\uBE5B \uBB49\uAC8C \uAD6C\uB984\uC5D0\uC11C \uBE60\uC838\uB098\uC640\uC57C \uD588\uB2E4. \uD750\uB9BF\uD55C \uACBD\uACC4\uB4E4\uC744 \uAC01\uC9C0\uAC8C \uB2E4\uB4EC\uACE0 \uBA85\uD655\uD55C \uBA54\uC2DC\uC9C0\uB97C \uC804\uB2EC\uD574\uC57C \uD588\uB2E4. \uAC01\uC9C4 \uAC83\uC740 \uB531\uB531\uD574\uC9C0\uACE0, \uCE58\uC11D \uAC19\uC740 \uAC83\uB4E4\uC774 \uB418\uC5B4\uC11C \uB0C4\uC0C8\uB97C \uBFDC\uC5B4 \uC5B4\uC9C0\uB7FD\uAC8C \uD558\uACE0 \uAC77\uB294 \uC640\uC911\uC5D0\uB3C4 \uADC0\uB97C \uC591\uCABD\uC73C\uB85C \uCB49 \uC7A1\uC544\uB2F9\uACA8 \uC5B4\uB514\uB85C \uAC00\uC57C \uD560 \uC9C0 \uAC08\uD53C\uB97C \uC7A1\uC744 \uC218 \uC5C6\uC5C8\uB358 \uAC83\uC774\uB2E4. \uADF8\uB7EC\uB358 \uC5B4\uB290 \uB0A0\uC5D0 \uC774 \uBB49\uAC8C\uBB49\uAC1C\uD558\uACE0 \uBAA8\uD638\uD55C \uBAA9\uC18C\uB9AC\uAC00 \uB2E4\uC2DC \uB4E4\uB9B0 \uAC83\uC774\uB2E4. \uCEE4\uB2E4\uB780 \uBCF4\uB77C\uC0C9 \uADF8\uB9BC\uC744 \uC0AC\uC11C \uBCBD\uC5D0\uB2E4 \uAC78\uC5B4\uC57C \uD560 \uC218\uB3C4 \uC788\uACA0\uB2E4.\r\n\r\n---\r\n\r\nAfter finishing a sudden vacation, as I head back to a place I can still call home for the next few years, I find myself listening again to Lee Sora's songs. When I was young, the Lee Sora my mother used to play would move into my earphones before sleep and took a big part in my causeless sadness\u2014its slow pace, and the gaze people joked looked like a pollack's dead eyes. My mother sank deeper into these songs, and I had to climb out of those violet, billowing clouds. I had to sharpen blurred boundaries into hard edges and deliver a clear message. But what becomes angular becomes hard; it turns into something like tartar, giving off a smell that makes you dizzy, so that even while walking you end up pulling your ears outward with both hands, unable to find where you're supposed to go. And then one day, that smudgy, ambiguous voice returned. I might have to buy a large violet painting and hang it on the wall.\r\n";
 
 // violet-cloud-and-sharp-boundaries/utils/math.js
 function clamp01(value) {
@@ -14,8 +19,8 @@ function clamp01(value) {
   if (value > 1) return 1;
   return value;
 }
-function easeInCubic(t) {
-  const x = clamp01(t);
+function easeInCubic(t2) {
+  const x = clamp01(t2);
   return x * x * x;
 }
 
@@ -25,28 +30,9 @@ function mulberry32(seed) {
   return () => {
     a |= 0;
     a = a + 1831565813 | 0;
-    let t = Math.imul(a ^ a >>> 15, 1 | a);
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-    return ((t ^ t >>> 14) >>> 0) / 4294967296;
-  };
-}
-
-// utils/programmatic-log-transport.js
-function createProgrammaticLogTransport({ project, sender } = {}) {
-  const projectName = project || "unknown-project";
-  const sendFn = typeof sender === "function" ? sender : (envelope) => {
-    console.log("[programmatic-log]", envelope);
-  };
-  return {
-    send(entry) {
-      const envelope = {
-        channel: "programmatic",
-        project: projectName,
-        sentAt: Date.now(),
-        payload: entry
-      };
-      sendFn(envelope);
-    }
+    let t2 = Math.imul(a ^ a >>> 15, 1 | a);
+    t2 = t2 + Math.imul(t2 ^ t2 >>> 7, 61 | t2) ^ t2;
+    return ((t2 ^ t2 >>> 14) >>> 0) / 4294967296;
   };
 }
 
@@ -283,13 +269,13 @@ var VoiceReturnProcess = class {
       return;
     }
     const elapsed = nowMs - this.pulse.startedAtMs;
-    const t = elapsed / this.pulse.durationMs;
-    if (t >= 1) {
+    const t2 = elapsed / this.pulse.durationMs;
+    if (t2 >= 1) {
       this.pulse = null;
       this.voicePulse = 0;
       return;
     }
-    this.voicePulse = Math.sin(t * Math.PI);
+    this.voicePulse = Math.sin(t2 * Math.PI);
   }
 };
 
@@ -315,92 +301,253 @@ var PaintingCommitProcess = class {
     }
     if (!this.locked || this.commitStartedAtMs == null) return;
     const durationMs = 6e3;
-    const t = (nowMs - this.commitStartedAtMs) / durationMs;
-    this.paintingCommit = easeInCubic(t);
+    const t2 = (nowMs - this.commitStartedAtMs) / durationMs;
+    this.paintingCommit = easeInCubic(t2);
   }
 };
 
 // violet-cloud-and-sharp-boundaries/entities/ConceptualLogProcess.js
-var QUEUED_MESSAGES = {
-  LISTEN_HOLD: [
-    "\uB108\uB294 \uBAA8\uD638\uD55C \uBAA9\uC18C\uB9AC \uCABD\uC73C\uB85C \uADC0\uB97C \uB354 \uC624\uB798 \uAE30\uC6B8\uC778\uB2E4.",
-    "\uB108\uB294 \uC7A0\uAE50 \uBA48\uCDB0 \uC11C\uC11C, \uB4E4\uB824\uC624\uB294 \uCABD\uC744 \uB354\uB4EC\uB294\uB2E4.",
-    "\uB108\uB294 \uC774\uC720 \uC5C6\uB294 \uC6B0\uC6B8\uC758 \uC18D\uB3C4\uC5D0 \uB9DE\uCDB0, \uCC9C\uCC9C\uD788 \uB354 \uAC00\uAE4C\uC774 \uB4E3\uB294\uB2E4.",
-    "\uB108\uB294 \uC7A0\uB4E4\uAE30 \uC804\uCC98\uB7FC \uC870\uC6A9\uD788, \uADC0\uB97C \uC548\uCABD\uC73C\uB85C \uC62E\uACA8 \uB193\uB294\uB2E4."
-  ],
-  SHARPEN_STROKE: [
-    "\uB108\uB294 \uD750\uB9BF\uD55C \uACBD\uACC4\uB97C \uB354 \uB2E8\uB2E8\uD55C \uBAA8\uC11C\uB9AC\uB85C \uBC00\uC5B4 \uBD99\uC778\uB2E4.",
-    "\uB108\uB294 \uBA54\uC2DC\uC9C0\uB97C \uB610\uB837\uD558\uAC8C \uB9CC\uB4E4\uAE30 \uC704\uD574, \uACBD\uACC4\uB97C \uAC01\uC9C0\uAC8C \uB2E4\uB4EC\uB294\uB2E4.",
-    "\uB108\uB294 \uBB49\uAC8C \uAD6C\uB984\uC744 \uC798\uB77C\uB0B4\uB4EF, \uC120\uC744 \uC138\uC6B4\uB2E4.",
-    "\uB108\uB294 \uBAA8\uD638\uD568\uC744 \uACAC\uB514\uC9C0 \uBABB\uD574, \uD45C\uBA74\uC744 \uB531\uB531\uD558\uAC8C \uAD73\uD788\uB824 \uD55C\uB2E4."
-  ],
-  SMUDGE_STROKE: [
-    "\uB108\uB294 \uAD73\uC740 \uC120\uC744 \uB2E4\uC2DC \uBC88\uC9C0\uAC8C \uD558\uBA70 \uD2C8\uC744 \uB9CC\uB4E0\uB2E4.",
-    "\uB108\uB294 \uAC01\uC9C4 \uACBD\uACC4\uC758 \uB05D\uC744 \uBB38\uC9C0\uB974\uBA70, \uD750\uB9BC\uC744 \uB418\uB3CC\uB9B0\uB2E4.",
-    "\uB108\uB294 \uB531\uB531\uD574\uC9C4 \uBA74\uC744 \uD480\uC5B4, \uAD6C\uB984\uC774 \uB2E4\uC2DC \uC2A4\uBA70\uB4E4\uAC8C \uD55C\uB2E4.",
-    "\uB108\uB294 \uBA85\uD655\uD568\uC758 \uCE7C\uB0A0\uC744 \uC7A0\uC2DC \uB215\uD600, \uBAA8\uD638\uD568\uC774 \uC9C0\uB098\uAC08 \uAE38\uC744 \uB0B8\uB2E4."
-  ],
-  PULL_EAR: [
-    "\uB108\uB294 \uD754\uB4E4\uB9AC\uB294 \uBC29\uD5A5\uAC10\uC744 \uBD99\uC7A1\uC73C\uB824 \uADC0\uB97C \uB2F9\uAE34\uB2E4.",
-    "\uB108\uB294 \uAC77\uB294 \uC640\uC911\uC5D0\uB3C4, \uAC08\uD53C\uB97C \uC7A1\uAE30 \uC704\uD574 \uADC0\uB97C \uCB49 \uC7A1\uC544\uB2F9\uAE34\uB2E4.",
-    "\uB108\uB294 \uC5B4\uC9C0\uB7FC\uC758 \uD55C\uAC00\uC6B4\uB370\uC11C, \uC5B4\uB290 \uCABD\uC774 \uC9D1\uC778\uC9C0 \uD655\uC778\uD558\uB824 \uD55C\uB2E4."
-  ],
-  COMMIT_PAINTING: [
-    "\uB108\uB294 \uBCF4\uB77C\uC0C9 \uC7A5\uBA74\uC744 \uBCBD\uC5D0 \uACE0\uC815\uD558\uB824\uB294 \uACB0\uC2EC\uC744 \uC62C\uB9B0\uB2E4.",
-    "\uB108\uB294 \uCEE4\uB2E4\uB780 \uBCF4\uB77C\uC0C9 \uADF8\uB9BC\uC744 \uAC78\uC5B4 \uB458 \uC790\uB9AC\uB97C \uB5A0\uC62C\uB9B0\uB2E4.",
-    "\uB108\uB294 \uD754\uB4E4\uB9AC\uB294 \uC7A5\uBA74\uC744 \u201C\uBD99\uC5EC \uB450\uAE30\u201D \uC704\uD574, \uACB0\uC2EC\uC758 \uBABB\uC744 \uAEBC\uB0B8\uB2E4."
-  ],
-  TOGGLE_ZOOM: [
-    "\uB108\uB294 \uC7A5\uBA74\uC758 \uAC70\uB9AC\uB97C \uBC14\uAFB8\uBA70 \uAD00\uACC4\uB97C \uB2E4\uC2DC \uC77D\uB294\uB2E4.",
-    "\uB108\uB294 \uD55C \uAC78\uC74C \uBB3C\uB7EC\uB098\uAC70\uB098 \uB2E4\uAC00\uAC00\uBA70, \uAC19\uC740 \uC7A5\uBA74\uC744 \uB2E4\uB978 \uD574\uC0C1\uB3C4\uB85C \uBCF8\uB2E4.",
-    "\uB108\uB294 \uAD6C\uC870\uC640 \uAC10\uAC01 \uC0AC\uC774\uC5D0\uC11C, \uC2DC\uC120\uC744 \uC62E\uAE34\uB2E4."
-  ],
-  RESET_SOFT: [
-    "\uB108\uB294 \uACFC\uC5F4\uB41C \uD45C\uBA74\uC744 \uC7A0\uC2DC \uAC00\uB77C\uC549\uD788\uB824 \uC228\uC744 \uACE0\uB978\uB2E4.",
-    "\uB108\uB294 \uB531\uB531\uD574\uC9C0\uB824\uB294 \uC18D\uB3C4\uB97C \uB2A6\uCD94\uACE0, \uD55C \uBC88 \uB354 \uC5EC\uC9C0\uB97C \uB0A8\uAE34\uB2E4.",
-    "\uB108\uB294 \uC2A4\uC2A4\uB85C \uB9CC\uB4E0 \uAE34\uC7A5\uC744 \uC7A0\uAE50 \uD480\uC5B4, \uB9E5\uBC15\uC744 \uB0AE\uCD98\uB2E4."
-  ]
+var MESSAGE_SETS = {
+  ko: {
+    queued: {
+      LISTEN_HOLD: [
+        "\uB4E3\uAE30\uC758 \uC9C0\uC18D\uC774 \uC548\uAC1C\uB97C \uD5A5\uD574 \uAE30\uC6B8\uAE30 \uC2DC\uC791\uD55C\uB2E4.",
+        "\uC870\uC6A9\uD55C \uB20C\uB9BC\uC774 \uBAA9\uC18C\uB9AC\uC758 \uADC0\uD658\uC744 \uAE30\uB2E4\uB9B0\uB2E4.",
+        "\uBA48\uCD98 \uC190\uB05D\uC774 \uD750\uB9BF\uD55C \uCE35\uC744 \uB354 \uAC00\uAE4C\uC774 \uB2F9\uAE34\uB2E4."
+      ],
+      SHARPEN_STROKE: [
+        "\uACBD\uACC4\uB97C \uC138\uC6B0\uB824\uB294 \uD798\uC774 \uC120\uC758 \uACB0\uC744 \uB9CC\uB4E0\uB2E4.",
+        "\uB0A0\uCE74\uB85C\uC6B4 \uD68D\uC774 \uC548\uAC1C\uC758 \uBA74\uC744 \uAC00\uB978\uB2E4.",
+        "\uBAA8\uD638\uD568\uC744 \uACAC\uB514\uC9C0 \uBABB\uD55C \uC190\uC774 \uAC00\uC7A5\uC790\uB9AC\uBD80\uD130 \uC870\uC778\uB2E4."
+      ],
+      SMUDGE_STROKE: [
+        "\uB2E8\uB2E8\uD55C \uBAA8\uC11C\uB9AC\uB97C \uB2E4\uC2DC \uBC88\uC9C0\uAC8C \uB20C\uB7EC \uB193\uB294\uB2E4.",
+        "\uACBD\uACC4 \uC704\uC5D0 \uD750\uB9BC\uC744 \uB367\uCE60\uD558\uB824\uB294 \uC6C0\uC9C1\uC784\uC774 \uB4E4\uC5B4\uC628\uB2E4.",
+        "\uBD84\uB9AC\uB41C \uBA74\uC744 \uB2E4\uC2DC \uD55C \uB369\uC5B4\uB9AC\uB85C \uBB36\uC73C\uB824\uB294 \uC81C\uC2A4\uCC98\uB2E4."
+      ],
+      PULL_EAR: [
+        "\uBC29\uD5A5 \uAC10\uAC01\uC744 \uC7A0\uC2DC \uBC14\uB85C\uC7A1\uAE30 \uC704\uD574 \uADC0\uB97C \uB2F9\uAE34\uB2E4.",
+        "\uAE30\uC900\uC810\uC758 \uD754\uB4E4\uB9BC\uC744 \uC904\uC774\uB824\uB294 \uC694\uCCAD\uC774 \uB4E4\uC5B4\uC628\uB2E4.",
+        "\uBA40\uC5B4\uC9C4 \uC18C\uB9AC\uB97C \uB2E4\uC2DC \uBD99\uB4E4\uAE30 \uC704\uD55C \uBBF8\uC138\uD55C \uC870\uC815\uC774\uB2E4."
+      ],
+      COMMIT_PAINTING: [
+        "\uBCF4\uB78F\uBE5B \uC7A5\uBA74\uC744 \uBCBD\uC758 \uC2DC\uAC04\uC73C\uB85C \uACE0\uC815\uD558\uB824 \uD55C\uB2E4.",
+        "\uD754\uB4E4\uB9AC\uB294 \uD45C\uBA74\uC744 \uD55C \uBC88 \uBA48\uCDB0 \uC138\uC6B0\uB294 \uC120\uD0DD\uC774\uB2E4.",
+        "\uB5A0\uB2E4\uB2C8\uB294 \uAC10\uAC01\uC744 \uAE30\uB85D \uAC00\uB2A5\uD55C \uBA74\uC73C\uB85C \uC62E\uAE34\uB2E4."
+      ],
+      TOGGLE_ZOOM: [
+        "\uAD00\uC810\uC774 \uBC14\uB00C\uBA70 \uAC19\uC740 \uC7A5\uBA74\uC758 \uAC70\uB9AC\uAC10\uC774 \uB2EC\uB77C\uC9C4\uB2E4.",
+        "\uC90C\uC758 \uC804\uD658\uC774 \uAD6C\uC870\uC640 \uAC10\uAC01\uC758 \uBE44\uC728\uC744 \uB2E4\uC2DC \uB9DE\uCD98\uB2E4.",
+        "\uD55C \uBC1C \uBB3C\uB7EC\uC11C\uAC70\uB098 \uB2E4\uAC00\uC11C\uBA70 \uC77D\uB294 \uB2E8\uC704\uAC00 \uBC14\uB010\uB2E4."
+      ],
+      RESET_SOFT: [
+        "\uACFC\uC5F4\uB41C \uACB0\uC744 \uCC9C\uCC9C\uD788 \uC2DD\uD788\uB824\uB294 \uAC1C\uC785\uC774\uB2E4.",
+        "\uACFC\uB3C4\uD558\uAC8C \uB0A0 \uC120 \uBA74\uC744 \uC644\uB9CC\uD558\uAC8C \uB418\uB3CC\uB9B0\uB2E4.",
+        "\uAE34\uC7A5\uC744 \uB04A\uC9C0 \uC54A\uACE0 \uAC15\uB3C4\uB9CC \uB0AE\uCD94\uB824 \uD55C\uB2E4."
+      ]
+    },
+    applied: {
+      LISTEN_HOLD: [
+        "\uC548\uAC1C\uCE35\uC774 \uBAA9\uC18C\uB9AC\uC758 \uC5EC\uC6B4\uC744 \uB2E4\uC2DC \uB04C\uC5B4\uC628\uB2E4.",
+        "\uD76C\uBBF8\uD55C \uD30C\uB3D9\uC774 \uD45C\uBA74\uC5D0 \uB0AE\uAC8C \uBC88\uC9C4\uB2E4.",
+        "\uB4E3\uAE30\uC758 \uC794\uB958\uAC00 \uC7A5\uBA74\uC758 \uBC00\uB3C4\uB97C \uBC14\uAFBC\uB2E4."
+      ],
+      SHARPEN_STROKE: [
+        "\uACBD\uACC4\uC758 \uC120\uBA85\uB3C4\uAC00 \uC870\uAE08 \uB354 \uC62C\uB77C\uAC04\uB2E4.",
+        "\uD750\uB9B0 \uB369\uC5B4\uB9AC \uC548\uC5D0\uC11C \uBAA8\uC11C\uB9AC\uAC00 \uB4DC\uB7EC\uB09C\uB2E4.",
+        "\uC548\uAC1C\uAC00 \uBB3C\uB7EC\uC11C\uACE0 \uC120\uC758 \uAE34\uC7A5\uC774 \uB0A8\uB294\uB2E4."
+      ],
+      SMUDGE_STROKE: [
+        "\uC120\uBA85\uD588\uB358 \uACBD\uACC4\uAC00 \uB2E4\uC2DC \uBD80\uB4DC\uB7EC\uC6CC\uC9C4\uB2E4.",
+        "\uACBD\uACC4\uC640 \uC548\uAC1C\uC758 \uAC70\uB9AC \uCC28\uAC00 \uC904\uC5B4\uB4E0\uB2E4.",
+        "\uB2E8\uB2E8\uD55C \uBD84\uC808\uC774 \uB290\uB9B0 \uCE35\uC73C\uB85C \uD769\uC5B4\uC9C4\uB2E4."
+      ],
+      PULL_EAR: [
+        "\uBC29\uD5A5 \uC624\uCC28\uAC00 \uC7A0\uC2DC \uB0AE\uC544\uC9C4\uB2E4.",
+        "\uD754\uB4E4\uB9AC\uB358 \uAE30\uC900\uC810\uC774 \uC9E7\uAC8C \uC815\uB82C\uB41C\uB2E4.",
+        "\uADC0\uB97C \uB2F9\uAE34 \uB9CC\uD07C \uC2DC\uC120\uC758 \uD3B8\uCC28\uAC00 \uC904\uC5B4\uB4E0\uB2E4."
+      ],
+      COMMIT_PAINTING: [
+        "\uBCF4\uB78F\uBE5B \uCE35\uC774 \uACE0\uC815\uBA74\uC5D0 \uAC00\uAE4C\uC6CC\uC9C4\uB2E4.",
+        "\uB5A0\uB2E4\uB2C8\uB358 \uC774\uBBF8\uC9C0\uAC00 \uBCBD\uC758 \uC2DC\uAC04\uC73C\uB85C \uBD99\uB294\uB2E4.",
+        "\uACE0\uC815\uB3C4\uAC00 \uC62C\uB77C\uAC00\uBA70 \uD754\uB4E4\uB9BC\uC758 \uC5EC\uC9C0\uAC00 \uC904\uC5B4\uB4E0\uB2E4."
+      ],
+      TOGGLE_ZOOM: [
+        "\uAC19\uC740 \uD754\uC801\uC774 \uB2E4\uB978 \uD574\uC0C1\uB3C4\uB85C \uC77D\uD78C\uB2E4.",
+        "\uAD00\uCC30 \uAC70\uB9AC\uC758 \uBCC0\uACBD\uC774 \uAD00\uACC4\uC758 \uC74C\uC0C9\uC744 \uBC14\uAFBC\uB2E4.",
+        "\uAD6C\uC870\uC640 \uAC10\uAC01\uC774 \uC11C\uB85C \uB2E4\uB978 \uBE44\uC728\uB85C \uAC15\uC870\uB41C\uB2E4."
+      ],
+      RESET_SOFT: [
+        "\uB0A0 \uC120 \uACB0\uC774 \uB204\uADF8\uB7EC\uC9C0\uBA70 \uC7A5\uBA74\uC774 \uC228\uC744 \uACE0\uB978\uB2E4.",
+        "\uACFC\uC5F4 \uAD6C\uAC04\uC774 \uC644\uB9CC\uD558\uAC8C \uB0AE\uC544\uC9C4\uB2E4.",
+        "\uAE34\uC7A5\uC744 \uB0A8\uAE34 \uCC44 \uD45C\uBA74\uC758 \uAC15\uB3C4\uB9CC \uB0B4\uB824\uAC04\uB2E4."
+      ]
+    },
+    fallback: {
+      queued: [
+        "\uC791\uC740 \uAC1C\uC785\uC774 \uC9C0\uC5F0 \uD050\uC5D0 \uC313\uC778\uB2E4.",
+        "\uC9C0\uAE08\uC758 \uC785\uB825\uC740 \uC7A0\uC2DC \uB4A4 \uC7A5\uBA74\uC5D0 \uB3C4\uCC29\uD55C\uB2E4.",
+        "\uBCC0\uD654\uC758 \uBA85\uB839\uC774 \uB0B4\uBD80 \uB9AC\uB4EC\uC73C\uB85C \uBC88\uC5ED\uB41C\uB2E4."
+      ],
+      applied: [
+        "\uB204\uC801\uB41C \uAC1C\uC785\uC774 \uD45C\uBA74\uC73C\uB85C \uB098\uD0C0\uB09C\uB2E4.",
+        "\uC9C0\uC5F0\uB41C \uADDC\uCE59\uC774 \uC7A5\uBA74\uC758 \uC9C8\uAC10\uC744 \uB2E4\uC2DC \uC4F4\uB2E4.",
+        "\uAC19\uC740 \uD654\uBA74\uC774 \uB2E4\uB978 \uAE34\uC7A5\uB3C4\uB85C \uAC31\uC2E0\uB41C\uB2E4."
+      ]
+    },
+    tail: {
+      paintingCommit: [
+        "\uACE0\uC815\uB41C \uBCF4\uB77C\uAC00 \uBCBD\uC758 \uC2DC\uAC04\uC5D0 \uAC70\uC758 \uB3C4\uB2EC\uD588\uB2E4.",
+        "\uBCF4\uB77C\uC758 \uD45C\uBA74\uC740 \uC774\uC81C \uC27D\uAC8C \uD754\uB4E4\uB9AC\uC9C0 \uC54A\uB294\uB2E4."
+      ],
+      residue: [
+        "\uAC00\uC7A5\uC790\uB9AC\uC758 \uC794\uC5EC\uAC00 \uC11D\uD68C\uCC98\uB7FC \uB0A8\uC544 \uC788\uB2E4.",
+        "\uB204\uC801\uB41C \uC794\uB958\uAC00 \uACF5\uAE30\uC758 \uACB0\uC744 \uD0C1\uD558\uAC8C \uB9CC\uB4E0\uB2E4.",
+        "\uB0A8\uC740 \uBD80\uD558\uAC00 \uC7A5\uBA74\uC758 \uC228\uC744 \uBB34\uAC81\uAC8C \uD55C\uB2E4."
+      ],
+      orientationError: [
+        "\uBC29\uD5A5 \uAC10\uAC01\uC758 \uD754\uB4E4\uB9BC\uC774 \uC544\uC9C1 \uD06C\uB2E4.",
+        "\uAE30\uC900\uC810\uC758 \uD3B8\uCC28\uAC00 \uAC77\uB294 \uCD95\uC744 \uBE44\uD2C0\uACE0 \uC788\uB2E4.",
+        "\uC815\uB82C\uB418\uC9C0 \uC54A\uC740 \uAC10\uAC01\uC774 \uC2DC\uC57C\uB97C \uD754\uB4E0\uB2E4."
+      ],
+      fogDominant: [
+        "\uC548\uAC1C\uAC00 \uACBD\uACC4\uB97C \uB2E4\uC2DC \uAC10\uC2FC\uB2E4.",
+        "\uD750\uB9BC\uC758 \uC555\uB825\uC774 \uBAA8\uC11C\uB9AC\uB97C \uB36E\uACE0 \uC9C0\uB098\uAC04\uB2E4."
+      ],
+      edgeDominant: [
+        "\uACBD\uACC4\uAC00 \uC548\uAC1C\uB97C \uBC00\uC5B4\uB0B4\uBA70 \uC55E\uC120\uB2E4.",
+        "\uBAA8\uC11C\uB9AC\uC758 \uAE34\uC7A5\uC774 \uD750\uB9BC\uC758 \uBA74\uC744 \uAC00\uB978\uB2E4."
+      ],
+      balance: [
+        "\uD750\uB9BC\uACFC \uACBD\uACC4\uAC00 \uBD88\uC548\uC815\uD55C \uADE0\uD615\uC744 \uC720\uC9C0\uD55C\uB2E4.",
+        "\uB458 \uC0AC\uC774\uC758 \uAE34\uC7A5\uC740 \uC5B4\uB290 \uCABD\uB3C4 \uC644\uC804\uD788 \uC774\uAE30\uC9C0 \uBABB\uD55C\uB2E4."
+      ]
+    }
+  },
+  en: {
+    queued: {
+      LISTEN_HOLD: [
+        "Sustained listening tilts the scene toward fog.",
+        "A quiet hold waits for voice to return.",
+        "A still fingertip draws the hazy layer closer."
+      ],
+      SHARPEN_STROKE: [
+        "A force to define edges enters the field.",
+        "A sharp stroke cuts through the fog plane.",
+        "The hand tightens the boundary from the rim inward."
+      ],
+      SMUDGE_STROKE: [
+        "Hard edges are pressed back into blur.",
+        "A softening pass lands on top of the boundary.",
+        "Separated planes are asked to merge again."
+      ],
+      PULL_EAR: [
+        "The ear is pulled to recover orientation.",
+        "A request arrives to steady the reference point.",
+        "A small adjustment tries to catch a drifting signal."
+      ],
+      COMMIT_PAINTING: [
+        "The violet scene is asked to lock to wall-time.",
+        "A floating surface is briefly fixed in place.",
+        "Drift is converted into a recordable frame."
+      ],
+      TOGGLE_ZOOM: [
+        "View distance shifts and relation scale changes.",
+        "Zoom switching rewrites structure-to-sensation ratio.",
+        "Stepping in or out changes the reading unit."
+      ],
+      RESET_SOFT: [
+        "An intervention cools the overheated grain.",
+        "Over-sharpened surfaces are softened without erasing.",
+        "Tension remains, but intensity is lowered."
+      ]
+    },
+    applied: {
+      LISTEN_HOLD: [
+        "Fog pulls back the tail of voice.",
+        "A low wave spreads across the surface.",
+        "Residual listening changes scene density."
+      ],
+      SHARPEN_STROKE: [
+        "Edge clarity rises a little.",
+        "Corners emerge from the blurred mass.",
+        "Fog retreats while line tension remains."
+      ],
+      SMUDGE_STROKE: [
+        "A crisp edge softens again.",
+        "Distance between edge and fog narrows.",
+        "Hard segmentation dissolves into slower layers."
+      ],
+      PULL_EAR: [
+        "Orientation error drops for a moment.",
+        "The drifting reference aligns briefly.",
+        "Gaze variance tightens after the pull."
+      ],
+      COMMIT_PAINTING: [
+        "The violet layer nears a fixed state.",
+        "A drifting image adheres to wall-time.",
+        "Commit depth rises and reduces drift room."
+      ],
+      TOGGLE_ZOOM: [
+        "The same trace reads at another resolution.",
+        "Distance change retunes relational timbre.",
+        "Structure and sensation are reweighted."
+      ],
+      RESET_SOFT: [
+        "Sharp grain eases and the scene exhales.",
+        "Hot zones cool into a gentler slope.",
+        "Tension is kept while intensity drops."
+      ]
+    },
+    fallback: {
+      queued: [
+        "A small intervention enters the delayed queue.",
+        "This input arrives in the scene a little later.",
+        "A change request is translated into internal rhythm."
+      ],
+      applied: [
+        "Accumulated interventions surface on the frame.",
+        "Delayed rules rewrite the scene texture.",
+        "The same image refreshes with different tension."
+      ]
+    },
+    tail: {
+      paintingCommit: [
+        "Committed violet is close to wall-time.",
+        "The purple surface is now hard to dislodge."
+      ],
+      residue: [
+        "Edge residue remains like mineral crust.",
+        "Accumulated residue muddies the air grain.",
+        "Leftover load makes the scene breathe heavier."
+      ],
+      orientationError: [
+        "Orientation jitter is still high.",
+        "Reference drift keeps twisting the walking axis.",
+        "Unaligned sensing continues to shake the view."
+      ],
+      fogDominant: [
+        "Fog folds over the boundary again.",
+        "Blur pressure moves across the edge line."
+      ],
+      edgeDominant: [
+        "Boundary pushes ahead of fog.",
+        "Edge tension cuts across the blur plane."
+      ],
+      balance: [
+        "Fog and edge hold an unstable balance.",
+        "Neither side fully dominates the other."
+      ]
+    }
+  }
 };
-var APPLIED_MESSAGES = {
-  LISTEN_HOLD: [
-    "\uAE30\uC6B8\uC778 \uADC0\uAC00 \uC548\uAC1C\uC758 \uACB0\uC744 \uB2E4\uC2DC \uAE68\uC6B4\uB2E4.",
-    "\uB290\uB9B0 \uCCAD\uCDE8\uAC00 \uC7A5\uBA74\uC758 \uBAA8\uD638\uD568\uC744 \uB2E4\uC2DC \uBD88\uB7EC\uB0B8\uB2E4.",
-    "\uBAA9\uC18C\uB9AC\uC758 \uC794\uD5A5\uC774 \uD45C\uBA74\uC744 \uC544\uC8FC \uC587\uAC8C \uD754\uB4E0\uB2E4.",
-    "\uB4E3\uB294 \uCABD\uC73C\uB85C \uC138\uACC4\uAC00 \uC870\uAE08 \uAE30\uC6B4\uB2E4."
-  ],
-  SHARPEN_STROKE: [
-    "\uACBD\uACC4\uC758 \uAC01\uC774 \uC870\uAE08 \uB354 \uC0B4\uC544\uB09C\uB2E4.",
-    "\uC120\uC774 \uC138\uC6CC\uC9C0\uBA70 \uC7A5\uBA74\uC774 \uB2E8\uB2E8\uD574\uC9C4\uB2E4.",
-    "\uBAA8\uD638\uD568\uC774 \uD55C \uBC88 \uBC00\uB824\uB098\uACE0, \uBAA8\uC11C\uB9AC\uAC00 \uB0A8\uB294\uB2E4.",
-    "\uAC01\uC9C0\uAC8C \uB2E4\uB4EC\uC740 \uC790\uB9AC\uC5D0\uC11C, \uB531\uB531\uD55C \uD45C\uBA74\uC774 \uC790\uB780\uB2E4."
-  ],
-  SMUDGE_STROKE: [
-    "\uB531\uB531\uD55C \uBA74\uC774 \uC870\uAE08 \uD480\uB9AC\uBA70 \uD37C\uC9C4\uB2E4.",
-    "\uAD73\uC740 \uC120\uC774 \uD750\uB824\uC9C0\uACE0, \uC548\uAC1C\uAC00 \uB2E4\uC2DC \uC2A4\uBBFC\uB2E4.",
-    "\uACBD\uACC4\uAC00 \uBBF8\uB044\uB7EC\uC9C0\uBA70, \uC7A5\uBA74\uC774 \uB2E4\uC2DC \uBB49\uAC8C\uC9C4\uB2E4.",
-    "\uC120\uC758 \uACE0\uC9D1\uC774 \uD55C\uC228\uCC98\uB7FC \uB290\uC2A8\uD574\uC9C4\uB2E4."
-  ],
-  PULL_EAR: [
-    "\uD754\uB4E4\uB9AC\uB358 \uAC08\uD53C\uAC00 \uC7A0\uC2DC \uC815\uB82C\uB41C\uB2E4.",
-    "\uBC29\uD5A5\uAC10\uC774 \uC7A0\uAE50 \uC7A1\uD788\uACE0, \uD754\uB4E4\uB9BC\uC774 \uC904\uC5B4\uB4E0\uB2E4.",
-    "\uC5B4\uC9C0\uB7FC\uC774 \uD55C \uBC15\uC790 \uB2A6\uCDB0\uC9C0\uACE0, \uAE38\uC774 \uC7A0\uAE50 \uBCF4\uC778\uB2E4."
-  ],
-  COMMIT_PAINTING: [
-    "\uBCF4\uB77C\uC0C9 \uACB0\uC2EC\uC774 \uBCBD \uCABD\uC73C\uB85C \uCC9C\uCC9C\uD788 \uAD73\uB294\uB2E4.",
-    "\uC7A5\uBA74\uC774 \u201C\uAC78\uB9AC\uB294\u201D \uCABD\uC73C\uB85C, \uC2DC\uAC04\uC774 \uC751\uACE0\uB418\uAE30 \uC2DC\uC791\uD55C\uB2E4.",
-    "\uD754\uB4E4\uB9AC\uB358 \uBCF4\uB77C\uAC00 \uACE0\uC815\uC810\uC744 \uCC3E\uB294\uB2E4."
-  ],
-  TOGGLE_ZOOM: [
-    "\uAD00\uACC4\uC758 \uD574\uC0C1\uB3C4\uAC00 \uB2E4\uB978 \uCE35\uC73C\uB85C \uB118\uC5B4\uAC04\uB2E4.",
-    "\uAC19\uC740 \uC7A5\uBA74\uC774 \uB2E4\uB978 \uD06C\uAE30\uB85C \uC77D\uD788\uBA70, \uC758\uBBF8\uC758 \uAC04\uACA9\uC774 \uBC14\uB010\uB2E4.",
-    "\uAD6C\uC870\uC640 \uAC10\uAC01\uC758 \uBE44\uC728\uC774 \uC0B4\uC9DD \uB4A4\uBC14\uB010\uB2E4."
-  ],
-  RESET_SOFT: [
-    "\uACFC\uD558\uAC8C \uAD73\uC740 \uAE34\uC7A5\uC774 \uD55C \uB2E8\uACC4 \uB0B4\uB824\uAC04\uB2E4.",
-    "\uD45C\uBA74\uC774 \uC870\uAE08 \uC2DD\uC73C\uBA70, \uBE44\uC6A9\uC774 \uC7A0\uAE50 \uBA48\uCD98\uB2E4.",
-    "\uC228\uC744 \uACE0\uB978 \uC790\uB9AC\uC5D0\uC11C, \uC138\uACC4\uAC00 \uACFC\uC5F4\uC744 \uB193\uCE5C\uB2E4."
-  ]
-};
+function resolveLanguage(language2) {
+  if (!language2 || typeof language2 !== "string") return "en";
+  const lower = language2.toLowerCase();
+  if (lower.startsWith("ko")) return "ko";
+  if (lower.startsWith("en")) return "en";
+  return "en";
+}
 function clockText(nowMs) {
   const d = new Date(nowMs);
   const hh = String(d.getHours()).padStart(2, "0");
@@ -408,62 +555,27 @@ function clockText(nowMs) {
   const ss = String(d.getSeconds()).padStart(2, "0");
   return `${hh}:${mm}:${ss}`;
 }
-function toArray(value) {
-  if (Array.isArray(value)) return value;
-  if (value == null) return [];
-  return [value];
-}
 function pickFrom({ rng, memory, key, variants }) {
-  const options = toArray(variants);
-  if (options.length === 0) return "";
-  if (options.length === 1) return options[0];
+  if (!Array.isArray(variants) || variants.length === 0) return "";
+  if (variants.length === 1) return variants[0];
   const last = memory.get(key);
-  let idx = Math.floor(rng() * options.length);
-  if (last != null && idx === last) idx = (idx + 1) % options.length;
+  let idx = Math.floor(rng() * variants.length);
+  if (last != null && idx === last) idx = (idx + 1) % variants.length;
   memory.set(key, idx);
-  return options[idx];
+  return variants[idx];
 }
-function atmosphereTail({ metrics, pick }) {
+function atmosphereTail({ metrics, pick, messages }) {
   if (!metrics) return "";
-  if (metrics.paintingCommit >= 0.95) {
-    return pick("tail:paintingCommit", [
-      "\uBCF4\uB77C\uC0C9 \uADF8\uB9BC\uC774 \uBCBD\uC5D0 \uAC70\uC758 \uBD99\uC5C8\uB2E4.",
-      "\uBCF4\uB77C\uC0C9\uC758 \uACE0\uC815\uC774 \uAC70\uC758 \uB05D\uB0AC\uB2E4."
-    ]);
-  }
-  if (metrics.residue >= 0.45) {
-    return pick("tail:residue", [
-      "\uAD73\uC740 \uC794\uC5EC\uAC00 \uB0C4\uC0C8\uCC98\uB7FC \uB5A0\uB3C8\uB2E4.",
-      "\uCE58\uC11D \uAC19\uC740 \uC794\uC5EC\uAC00 \uC785\uC548\uCC98\uB7FC \uBD99\uC5B4 \uC788\uB2E4.",
-      "\uB0A8\uC740 \uBD80\uC0B0\uBB3C\uC774 \uACF5\uAE30\uB97C \uD0C1\uD558\uAC8C \uB9CC\uB4E0\uB2E4."
-    ]);
-  }
-  if (metrics.orientationError >= 0.5) {
-    return pick("tail:orientationError", [
-      "\uAC08\uD53C\uAC00 \uC544\uC9C1 \uD06C\uAC8C \uD754\uB4E4\uB9B0\uB2E4.",
-      "\uC5B4\uB514\uB85C \uAC00\uC57C \uD560\uC9C0, \uBC29\uD5A5\uAC10\uC774 \uC5B4\uAE0B\uB09C\uB2E4.",
-      "\uAC77\uB294 \uC640\uC911\uC5D0 \uAE38\uC774 \uC790\uC8FC \uBE60\uC9C4\uB2E4."
-    ]);
-  }
-  if (metrics.fogPressure > metrics.edgePressure + 0.12) {
-    return pick("tail:fogDominant", [
-      "\uC548\uAC1C\uAC00 \uACBD\uACC4\uB97C \uB2E4\uC2DC \uAC10\uC2FC\uB2E4.",
-      "\uBB49\uAC8C \uAD6C\uB984\uC774 \uBAA8\uC11C\uB9AC\uB97C \uB36E\uB294\uB2E4."
-    ]);
-  }
-  if (metrics.edgePressure > metrics.fogPressure + 0.12) {
-    return pick("tail:edgeDominant", [
-      "\uACBD\uACC4\uAC00 \uC548\uAC1C\uB97C \uC870\uAE08 \uBC00\uC5B4\uB0B8\uB2E4.",
-      "\uBAA8\uC11C\uB9AC\uAC00 \uAD6C\uB984\uC744 \uC798\uB77C\uB0B8\uB2E4."
-    ]);
-  }
-  return pick("tail:balance", [
-    "\uD33D\uD33D\uD55C \uADE0\uD615\uC774 \uB0AE\uC740 \uD638\uD761\uC73C\uB85C \uC774\uC5B4\uC9C4\uB2E4.",
-    "\uB458 \uC0AC\uC774\uAC00 \uC5B4\uB290 \uCABD\uB3C4 \uC644\uC804\uD788 \uC774\uAE30\uC9C0 \uBABB\uD55C \uCC44 \uC720\uC9C0\uB41C\uB2E4."
-  ]);
+  if (metrics.paintingCommit >= 0.95) return pick("tail:paintingCommit", messages.tail.paintingCommit);
+  if (metrics.residue >= 0.45) return pick("tail:residue", messages.tail.residue);
+  if (metrics.orientationError >= 0.5) return pick("tail:orientationError", messages.tail.orientationError);
+  if (metrics.fogPressure > metrics.edgePressure + 0.12) return pick("tail:fogDominant", messages.tail.fogDominant);
+  if (metrics.edgePressure > metrics.fogPressure + 0.12)
+    return pick("tail:edgeDominant", messages.tail.edgeDominant);
+  return pick("tail:balance", messages.tail.balance);
 }
 var ConceptualLogProcess = class {
-  constructor({ rng = Math.random } = {}) {
+  constructor({ rng = Math.random, language: language2 = "en" } = {}) {
     this.rng = rng;
     this.pickMemory = /* @__PURE__ */ new Map();
     this.events = [];
@@ -471,32 +583,31 @@ var ConceptualLogProcess = class {
     this.sequence = 0;
     this.lastQueuedType = null;
     this.lastQueuedAtMs = 0;
+    this.messages = MESSAGE_SETS[resolveLanguage(language2)];
   }
   pick(key, variants) {
     return pickFrom({ rng: this.rng, memory: this.pickMemory, key, variants });
   }
   onEnqueue(intent, nowMs) {
-    var _a;
+    var _a, _b;
     if ((_a = intent.params) == null ? void 0 : _a.seed) return null;
     if (intent.type === this.lastQueuedType && nowMs - this.lastQueuedAtMs < 650) return null;
     this.lastQueuedType = intent.type;
     this.lastQueuedAtMs = nowMs;
-    const text = this.pick(`queued:${intent.type}`, QUEUED_MESSAGES[intent.type] || [
-      "\uB108\uB294 \uC138\uACC4\uC758 \uACB0\uC744 \uC544\uC8FC \uC870\uAE08 \uAC74\uB4DC\uB9B0\uB2E4.",
-      "\uB108\uB294 \uADDC\uCE59\uC758 \uD45C\uBA74\uC744 \uC870\uC6A9\uD788 \uC2A4\uCE5C\uB2E4.",
-      "\uB108\uB294 \uC7A5\uBA74\uC758 \uAE30\uC6B8\uAE30\uB97C \uC544\uC8FC \uC870\uAE08 \uBC14\uAFBC\uB2E4."
-    ]);
+    const text = this.pick(
+      `queued:${intent.type}`,
+      (_b = this.messages.queued[intent.type]) != null ? _b : this.messages.fallback.queued
+    );
     return this.push({ nowMs, text, phase: "gesture" });
   }
   onApplied(intent, nowMs, metrics) {
-    var _a;
+    var _a, _b;
     if ((_a = intent.params) == null ? void 0 : _a.seed) return null;
-    const lead = this.pick(`applied:${intent.type}`, APPLIED_MESSAGES[intent.type] || [
-      "\uC138\uACC4\uC758 \uACB0\uC774 \uC870\uC6A9\uD788 \uB2E4\uB978 \uCABD\uC73C\uB85C \uAE30\uC6B8\uC5C8\uB2E4.",
-      "\uADDC\uCE59\uC774 \uC544\uC8FC \uB0AE\uAC8C \uC6B8\uB9AC\uBA70 \uC790\uB9AC\uB97C \uBC14\uAFE8\uB2E4.",
-      "\uC7A5\uBA74\uC774 \uC870\uC6A9\uD788 \uB2E4\uB978 \uBC30\uC5F4\uC744 \uCDE8\uD588\uB2E4."
-    ]);
-    const tail = atmosphereTail({ metrics, pick: (k, v) => this.pick(k, v) });
+    const lead = this.pick(
+      `applied:${intent.type}`,
+      (_b = this.messages.applied[intent.type]) != null ? _b : this.messages.fallback.applied
+    );
+    const tail = atmosphereTail({ metrics, messages: this.messages, pick: (k, v) => this.pick(k, v) });
     const text = tail ? `${lead} ${tail}` : lead;
     return this.push({ nowMs, text, phase: "manifest" });
   }
@@ -523,7 +634,7 @@ var ConceptualLogProcess = class {
 var PROJECT_KEY = "violet-cloud-and-sharp-boundaries";
 var STORAGE_KEY = `${PROJECT_KEY}:interactionLog:v1`;
 var VioletCloudWorld = class {
-  constructor() {
+  constructor({ language: language2 = "en" } = {}) {
     const seed = Math.floor(Math.random() * 1e7) ^ Date.now();
     this.rng = mulberry32(seed);
     this.logRng = mulberry32(seed ^ 2654435769);
@@ -539,7 +650,7 @@ var VioletCloudWorld = class {
     this.orientation = new OrientationMetric();
     this.voice = new VoiceReturnProcess({ rng: this.rng });
     this.painting = new PaintingCommitProcess();
-    this.conceptualLog = new ConceptualLogProcess({ rng: this.logRng });
+    this.conceptualLog = new ConceptualLogProcess({ rng: this.logRng, language: language2 });
     this.assets = {
       audioBuffer: null,
       paintingBitmap: null,
@@ -681,8 +792,8 @@ var VioletCloudWorld = class {
     });
   }
 };
-var acting = () => {
-  const world2 = new VioletCloudWorld();
+var acting = ({ language: language2 = "en" } = {}) => {
+  const world2 = new VioletCloudWorld({ language: language2 });
   world2.start();
   world2.enqueueIntention({ type: "LISTEN_HOLD", params: { seed: true } });
   return {
@@ -692,13 +803,15 @@ var acting = () => {
 };
 
 // violet-cloud-and-sharp-boundaries/index.js
-var { world, publicState } = acting();
+var { language, t } = initI18n();
+var { world, publicState } = acting({ language });
 var canvas = document.getElementById("stage");
 var ctx = canvas.getContext("2d", { alpha: false });
 var logCountEl = document.getElementById("logCount");
 var metricsEl = document.getElementById("metrics");
 var conceptualLogEl = document.getElementById("conceptualLog");
 render_readme("readme_section", README_default);
+initThoughtOverlay();
 function clamp012(value) {
   if (value < 0) return 0;
   if (value > 1) return 1;
@@ -728,41 +841,50 @@ function createMetricRow({ id, label, gradient }) {
 var metricRows = [
   createMetricRow({
     id: "fogPressure",
-    label: "Fog",
+    label: t("violet.metrics.fog"),
     gradient: "linear-gradient(90deg, rgba(203,179,255,0.45), rgba(139,92,246,0.95))"
   }),
   createMetricRow({
     id: "edgePressure",
-    label: "Edge",
+    label: t("violet.metrics.edge"),
     gradient: "linear-gradient(90deg, rgba(245,243,255,0.35), rgba(245,243,255,0.95))"
   }),
   createMetricRow({
     id: "residue",
-    label: "Residue",
+    label: t("violet.metrics.residue"),
     gradient: "linear-gradient(90deg, rgba(216,195,138,0.35), rgba(216,195,138,0.95))"
   }),
   createMetricRow({
     id: "orientationError",
-    label: "Orient",
+    label: t("violet.metrics.orient"),
     gradient: "linear-gradient(90deg, rgba(245,243,255,0.25), rgba(199,255,74,0.75))"
   }),
   createMetricRow({
     id: "voicePulse",
-    label: "Voice",
+    label: t("violet.metrics.voice"),
     gradient: "linear-gradient(90deg, rgba(203,179,255,0.35), rgba(203,179,255,0.95))"
   }),
   createMetricRow({
     id: "paintingCommit",
-    label: "Commit",
+    label: t("violet.metrics.commit"),
     gradient: "linear-gradient(90deg, rgba(139,92,246,0.35), rgba(199,255,74,0.85))"
   }),
   createMetricRow({
     id: "motherDistance",
-    label: "Mother Distance",
+    label: t("violet.metrics.motherDistance"),
     gradient: "linear-gradient(90deg, rgba(245,243,255,0.25), rgba(139,92,246,0.85))"
   })
 ];
 metricRows.forEach((r) => metricsEl.appendChild(r.root));
+var overlayLabels = {
+  listener: t("violet.overlay.listener"),
+  mother: t("violet.overlay.mother"),
+  voice: t("violet.overlay.voice"),
+  metricFog: t("violet.overlay.metricFog"),
+  metricEdge: t("violet.overlay.metricEdge"),
+  metricResidue: t("violet.overlay.metricResidue"),
+  metricOrient: t("violet.overlay.metricOrient")
+};
 function renderConceptualLog(entries) {
   var _a, _b;
   conceptualLogEl.innerHTML = "";
@@ -770,7 +892,7 @@ function renderConceptualLog(entries) {
   if (recent.length === 0) {
     const empty = document.createElement("div");
     empty.className = "conceptual-empty";
-    empty.textContent = "\uC544\uC9C1 \uD574\uC11D\uB41C \uC6C0\uC9C1\uC784\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.";
+    empty.textContent = t("violet.conceptual.empty");
     conceptualLogEl.appendChild(empty);
     return;
   }
@@ -914,6 +1036,10 @@ var activePointers = /* @__PURE__ */ new Map();
 var singleStroke = null;
 var dualStroke = null;
 var pinchState = null;
+var lastPointerMoveMs = 0;
+var lastWheelMs = 0;
+var MOVE_THROTTLE_MS = 24;
+var WHEEL_THROTTLE_MS = 120;
 function toNormPointFromClient(clientX, clientY) {
   const rect = canvas.getBoundingClientRect();
   const x = (clientX - rect.left) / rect.width * 2 - 1;
@@ -1042,6 +1168,8 @@ canvas.addEventListener("pointermove", (e) => {
     p.clientY = e.clientY;
   }
   const nowMs = Date.now();
+  if (nowMs - lastPointerMoveMs < MOVE_THROTTLE_MS) return;
+  lastPointerMoveMs = nowMs;
   resetPinchIfNeeded();
   maybeSendPinch(nowMs);
   if (dualStroke) {
@@ -1082,6 +1210,9 @@ canvas.addEventListener(
   "wheel",
   (e) => {
     e.preventDefault();
+    const nowMs = Date.now();
+    if (nowMs - lastWheelMs < WHEEL_THROTTLE_MS) return;
+    lastWheelMs = nowMs;
     const amount = clamp012(Math.abs(e.deltaY) / 800);
     world.enqueueIntention({ type: "PULL_EAR", params: { amount } });
   },
@@ -1124,12 +1255,12 @@ function drawBackground({ w, h, fogPressure, purpleSaturation }) {
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, w, h);
 }
-function drawFog({ w, h, t, fogPressure, purpleSaturation }) {
+function drawFog({ w, h, t: t2, fogPressure, purpleSaturation }) {
   const alphaBase = 0.04 + fogPressure * 0.12;
   for (let i = 0; i < puffs.length; i++) {
     const p = puffs[i];
-    const dx = Math.sin((t + p.phase) * 5e-4 + i * 1.7) * (0.16 + fogPressure * 0.18);
-    const dy = Math.cos((t + p.phase) * 42e-5 + i * 2.1) * (0.16 + fogPressure * 0.16);
+    const dx = Math.sin((t2 + p.phase) * 5e-4 + i * 1.7) * (0.16 + fogPressure * 0.18);
+    const dy = Math.cos((t2 + p.phase) * 42e-5 + i * 2.1) * (0.16 + fogPressure * 0.16);
     const x = mapX(p.x + dx, w);
     const y = mapY(p.y + dy, h);
     const rad = p.radius * (0.65 + fogPressure * 0.6);
@@ -1149,12 +1280,12 @@ function drawFog({ w, h, t, fogPressure, purpleSaturation }) {
     ctx.restore();
   }
 }
-function drawBoundary({ w, h, t, edgePressure, residue, segments }) {
+function drawBoundary({ w, h, t: t2, edgePressure, residue, segments }) {
   const lineW = 2 + edgePressure * 4;
   ctx.lineCap = "round";
   ctx.lineJoin = "miter";
   ctx.lineWidth = lineW;
-  const nowMs = t;
+  const nowMs = t2;
   for (const s of segments) {
     const age = nowMs - s.bornMs;
     const fade = clamp012(1 - age / 8e3);
@@ -1169,10 +1300,10 @@ function drawBoundary({ w, h, t, edgePressure, residue, segments }) {
     const specks = Math.floor(18 + residue * 64);
     ctx.fillStyle = `rgba(216,195,138,${0.08 + residue * 0.25})`;
     for (let i = 0; i < specks; i++) {
-      const s = segments[(i * 17 + Math.floor(t / 50)) % segments.length];
+      const s = segments[(i * 17 + Math.floor(t2 / 50)) % segments.length];
       const k = i * 73 % 100 / 100;
-      const x = mapX(s.x1 + (s.x2 - s.x1) * k, w) + Math.sin(t * 0.01 + i) * 2.2;
-      const y = mapY(s.y1 + (s.y2 - s.y1) * k, h) + Math.cos(t * 0.012 + i) * 2.2;
+      const x = mapX(s.x1 + (s.x2 - s.x1) * k, w) + Math.sin(t2 * 0.01 + i) * 2.2;
+      const y = mapY(s.y1 + (s.y2 - s.y1) * k, h) + Math.cos(t2 * 0.012 + i) * 2.2;
       const r = 0.8 + i * 13 % 5 * 0.25;
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
@@ -1180,7 +1311,7 @@ function drawBoundary({ w, h, t, edgePressure, residue, segments }) {
     }
   }
 }
-function drawOdor({ w, h, t, residue, particles }) {
+function drawOdor({ w, h, t: t2, residue, particles }) {
   const threshold = 0.35;
   const active = residue > threshold || particles.length > 0;
   if (!active) return;
@@ -1192,7 +1323,7 @@ function drawOdor({ w, h, t, residue, particles }) {
   ctx.lineWidth = 2;
   ctx.beginPath();
   for (let x = 0; x <= w + step; x += step) {
-    const n = Math.sin(t * 6e-3 + x * 0.02) + Math.sin(t * 13e-4 + x * 0.05) * 0.6;
+    const n = Math.sin(t2 * 6e-3 + x * 0.02) + Math.sin(t2 * 13e-4 + x * 0.05) * 0.6;
     const y = y0 + n * amp;
     if (x === 0) ctx.moveTo(x, y);
     else ctx.lineTo(x, y);
@@ -1223,7 +1354,7 @@ function drawVoice({ w, h, voicePulse }) {
   ctx.fillText("...", 0, 0);
   ctx.restore();
 }
-function drawPainting({ w, h, t, commit, locked }) {
+function drawPainting({ w, h, t: t2, commit, locked }) {
   if (commit <= 0.01 && !locked) return;
   const x = w * 0.08;
   const y = h * 0.12;
@@ -1250,7 +1381,7 @@ function drawPainting({ w, h, t, commit, locked }) {
     const bands = 10;
     for (let i = 0; i < bands; i++) {
       const yy = y + 2 + (i + 0.5) / bands * (hh - 4);
-      const shift = Math.sin(t * 12e-4 + i * 1.7) * 12 * commit;
+      const shift = Math.sin(t2 * 12e-4 + i * 1.7) * 12 * commit;
       ctx.fillRect(x + 2 + shift, yy, ww - 4, 2);
     }
   }
@@ -1261,7 +1392,7 @@ function drawPainting({ w, h, t, commit, locked }) {
   }
   ctx.restore();
 }
-function drawZoomOutOverlay({ w, h, t, metrics }) {
+function drawZoomOutOverlay({ w, h, t: t2, metrics }) {
   const cx = w * 0.5;
   const cy = h * 0.62;
   const voice = { x: cx, y: h * 0.25 };
@@ -1300,7 +1431,7 @@ function drawZoomOutOverlay({ w, h, t, metrics }) {
     ctx.strokeStyle = ring;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.arc(x, y, 16 + Math.sin(t * 4e-3 + x) * 1.6, 0, Math.PI * 2);
+    ctx.arc(x, y, 16 + Math.sin(t2 * 4e-3 + x) * 1.6, 0, Math.PI * 2);
     ctx.stroke();
     ctx.fillStyle = "rgba(245,243,255,0.7)";
     ctx.font = "12px ui-sans-serif, system-ui, sans-serif";
@@ -1310,19 +1441,19 @@ function drawZoomOutOverlay({ w, h, t, metrics }) {
   }
   node({
     ...listener,
-    label: "Listener",
+    label: overlayLabels.listener,
     fill: "rgba(245,243,255,0.55)",
     ring: `rgba(245,243,255,${0.08 + (1 - dist) * 0.22})`
   });
   node({
     ...mother,
-    label: "Mother",
+    label: overlayLabels.mother,
     fill: `rgba(203,179,255,${0.28 + (1 - dist) * 0.22})`,
     ring: `rgba(203,179,255,${0.06 + (1 - dist) * 0.25})`
   });
   node({
     ...voice,
-    label: "Voice",
+    label: overlayLabels.voice,
     fill: `rgba(139,92,246,${0.25 + pulse * 0.55})`,
     ring: `rgba(199,255,74,${0.04 + pulse * 0.25})`
   });
@@ -1331,7 +1462,7 @@ function drawZoomOutOverlay({ w, h, t, metrics }) {
   ctx.textAlign = "center";
   ctx.textBaseline = "bottom";
   ctx.fillText(
-    `fog:${fog.toFixed(2)} edge:${edge.toFixed(2)} residue:${metrics.residue.toFixed(2)} orient:${metrics.orientationError.toFixed(2)}`,
+    `${overlayLabels.metricFog}:${fog.toFixed(2)} ${overlayLabels.metricEdge}:${edge.toFixed(2)} ${overlayLabels.metricResidue}:${metrics.residue.toFixed(2)} ${overlayLabels.metricOrient}:${metrics.orientationError.toFixed(2)}`,
     cx,
     h * 0.94
   );
@@ -1342,28 +1473,28 @@ function frame(nowMs) {
   resizeCanvas();
   const w = canvas.width;
   const h = canvas.height;
-  const t = Date.now();
+  const t2 = Date.now();
   const dt = Math.min(0.05, Math.max(0, (nowMs - lastFrameMs) / 1e3));
   lastFrameMs = nowMs;
   const m = publicState.metrics;
   const traces = publicState.traces;
   const vibHz = 7.4;
-  const vib = Math.sin(t / 1e3 * Math.PI * 2 * vibHz);
+  const vib = Math.sin(t2 / 1e3 * Math.PI * 2 * vibHz);
   const maxRot = 2.2 * Math.PI / 180;
   const rot = m.orientationError * (0.35 + 0.65 * vib) * maxRot;
-  const drift = m.orientationError * 22 * Math.sin(t * 21e-4);
+  const drift = m.orientationError * 22 * Math.sin(t2 * 21e-4);
   ctx.save();
   ctx.translate(w / 2 + drift, h / 2);
   ctx.rotate(rot);
   ctx.translate(-w / 2, -h / 2);
   drawBackground({ w, h, fogPressure: m.fogPressure, purpleSaturation: 0.24 + m.fogPressure * 0.76 });
-  drawFog({ w, h, t, fogPressure: m.fogPressure, purpleSaturation: 0.24 + m.fogPressure * 0.76 });
-  drawBoundary({ w, h, t, edgePressure: m.edgePressure, residue: m.residue, segments: traces.boundarySegments });
-  drawOdor({ w, h, t, residue: m.residue, particles: traces.odorParticles });
-  drawPainting({ w, h, t, commit: m.paintingCommit, locked: traces.painting.locked });
+  drawFog({ w, h, t: t2, fogPressure: m.fogPressure, purpleSaturation: 0.24 + m.fogPressure * 0.76 });
+  drawBoundary({ w, h, t: t2, edgePressure: m.edgePressure, residue: m.residue, segments: traces.boundarySegments });
+  drawOdor({ w, h, t: t2, residue: m.residue, particles: traces.odorParticles });
+  drawPainting({ w, h, t: t2, commit: m.paintingCommit, locked: traces.painting.locked });
   drawVoice({ w, h, voicePulse: m.voicePulse });
   if (publicState.mode === "zoom-out") {
-    drawZoomOutOverlay({ w, h, t, metrics: m });
+    drawZoomOutOverlay({ w, h, t: t2, metrics: m });
   }
   ctx.restore();
   if (dt > 0) {
@@ -1378,7 +1509,7 @@ function frame(nowMs) {
 }
 requestAnimationFrame(frame);
 window.addEventListener("beforeunload", () => {
-  stopListen();
+  stopListenLoop();
   world.stop();
 });
 //# sourceMappingURL=index.js.map

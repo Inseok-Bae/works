@@ -1,9 +1,12 @@
 import { autorun } from 'mobx';
 import readme_source from './README.md?raw';
 import { render_readme } from '../utils/util.js';
+import { initThoughtOverlay } from '../utils/thought-overlay.js';
+import { initI18n } from '../utils/i18n.js';
 import { acting } from './acting.js';
 
-const { world, publicState } = acting();
+const { language, t } = initI18n();
+const { world, publicState } = acting({ language });
 
 const canvas = document.getElementById('stage');
 const ctx = canvas.getContext('2d', { alpha: false });
@@ -13,6 +16,7 @@ const metricsEl = document.getElementById('metrics');
 const conceptualLogEl = document.getElementById('conceptualLog');
 
 render_readme('readme_section', readme_source);
+initThoughtOverlay();
 
 function clamp01(value) {
   if (value < 0) return 0;
@@ -50,42 +54,51 @@ function createMetricRow({ id, label, gradient }) {
 const metricRows = [
   createMetricRow({
     id: 'fogPressure',
-    label: 'Fog',
+    label: t('violet.metrics.fog'),
     gradient: 'linear-gradient(90deg, rgba(203,179,255,0.45), rgba(139,92,246,0.95))',
   }),
   createMetricRow({
     id: 'edgePressure',
-    label: 'Edge',
+    label: t('violet.metrics.edge'),
     gradient: 'linear-gradient(90deg, rgba(245,243,255,0.35), rgba(245,243,255,0.95))',
   }),
   createMetricRow({
     id: 'residue',
-    label: 'Residue',
+    label: t('violet.metrics.residue'),
     gradient: 'linear-gradient(90deg, rgba(216,195,138,0.35), rgba(216,195,138,0.95))',
   }),
   createMetricRow({
     id: 'orientationError',
-    label: 'Orient',
+    label: t('violet.metrics.orient'),
     gradient: 'linear-gradient(90deg, rgba(245,243,255,0.25), rgba(199,255,74,0.75))',
   }),
   createMetricRow({
     id: 'voicePulse',
-    label: 'Voice',
+    label: t('violet.metrics.voice'),
     gradient: 'linear-gradient(90deg, rgba(203,179,255,0.35), rgba(203,179,255,0.95))',
   }),
   createMetricRow({
     id: 'paintingCommit',
-    label: 'Commit',
+    label: t('violet.metrics.commit'),
     gradient: 'linear-gradient(90deg, rgba(139,92,246,0.35), rgba(199,255,74,0.85))',
   }),
   createMetricRow({
     id: 'motherDistance',
-    label: 'Mother Distance',
+    label: t('violet.metrics.motherDistance'),
     gradient: 'linear-gradient(90deg, rgba(245,243,255,0.25), rgba(139,92,246,0.85))',
   }),
 ];
 
 metricRows.forEach((r) => metricsEl.appendChild(r.root));
+const overlayLabels = {
+  listener: t('violet.overlay.listener'),
+  mother: t('violet.overlay.mother'),
+  voice: t('violet.overlay.voice'),
+  metricFog: t('violet.overlay.metricFog'),
+  metricEdge: t('violet.overlay.metricEdge'),
+  metricResidue: t('violet.overlay.metricResidue'),
+  metricOrient: t('violet.overlay.metricOrient'),
+};
 
 function renderConceptualLog(entries) {
   conceptualLogEl.innerHTML = '';
@@ -94,7 +107,7 @@ function renderConceptualLog(entries) {
   if (recent.length === 0) {
     const empty = document.createElement('div');
     empty.className = 'conceptual-empty';
-    empty.textContent = '아직 해석된 움직임이 없습니다.';
+    empty.textContent = t('violet.conceptual.empty');
     conceptualLogEl.appendChild(empty);
     return;
   }
@@ -267,6 +280,10 @@ const activePointers = new Map(); // pointerId -> { clientX, clientY, pointerTyp
 let singleStroke = null; // { type, pointerId, pointerType, startedAtMs, points: [{x,y}] }
 let dualStroke = null; // { pointerIds: [a,b], points: [{x,y}] }
 let pinchState = null; // { pointerIds: [a,b], lastDistPx, lastSentAtMs }
+let lastPointerMoveMs = 0;
+let lastWheelMs = 0;
+const MOVE_THROTTLE_MS = 24;
+const WHEEL_THROTTLE_MS = 120;
 
 function toNormPointFromClient(clientX, clientY) {
   const rect = canvas.getBoundingClientRect();
@@ -429,6 +446,8 @@ canvas.addEventListener('pointermove', (e) => {
   }
 
   const nowMs = Date.now();
+  if (nowMs - lastPointerMoveMs < MOVE_THROTTLE_MS) return;
+  lastPointerMoveMs = nowMs;
   resetPinchIfNeeded();
   maybeSendPinch(nowMs);
 
@@ -478,6 +497,9 @@ canvas.addEventListener(
   'wheel',
   (e) => {
     e.preventDefault();
+    const nowMs = Date.now();
+    if (nowMs - lastWheelMs < WHEEL_THROTTLE_MS) return;
+    lastWheelMs = nowMs;
     const amount = clamp01(Math.abs(e.deltaY) / 800);
     world.enqueueIntention({ type: 'PULL_EAR', params: { amount } });
   },
@@ -740,19 +762,19 @@ function drawZoomOutOverlay({ w, h, t, metrics }) {
 
   node({
     ...listener,
-    label: 'Listener',
+    label: overlayLabels.listener,
     fill: 'rgba(245,243,255,0.55)',
     ring: `rgba(245,243,255,${0.08 + (1 - dist) * 0.22})`,
   });
   node({
     ...mother,
-    label: 'Mother',
+    label: overlayLabels.mother,
     fill: `rgba(203,179,255,${0.28 + (1 - dist) * 0.22})`,
     ring: `rgba(203,179,255,${0.06 + (1 - dist) * 0.25})`,
   });
   node({
     ...voice,
-    label: 'Voice',
+    label: overlayLabels.voice,
     fill: `rgba(139,92,246,${0.25 + pulse * 0.55})`,
     ring: `rgba(199,255,74,${0.04 + pulse * 0.25})`,
   });
@@ -762,7 +784,7 @@ function drawZoomOutOverlay({ w, h, t, metrics }) {
   ctx.textAlign = 'center';
   ctx.textBaseline = 'bottom';
   ctx.fillText(
-    `fog:${fog.toFixed(2)} edge:${edge.toFixed(2)} residue:${metrics.residue.toFixed(2)} orient:${metrics.orientationError.toFixed(2)}`,
+    `${overlayLabels.metricFog}:${fog.toFixed(2)} ${overlayLabels.metricEdge}:${edge.toFixed(2)} ${overlayLabels.metricResidue}:${metrics.residue.toFixed(2)} ${overlayLabels.metricOrient}:${metrics.orientationError.toFixed(2)}`,
     cx,
     h * 0.94
   );
@@ -823,6 +845,6 @@ function frame(nowMs) {
 requestAnimationFrame(frame);
 
 window.addEventListener('beforeunload', () => {
-  stopListen();
+  stopListenLoop();
   world.stop();
 });

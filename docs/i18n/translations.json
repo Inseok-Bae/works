@@ -1,0 +1,542 @@
+{
+  "ko": {
+    "common": {
+      "thought": {
+        "menuAria": "작품 메뉴",
+        "reopen": "글 다시 보기",
+        "backToIndex": "목차로 돌아가기",
+        "dialogAria": "원문과 번역",
+        "title": "생각",
+        "close": "닫기"
+      },
+      "language": {
+        "menuAria": "언어 메뉴",
+        "toggleAria": "언어 선택",
+        "toggleTitle": "{language}로 보기",
+        "options": {
+          "auto": "기본값(브라우저)",
+          "ko": "한국어",
+          "en": "English",
+          "zh": "中文",
+          "ja": "日本語"
+        }
+      }
+    },
+    "index": {
+      "documentTitle": "목차",
+      "brand": "작품 목차",
+      "galleryAria": "작품 목록",
+      "footerCredit": "inseok",
+      "projects": {
+        "murmuring": "중얼거림",
+        "division": "분열",
+        "violet": "보랏빛 뭉게구름과 날카로운 경계",
+        "bleedingColors": "번짐"
+      }
+    },
+    "murmuring": {
+      "documentTitle": "중얼거림",
+      "heading": {
+        "conversations": "대화",
+        "graph": "그래프"
+      },
+      "chart": {
+        "conversations": {
+          "title": "대화의 싱거움",
+          "yLabel": "싱거움 (0: 아주 싱거움)"
+        },
+        "regret": {
+          "title": "중얼거리는 자의 후회",
+          "yLabel": "후회"
+        },
+        "xLabel": "시간",
+        "tooltipBy": "화자"
+      },
+      "speakers": {
+        "wind": "바람",
+        "speaker": "발화자",
+        "murmurer": "중얼거리는 자"
+      }
+    },
+    "division": {
+      "documentTitle": "분열"
+    },
+    "violet": {
+      "documentTitle": "보랏빛 뭉게구름과 날카로운 경계",
+      "canvasAria": "세계 캔버스",
+      "panelAria": "제어 패널",
+      "panelTitle": "보랏빛 뭉게구름 / 날카로운 경계",
+      "sections": {
+        "metrics": "지표",
+        "controls": "제어",
+        "interpretation": "해석"
+      },
+      "buttons": {
+        "zoom": "줌 전환",
+        "commit": "그림 걸기",
+        "reset": "부드러운 초기화",
+        "listen": "귀 기울이기 (길게 누르기)"
+      },
+      "hints": {
+        "line1": "귀 기울이기: 길게 누르기",
+        "line2": "획: 한 손가락 = 각지게, 두 손가락 = 뭉개기",
+        "line3": "핀치(또는 휠): 귀를 당기기 (잠깐 갈피 잡기)"
+      },
+      "footer": {
+        "logEntries": "로그 수",
+        "transport": "콘솔 전송 + 로컬 저장소"
+      },
+      "conceptual": {
+        "empty": "아직 읽힌 움직임이 없습니다."
+      },
+      "metrics": {
+        "fog": "구름",
+        "edge": "경계",
+        "residue": "치석",
+        "orient": "갈피",
+        "voice": "목소리",
+        "commit": "고정도",
+        "motherDistance": "엄마와의 거리"
+      },
+      "overlay": {
+        "listener": "듣는 이",
+        "mother": "엄마",
+        "voice": "목소리",
+        "metricFog": "구름",
+        "metricEdge": "경계",
+        "metricResidue": "치석",
+        "metricOrient": "갈피"
+      }
+    },
+    "bleeding": {
+      "documentTitle": "번짐",
+      "canvasAria": "번짐 장면",
+      "hudAria": "제어 및 로그",
+      "title": "번짐",
+      "buttons": {
+        "view": "보기 전환",
+        "pause": "일시정지",
+        "resume": "재개"
+      },
+      "hint": "따뜻함은 노랑을 번지게 하고, 뙤약볕은 빨강으로 지집니다. 떠나면 초록이 덮고, 물감이 마르면 얼룩만 남습니다.",
+      "concept": {
+        "empty": "아직 흔적이 없습니다."
+      },
+      "stats": {
+        "dryness": "마름",
+        "wetness": "젖음",
+        "warmth": "온기",
+        "burn": "작열",
+        "flee": "떠남",
+        "stainLevel": "얼룩",
+        "edgeSoftness": "경계 흐림",
+        "queueSize": "지연"
+      }
+    }
+  },
+  "en": {
+    "common": {
+      "thought": {
+        "menuAria": "Artwork menu",
+        "reopen": "Read text again",
+        "backToIndex": "Back to index",
+        "dialogAria": "Original text and translation",
+        "title": "THOUGHT",
+        "close": "Close"
+      },
+      "language": {
+        "menuAria": "Language menu",
+        "toggleAria": "Choose language",
+        "toggleTitle": "View in {language}",
+        "options": {
+          "auto": "Default (Browser)",
+          "ko": "한국어",
+          "en": "English",
+          "zh": "中文",
+          "ja": "日本語"
+        }
+      }
+    },
+    "index": {
+      "documentTitle": "Index",
+      "brand": "Project Index",
+      "galleryAria": "Artwork list",
+      "footerCredit": "inseok",
+      "projects": {
+        "murmuring": "Murmuring",
+        "division": "Division",
+        "violet": "Violet Cloud and Sharp Boundaries",
+        "bleedingColors": "Bleeding Colors"
+      }
+    },
+    "murmuring": {
+      "documentTitle": "Murmuring",
+      "heading": {
+        "conversations": "Conversations",
+        "graph": "Graph"
+      },
+      "chart": {
+        "conversations": {
+          "title": "Conversation Unsaltedness",
+          "yLabel": "Unsaltedness (0: very unsalted)"
+        },
+        "regret": {
+          "title": "Murmurer's Regret",
+          "yLabel": "Regret"
+        },
+        "xLabel": "Time",
+        "tooltipBy": "Speaker"
+      },
+      "speakers": {
+        "wind": "Wind",
+        "speaker": "Speaker",
+        "murmurer": "Murmurer"
+      }
+    },
+    "division": {
+      "documentTitle": "Division"
+    },
+    "violet": {
+      "documentTitle": "Violet Cloud and Sharp Boundaries",
+      "canvasAria": "World canvas",
+      "panelAria": "Controls panel",
+      "panelTitle": "Violet Cloud / Sharp Boundaries",
+      "sections": {
+        "metrics": "Metrics",
+        "controls": "Controls",
+        "interpretation": "Interpretation"
+      },
+      "buttons": {
+        "zoom": "Toggle Zoom",
+        "commit": "Hang Painting",
+        "reset": "Soft Reset",
+        "listen": "Listen (press & hold)"
+      },
+      "hints": {
+        "line1": "Listen: press & hold",
+        "line2": "Stroke: one finger = sharpen, two fingers = smudge",
+        "line3": "Pinch (or wheel): pull an ear (briefly find your bearings)"
+      },
+      "footer": {
+        "logEntries": "Log entries",
+        "transport": "Console transport + localStorage"
+      },
+      "conceptual": {
+        "empty": "Nothing has surfaced yet."
+      },
+      "metrics": {
+        "fog": "Cloud",
+        "edge": "Boundary",
+        "residue": "Tartar",
+        "orient": "Bearings",
+        "voice": "Voice",
+        "commit": "Fixation",
+        "motherDistance": "Distance to Mother"
+      },
+      "overlay": {
+        "listener": "Listener",
+        "mother": "Mother",
+        "voice": "Voice",
+        "metricFog": "cloud",
+        "metricEdge": "boundary",
+        "metricResidue": "tartar",
+        "metricOrient": "bearings"
+      }
+    },
+    "bleeding": {
+      "documentTitle": "Bleeding Colors",
+      "canvasAria": "Bleeding colors scene",
+      "hudAria": "Controls and log",
+      "title": "Bleeding Colors",
+      "buttons": {
+        "view": "Toggle View",
+        "pause": "Pause",
+        "resume": "Resume"
+      },
+      "hint": "Warmth bleeds into yellow; harsh light sears it into red. When you pull away, green covers it. When the paint runs out, only a stain remains.",
+      "concept": {
+        "empty": "No trace yet."
+      },
+      "stats": {
+        "dryness": "Dryness",
+        "wetness": "Wetness",
+        "warmth": "Warmth",
+        "burn": "Scorch",
+        "flee": "Leave",
+        "stainLevel": "Stain",
+        "edgeSoftness": "Edge Blur",
+        "queueSize": "Lag Queue"
+      }
+    }
+  },
+  "zh": {
+    "common": {
+      "thought": {
+        "menuAria": "作品菜单",
+        "reopen": "重新查看文字",
+        "backToIndex": "返回目录",
+        "dialogAria": "原文与翻译",
+        "title": "THOUGHT",
+        "close": "关闭"
+      },
+      "language": {
+        "menuAria": "语言菜单",
+        "toggleAria": "选择语言",
+        "toggleTitle": "切换为{language}",
+        "options": {
+          "auto": "默认（浏览器）",
+          "ko": "한국어",
+          "en": "English",
+          "zh": "中文",
+          "ja": "日本語"
+        }
+      }
+    },
+    "index": {
+      "documentTitle": "目录",
+      "brand": "作品目录",
+      "galleryAria": "作品列表",
+      "footerCredit": "inseok",
+      "projects": {
+        "murmuring": "低语",
+        "division": "分裂",
+        "violet": "紫色云团与尖锐的边界",
+        "bleedingColors": "渗色"
+      }
+    },
+    "murmuring": {
+      "documentTitle": "低语",
+      "heading": {
+        "conversations": "对话",
+        "graph": "图表"
+      },
+      "chart": {
+        "conversations": {
+          "title": "对话的寡淡度",
+          "yLabel": "寡淡度（0：很寡淡）"
+        },
+        "regret": {
+          "title": "低语者的后悔",
+          "yLabel": "后悔"
+        },
+        "xLabel": "时间",
+        "tooltipBy": "话者"
+      },
+      "speakers": {
+        "wind": "风",
+        "speaker": "发言者",
+        "murmurer": "低语者"
+      }
+    },
+    "division": {
+      "documentTitle": "分裂"
+    },
+    "violet": {
+      "documentTitle": "紫色云团与尖锐的边界",
+      "canvasAria": "世界画布",
+      "panelAria": "控制面板",
+      "panelTitle": "紫色云团 / 尖锐的边界",
+      "sections": {
+        "metrics": "指标",
+        "controls": "控制",
+        "interpretation": "解读"
+      },
+      "buttons": {
+        "zoom": "切换缩放",
+        "commit": "挂画",
+        "reset": "柔和重置",
+        "listen": "倾听（长按）"
+      },
+      "hints": {
+        "line1": "倾听：长按",
+        "line2": "笔触：一指 = 起棱角，双指 = 晕开",
+        "line3": "捏合（或滚轮）：拉耳（暂时找回方位）"
+      },
+      "footer": {
+        "logEntries": "日志条目",
+        "transport": "Console 传输 + localStorage"
+      },
+      "conceptual": {
+        "empty": "还没有任何动静被读出来。"
+      },
+      "metrics": {
+        "fog": "云",
+        "edge": "边界",
+        "residue": "牙结石",
+        "orient": "方位感",
+        "voice": "嗓音",
+        "commit": "固定度",
+        "motherDistance": "与母亲的距离"
+      },
+      "overlay": {
+        "listener": "聆听者",
+        "mother": "母亲",
+        "voice": "嗓音",
+        "metricFog": "云",
+        "metricEdge": "界",
+        "metricResidue": "牙结石",
+        "metricOrient": "位"
+      }
+    },
+    "bleeding": {
+      "documentTitle": "渗色",
+      "canvasAria": "渗色场景",
+      "hudAria": "控制与日志",
+      "title": "渗色",
+      "buttons": {
+        "view": "切换视图",
+        "pause": "暂停",
+        "resume": "继续"
+      },
+      "hint": "暖意把黄晕开；烈日把它灼成红。你推开离去，绿便覆上来。颜料见底，终究只剩一块污迹。",
+      "concept": {
+        "empty": "尚无痕迹。"
+      },
+      "stats": {
+        "dryness": "干涸",
+        "wetness": "湿润",
+        "warmth": "暖意",
+        "burn": "灼热",
+        "flee": "离开",
+        "stainLevel": "污迹",
+        "edgeSoftness": "边界模糊",
+        "queueSize": "延迟"
+      }
+    }
+  },
+  "ja": {
+    "common": {
+      "thought": {
+        "menuAria": "作品メニュー",
+        "reopen": "文章を再表示",
+        "backToIndex": "目次へ戻る",
+        "dialogAria": "原文と翻訳",
+        "title": "THOUGHT",
+        "close": "閉じる"
+      },
+      "language": {
+        "menuAria": "言語メニュー",
+        "toggleAria": "言語を選択",
+        "toggleTitle": "{language}で表示",
+        "options": {
+          "auto": "デフォルト（ブラウザ）",
+          "ko": "한국어",
+          "en": "English",
+          "zh": "中文",
+          "ja": "日本語"
+        }
+      }
+    },
+    "index": {
+      "documentTitle": "目次",
+      "brand": "作品目次",
+      "galleryAria": "作品一覧",
+      "footerCredit": "inseok",
+      "projects": {
+        "murmuring": "つぶやき",
+        "division": "分裂",
+        "violet": "紫の雲塊と鋭い境界",
+        "bleedingColors": "にじみ"
+      }
+    },
+    "murmuring": {
+      "documentTitle": "つぶやき",
+      "heading": {
+        "conversations": "会話",
+        "graph": "グラフ"
+      },
+      "chart": {
+        "conversations": {
+          "title": "会話の味気なさ",
+          "yLabel": "味気なさ（0: とても味気ない）"
+        },
+        "regret": {
+          "title": "つぶやく者の後悔",
+          "yLabel": "後悔"
+        },
+        "xLabel": "時間",
+        "tooltipBy": "話者"
+      },
+      "speakers": {
+        "wind": "風",
+        "speaker": "発話者",
+        "murmurer": "つぶやく者"
+      }
+    },
+    "division": {
+      "documentTitle": "分裂"
+    },
+    "violet": {
+      "documentTitle": "紫の雲塊と鋭い境界",
+      "canvasAria": "世界キャンバス",
+      "panelAria": "操作パネル",
+      "panelTitle": "紫の雲塊 / 鋭い境界",
+      "sections": {
+        "metrics": "指標",
+        "controls": "操作",
+        "interpretation": "解釈"
+      },
+      "buttons": {
+        "zoom": "ズーム切替",
+        "commit": "絵を掛ける",
+        "reset": "緩やかにリセット",
+        "listen": "耳を澄ます（長押し）"
+      },
+      "hints": {
+        "line1": "耳を澄ます: 長押し",
+        "line2": "ストローク: 一本指 = 角ばらせる、二本指 = にじませる",
+        "line3": "ピンチ（またはホイール）: 耳を引く（しばらく方角をつかむ）"
+      },
+      "footer": {
+        "logEntries": "ログ件数",
+        "transport": "Console 転送 + localStorage"
+      },
+      "conceptual": {
+        "empty": "まだ読める動きはありません。"
+      },
+      "metrics": {
+        "fog": "雲",
+        "edge": "境界",
+        "residue": "歯石",
+        "orient": "方角",
+        "voice": "声",
+        "commit": "固定度",
+        "motherDistance": "母との距離"
+      },
+      "overlay": {
+        "listener": "聴き手",
+        "mother": "母",
+        "voice": "声",
+        "metricFog": "雲",
+        "metricEdge": "境",
+        "metricResidue": "歯石",
+        "metricOrient": "方角"
+      }
+    },
+    "bleeding": {
+      "documentTitle": "にじみ",
+      "canvasAria": "にじみの場面",
+      "hudAria": "操作とログ",
+      "title": "にじみ",
+      "buttons": {
+        "view": "表示切替",
+        "pause": "一時停止",
+        "resume": "再開"
+      },
+      "hint": "ぬくもりは黄ににじみ、烈日は赤に焦がす。離れると緑が覆い、絵具が尽きれば、染みだけが残る。",
+      "concept": {
+        "empty": "まだ痕跡がありません。"
+      },
+      "stats": {
+        "dryness": "乾き",
+        "wetness": "湿り",
+        "warmth": "ぬくもり",
+        "burn": "灼け",
+        "flee": "離れ",
+        "stainLevel": "染み",
+        "edgeSoftness": "境界のにじみ",
+        "queueSize": "遅延"
+      }
+    }
+  }
+}

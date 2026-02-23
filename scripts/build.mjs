@@ -69,6 +69,7 @@ async function copyStatics(entries) {
   }
   copyIfExists(join(root, 'index.html'), join(outDir, 'index.html'));
   copyDirectory(join(root, 'style'), join(outDir, 'style'));
+  copyDirectory(join(root, 'i18n'), join(outDir, 'i18n'));
 }
 
 const rawPlugin = {
@@ -133,6 +134,11 @@ async function run({ watch }) {
         return;
       }
       const normalized = filename.replaceAll('\\', '/');
+      if (normalized.startsWith('i18n/')) {
+        copyDirectory(join(root, 'i18n'), join(outDir, 'i18n'));
+        console.log('I18n updated:', filename);
+        return;
+      }
       if (
         normalized.endsWith('index.html') ||
         normalized.endsWith('styles.css') ||

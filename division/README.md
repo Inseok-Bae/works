@@ -10,4 +10,4 @@ They wish to be different from others — it is in their nature.
 Yet most cannot overcome the gravity of the group, and they return to sameness.
 
 They wish others to become part of themselves.
-Those who succeed in independence form their own groups, and some from within break away — repeating the same pattern.
+Those who succeed in independence form their own groups, and some break away from within — repeating the same pattern.

@@ -31,7 +31,15 @@ export function getSpeakerColor(speaker) {
   );
 }
 
-export function init_graph_presenter({ graph_space, data, yLabel, title, legends }) {
+export function init_graph_presenter({
+  graph_space,
+  data,
+  yLabel,
+  title,
+  legends,
+  xLabel = 'Time',
+  tooltipByLabel = 'By',
+}) {
   return new Chart(graph_space, {
     type: 'line',
     data: {
@@ -75,7 +83,7 @@ export function init_graph_presenter({ graph_space, data, yLabel, title, legends
           callbacks: {
             label: function (context) {
               const dataPoint = context.raw;
-              return `By: ${dataPoint.label}`;
+              return `${tooltipByLabel}: ${dataPoint.label}`;
             },
           },
         },
@@ -96,7 +104,7 @@ export function init_graph_presenter({ graph_space, data, yLabel, title, legends
           },
           title: {
             display: true,
-            text: 'Time',
+            text: xLabel,
           },
         },
         y: {

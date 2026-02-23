@@ -3,5 +3,5 @@
 
 ---
 
-The things I say are more like murmurs in a conversation — quiet, almost flavorless.
-A friend who’s much like me and I used to call ourselves the Unsalted.
+The words I spit out in conversation are closer to murmurs — quiet, almost flavorless.
+A friend much like me and I used to call ourselves the Unsalted.

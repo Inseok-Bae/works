@@ -2,16 +2,29 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>Index</title>
+    <title data-i18n="index.documentTitle">Index</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
       :root {
-        --bg: #faf9f7;
-        --ink: #0b0b0b;
-        --muted: #6b6b6b;
-        --card: #ffffff;
-        --line: rgba(0, 0, 0, 0.08);
-        --accent: #1a1a1a;
+        --bg: #f6f4ef;
+        --ink: #111111;
+        --muted: rgba(17, 17, 17, 0.6);
+        --line: rgba(17, 17, 17, 0.2);
+        --line-soft: rgba(17, 17, 17, 0.08);
+        --accent: #111111;
+        --sans:
+          'Noto Sans KR',
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          sans-serif;
+        --language-switcher-bg: #0f0f10;
+        --language-switcher-text: #f7f7f5;
+        --language-switcher-border: rgba(17, 17, 17, 0.35);
+        --language-switcher-item-bg: rgba(255, 255, 255, 0.04);
+        --language-switcher-item-hover: rgba(255, 255, 255, 0.12);
       }
       * {
         box-sizing: border-box;
@@ -22,90 +35,119 @@
       }
       body {
         margin: 0;
-        font-family:
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          'Noto Sans KR',
-          sans-serif;
+        font-family: var(--sans);
         color: var(--ink);
-        background: radial-gradient(1200px 800px at 10% 5%, #ffffff 0%, #f5f3f0 60%, #eee8e1 100%);
-        letter-spacing: 0.02em;
+        background: var(--bg);
+        letter-spacing: 0.01em;
+        text-rendering: optimizeLegibility;
       }
       .frame {
         min-height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        padding: 6vh 6vw 8vh;
-        gap: 40px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: clamp(40px, 8vh, 80px) clamp(24px, 8vw, 96px) clamp(36px, 6vh, 72px);
+        gap: 32px;
+        max-width: 1120px;
+        margin: 0 auto;
+        position: relative;
       }
-      header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 24px;
+      .frame::before {
+        content: '';
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 1px;
+        background: var(--line-soft);
+      }
+      header.mast {
+        display: grid;
+        gap: 10px;
         border-bottom: 1px solid var(--line);
         padding-bottom: 18px;
       }
+      .mast-label {
+        font-size: 11px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
       .brand {
-        font-size: clamp(28px, 5vw, 56px);
-        font-weight: 700;
-        letter-spacing: -0.02em;
+        font-size: clamp(28px, 5.2vw, 64px);
+        font-family: var(--sans);
+        font-weight: 500;
+        letter-spacing: 0.08em;
       }
       .gallery {
         display: grid;
-        gap: 18px;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        border-top: 1px solid var(--line);
+        position: relative;
+        margin-left: 22px;
+      }
+      .gallery::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--line-soft);
       }
       .tile {
         position: relative;
-        display: block;
-        padding: 22px 20px 18px;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        background: var(--card);
+        display: grid;
+        grid-template-columns: 56px minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 4px 18px 26px;
+        border-bottom: 1px solid var(--line-soft);
         text-decoration: none;
         color: inherit;
-        overflow: hidden;
-        transform: translateY(0);
+        background: transparent;
+        transform: translateX(0);
         transition:
-          transform 0.18s ease,
-          box-shadow 0.18s ease,
-          border-color 0.18s ease;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+          transform 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
       }
       .tile:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-        border-color: rgba(0, 0, 0, 0.18);
+        transform: translateX(6px);
+        background: rgba(17, 17, 17, 0.03);
+      }
+      .tile::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        transform: translate(-50%, -50%);
       }
       .tile:focus-visible {
         outline: 2px solid #111;
         outline-offset: 2px;
       }
-      .tile .label {
-        font-size: clamp(18px, 2.2vw, 24px);
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-      .tile .meta {
-        margin-top: 8px;
+      .tile-index {
         font-size: 12px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
         color: var(--muted);
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        font-weight: 600;
       }
-      .arrow {
-        margin-left: auto;
+      .tile-label {
+        font-size: clamp(20px, 2.8vw, 34px);
+        font-family: var(--sans);
+        font-weight: 500;
+        letter-spacing: 0.03em;
+      }
+      .tile-arrow {
         font-size: 14px;
+        color: var(--muted);
         transition: transform 0.18s ease;
-        transform: translateX(0);
       }
-      .tile:hover .arrow {
-        transform: translateX(4px);
+      .tile:hover .tile-arrow {
+        transform: translateX(6px);
       }
       footer {
         margin-top: auto;
@@ -116,10 +158,145 @@
         font-size: 12px;
         border-top: 1px solid var(--line);
         padding-top: 14px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+      .language-switcher {
+        position: fixed;
+        top: max(14px, env(safe-area-inset-top));
+        right: max(14px, env(safe-area-inset-right));
+        z-index: 1300;
+      }
+      .language-switcher-toggle {
+        appearance: none;
+        min-width: 56px;
+        height: 36px;
+        border-radius: 8px;
+        border: 1px solid var(--language-switcher-border);
+        background: var(--language-switcher-bg);
+        color: var(--language-switcher-text);
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        box-shadow: none;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+      .language-switcher-toggle:hover {
+        transform: translateY(-1px);
+      }
+      .language-switcher-toggle:active {
+        transform: translateY(0);
+      }
+      .language-switcher-icon {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 1.5px solid currentColor;
+        display: inline-block;
+        position: relative;
+        opacity: 0.9;
+      }
+      .language-switcher-icon::before,
+      .language-switcher-icon::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid currentColor;
+        border-radius: 999px;
+        opacity: 0.75;
+      }
+      .language-switcher-icon::before {
+        width: 4px;
+        height: 10px;
+      }
+      .language-switcher-icon::after {
+        width: 10px;
+        height: 4px;
+      }
+      .language-switcher-code {
+        min-width: 2ch;
+        text-align: center;
+      }
+      .language-switcher-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        width: 188px;
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid var(--language-switcher-border);
+        background: var(--language-switcher-bg);
+        color: var(--language-switcher-text);
+        display: grid;
+        gap: 6px;
+        box-shadow: none;
+      }
+      .language-switcher-menu[hidden] {
+        display: none !important;
+      }
+      .language-switcher-option {
+        appearance: none;
+        width: 100%;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: var(--language-switcher-item-bg);
+        color: inherit;
+        text-align: left;
+        font-size: 13px;
+        line-height: 1.2;
+        font-weight: 600;
+        padding: 9px 10px;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          border-color 160ms ease,
+          background 160ms ease;
+      }
+      .language-switcher-option:hover {
+        border-color: var(--language-switcher-border);
+        background: var(--language-switcher-item-hover);
+      }
+      .language-switcher-option:active {
+        transform: translateY(1px);
+      }
+      .language-switcher-option[data-active='true'] {
+        border-color: var(--language-switcher-border);
+        background: var(--language-switcher-item-hover);
+      }
+      .language-switcher-toggle:focus-visible,
+      .language-switcher-option:focus-visible {
+        outline: 2px solid var(--language-switcher-text);
+        outline-offset: 2px;
+      }
+      @media (max-width: 720px) {
+        .frame {
+          padding: 32px 20px 32px;
+          gap: 26px;
+        }
+        .gallery {
+          margin-left: 14px;
+        }
+        .tile {
+          grid-template-columns: 44px minmax(0, 1fr) auto;
+          padding: 16px 2px 16px 20px;
+        }
+        .brand {
+          letter-spacing: 0.04em;
+        }
       }
       @media (prefers-reduced-motion: reduce) {
         .tile,
-        .arrow {
+        .tile-arrow {
           transition: none;
         }
       }
@@ -127,42 +304,235 @@
   </head>
   <body>
     <div class="frame">
-      <header>
-        <div>
-          <div class="brand">PROJECT INDEX</div>
-        </div>
+      <header class="mast">
+        <div class="mast-label" data-i18n="index.documentTitle">Index</div>
+        <div class="brand" data-i18n="index.brand">Project Index</div>
       </header>
 
-      <main class="gallery" id="gallery" aria-label="폴더 목록"></main>
+      <main class="gallery" id="gallery" data-i18n-aria-label="index.galleryAria"></main>
 
       <footer>
-        <span>© inseok</span>
+        <span data-i18n="index.footerCredit">inseok</span>
       </footer>
     </div>
 
     <script>
-      const FOLDERS = ['murmuring', 'division', 'violet-cloud-and-sharp-boundaries'];
+      const PROJECTS = [
+        { folder: 'murmuring', key: 'index.projects.murmuring' },
+        { folder: 'division', key: 'index.projects.division' },
+        { folder: 'violet-cloud-and-sharp-boundaries', key: 'index.projects.violet' },
+        { folder: 'bleeding-colors', key: 'index.projects.bleedingColors' },
+      ];
+
+      const SUPPORTED_LANGUAGES = ['ko', 'en', 'zh', 'ja'];
+      const FALLBACK_LANGUAGE = 'en';
+      const STORAGE_KEY = 'works:preferred-language';
 
       const gallery = document.getElementById('gallery');
 
-      const toTitle = (name) => name.replace(/[-_]/g, ' ').replace(/\b\w/g, (m) => m.toUpperCase());
+      function asSupportedLanguage(value) {
+        if (!value || typeof value !== 'string') return null;
+        const lower = value.toLowerCase();
+        if (lower.startsWith('zh')) return 'zh';
+        if (lower.startsWith('ja')) return 'ja';
+        if (lower.startsWith('ko')) return 'ko';
+        if (lower.startsWith('en')) return 'en';
+        return null;
+      }
 
-      FOLDERS.forEach((folder) => {
-        const href = `./${folder}/index.html`;
-        const title = toTitle(folder);
-        gallery.insertAdjacentHTML(
-          'beforeend',
-          `
-        <a class="tile" href="${href}">
-          <div class="label">${title}</div>
-          <div class="meta">
-            <span>${title}</span>
-            <span class="arrow">→</span>
-          </div>
-        </a>
-      `
+      function getStoredLanguage() {
+        try {
+          return asSupportedLanguage(localStorage.getItem(STORAGE_KEY));
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function clearStoredLanguage() {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (_) {
+          // ignore
+        }
+      }
+
+      function setStoredLanguage(language) {
+        if (!language) {
+          clearStoredLanguage();
+          return;
+        }
+        try {
+          localStorage.setItem(STORAGE_KEY, language);
+        } catch (_) {
+          // ignore
+        }
+      }
+
+      function detectBrowserLanguage() {
+        const candidates = navigator.languages || [navigator.language];
+        for (const locale of candidates) {
+          const normalized = asSupportedLanguage(locale);
+          if (normalized) return normalized;
+        }
+        return FALLBACK_LANGUAGE;
+      }
+
+      function getByPath(source, path) {
+        if (!source) return undefined;
+        return path.split('.').reduce((acc, key) => {
+          if (acc && Object.prototype.hasOwnProperty.call(acc, key)) return acc[key];
+          return undefined;
+        }, source);
+      }
+
+      function applyStaticI18n(t) {
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.getAttribute('data-i18n');
+          if (!key) return;
+          element.textContent = t(key);
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+          const key = element.getAttribute('data-i18n-aria-label');
+          if (!key) return;
+          element.setAttribute('aria-label', t(key));
+        });
+        document.querySelectorAll('[data-i18n-title]').forEach((element) => {
+          const key = element.getAttribute('data-i18n-title');
+          if (!key) return;
+          element.setAttribute('title', t(key));
+        });
+      }
+
+      function renderProjectTiles(t) {
+        gallery.innerHTML = '';
+        PROJECTS.forEach(({ folder, key }, index) => {
+          const title = t(key);
+          const href = `./${folder}/index.html`;
+          const order = String(index + 1).padStart(2, '0');
+          gallery.insertAdjacentHTML(
+            'beforeend',
+            `
+          <a class="tile" href="${href}">
+            <span class="tile-index">${order}</span>
+            <span class="tile-label">${title}</span>
+            <span class="tile-arrow" aria-hidden="true">→</span>
+          </a>
+        `
+          );
+        });
+      }
+
+      function createLanguageSwitcher(currentLanguage, selectedLanguage, t) {
+        document.getElementById('languageSwitcher')?.remove();
+
+        const root = document.createElement('div');
+        root.id = 'languageSwitcher';
+        root.className = 'language-switcher';
+
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'language-switcher-toggle';
+        toggle.setAttribute('aria-label', t('common.language.toggleAria'));
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute(
+          'title',
+          t('common.language.toggleTitle', {
+            language: t(`common.language.options.${selectedLanguage || 'auto'}`),
+          })
         );
-      });
+        toggle.innerHTML = `
+          <span class="language-switcher-icon" aria-hidden="true"></span>
+          <span class="language-switcher-code">${currentLanguage.toUpperCase()}</span>
+        `;
+
+        const menu = document.createElement('div');
+        menu.className = 'language-switcher-menu';
+        menu.hidden = true;
+        menu.setAttribute('aria-label', t('common.language.menuAria'));
+
+        const options = ['auto', ...SUPPORTED_LANGUAGES];
+        for (const language of options) {
+          const isAuto = language === 'auto';
+          const isActive = isAuto ? selectedLanguage == null : language === selectedLanguage;
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'language-switcher-option';
+          item.dataset.language = language;
+          item.dataset.active = String(isActive);
+          item.setAttribute('aria-pressed', String(isActive));
+          item.textContent = t(`common.language.options.${language}`);
+          item.addEventListener('click', () => {
+            menu.hidden = true;
+            toggle.setAttribute('aria-expanded', 'false');
+            if (language === 'auto' && selectedLanguage == null) return;
+            if (language === selectedLanguage) return;
+            if (language === 'auto') clearStoredLanguage();
+            else setStoredLanguage(language);
+            window.location.reload();
+          });
+          menu.appendChild(item);
+        }
+
+        const closeMenu = () => {
+          menu.hidden = true;
+          toggle.setAttribute('aria-expanded', 'false');
+        };
+
+        toggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const willOpen = menu.hidden;
+          menu.hidden = !willOpen;
+          toggle.setAttribute('aria-expanded', String(willOpen));
+        });
+
+        document.addEventListener('pointerdown', (event) => {
+          if (menu.hidden) return;
+          if (root.contains(event.target)) return;
+          closeMenu();
+        });
+
+        window.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return;
+          closeMenu();
+        });
+
+        root.appendChild(toggle);
+        root.appendChild(menu);
+        document.body.appendChild(root);
+      }
+
+      async function boot() {
+        const selectedLanguage = getStoredLanguage();
+        const language = selectedLanguage || detectBrowserLanguage();
+        document.documentElement.setAttribute('lang', language);
+
+        let catalog = null;
+        try {
+          const response = await fetch('./i18n/translations.json', { cache: 'no-store' });
+          if (response.ok) {
+            catalog = await response.json();
+          }
+        } catch (_) {
+          // fallback below
+        }
+
+        const fallbackCatalog = catalog?.[FALLBACK_LANGUAGE] || {};
+        const activeCatalog = catalog?.[language] || fallbackCatalog;
+        const t = (key, params = {}) => {
+          const raw = getByPath(activeCatalog, key) ?? getByPath(fallbackCatalog, key) ?? key;
+          if (typeof raw !== 'string') return String(raw);
+          return raw.replace(/\{(\w+)\}/g, (_, name) => {
+            if (Object.prototype.hasOwnProperty.call(params, name)) return String(params[name]);
+            return `{${name}}`;
+          });
+        };
+
+        applyStaticI18n(t);
+        renderProjectTiles(t);
+        createLanguageSwitcher(language, selectedLanguage, t);
+      }
+
+      boot();
     </script>
   </body>
 </html>

@@ -1,12 +1,14 @@
 import { getSpeakerColor } from './chart';
 
-export const speakerNames = {
-  wind: 'Wind',
-  speaker: 'Mr. Speaker',
-  murmurer: 'Mr. Murmurer',
-};
+export function getSpeakerNames(t) {
+  return {
+    wind: t('murmuring.speakers.wind'),
+    speaker: t('murmuring.speakers.speaker'),
+    murmurer: t('murmuring.speakers.murmurer'),
+  };
+}
 
-export function toData(origin) {
+export function toData(origin, speakerNames) {
   return origin.map((record) => ({
     x: record.when.getTime(),
     y: record.content,
@@ -15,7 +17,7 @@ export function toData(origin) {
   }));
 }
 
-export function makeSpeakerLegend(speaker) {
+export function makeSpeakerLegend(speaker, speakerNames) {
   return {
     text: speakerNames[speaker],
     fillStyle: getSpeakerColor(speaker).point,
@@ -23,6 +25,6 @@ export function makeSpeakerLegend(speaker) {
     lineWidth: 0,
     pointStyle: 'circle',
     hidden: false,
-    index: speakerNames.length,
+    index: Object.keys(speakerNames).length,
   };
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Violet Cloud And Sharp Boundaries</title>
+    <title data-i18n="violet.documentTitle">보랏빛 구름과 날카로운 경계</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
@@ -13,45 +13,118 @@
   </head>
   <body>
     <div id="app">
-      <canvas id="stage" aria-label="world canvas"></canvas>
+      <canvas id="stage" data-i18n-aria-label="violet.canvasAria"></canvas>
 
-      <aside id="panel" aria-label="controls">
+      <aside id="panel" data-i18n-aria-label="violet.panelAria">
         <header class="panel-header">
-          <div class="panel-title">Violet Cloud / Sharp Boundaries</div>
+          <div class="panel-title" data-i18n="violet.panelTitle">보랏빛 구름 / 날카로운 경계</div>
         </header>
 
         <section class="panel-section">
-          <div class="section-title">Metrics</div>
+          <div class="section-title" data-i18n="violet.sections.metrics">지표</div>
           <div id="metrics" class="metrics"></div>
         </section>
 
         <section class="panel-section">
-          <div class="section-title">Controls</div>
+          <div class="section-title" data-i18n="violet.sections.controls">제어</div>
           <div class="controls">
-            <button id="zoomToggle" type="button">Toggle Zoom</button>
-            <button id="commitPainting" type="button">Commit Painting</button>
-            <button id="resetSoft" type="button">Soft Reset</button>
-            <button id="listenHold" type="button">Listen (hold)</button>
+            <button id="zoomToggle" type="button" data-i18n="violet.buttons.zoom">줌 전환</button>
+            <button id="commitPainting" type="button" data-i18n="violet.buttons.commit">
+              그림 고정
+            </button>
+            <button id="resetSoft" type="button" data-i18n="violet.buttons.reset">
+              완만한 초기화
+            </button>
+            <button id="listenHold" type="button" data-i18n="violet.buttons.listen">
+              듣기 (누르고 유지)
+            </button>
           </div>
           <div class="hint">
-            <div class="hint-line">Listen: press and hold</div>
-            <div class="hint-line">Stroke: one finger = sharpen, two fingers = smudge</div>
-            <div class="hint-line">Pinch (or wheel): pull ear (temporary orientation assist)</div>
+            <div class="hint-line" data-i18n="violet.hints.line1">듣기: 길게 누르기</div>
+            <div class="hint-line" data-i18n="violet.hints.line2">
+              획: 한 손가락 = 선명하게, 두 손가락 = 번지게
+            </div>
+            <div class="hint-line" data-i18n="violet.hints.line3">
+              핀치(또는 휠): 귀를 당기기 (일시적 방향 보정)
+            </div>
           </div>
         </section>
 
         <section class="panel-section">
-          <div class="section-title">Interpretation</div>
+          <div class="section-title" data-i18n="violet.sections.interpretation">해석</div>
           <div id="conceptualLog" class="conceptual-log" aria-live="polite"></div>
         </section>
 
-        <article id="readme_section"></article>
-
         <footer class="panel-footer">
-          <span>Log entries: <strong id="logCount">0</strong></span>
-          <span class="muted">console transport + localStorage</span>
+          <span
+            ><span data-i18n="violet.footer.logEntries">로그 수</span>:
+            <strong id="logCount">0</strong></span
+          >
+          <span class="muted" data-i18n="violet.footer.transport">console 전송 + localStorage</span>
         </footer>
       </aside>
     </div>
+
+    <button
+      id="thoughtMenuToggle"
+      class="thought-menu-toggle"
+      type="button"
+      hidden
+      aria-controls="thoughtMenu"
+      aria-expanded="false"
+      data-i18n-aria-label="common.thought.menuAria"
+    >
+      <span class="thought-menu-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <nav
+      id="thoughtMenu"
+      class="thought-menu"
+      hidden
+      data-i18n-aria-label="common.thought.menuAria"
+    >
+      <button
+        id="thoughtActionOpen"
+        class="thought-menu-item"
+        type="button"
+        data-i18n="common.thought.reopen"
+      >
+        글 다시 보기
+      </button>
+      <a
+        id="thoughtActionIndex"
+        class="thought-menu-item"
+        href="../index.html"
+        data-i18n="common.thought.backToIndex"
+      >
+        목차로 돌아가기
+      </a>
+    </nav>
+
+    <section id="thoughtOverlay" class="thought-overlay">
+      <div
+        class="thought-card"
+        role="dialog"
+        aria-modal="true"
+        data-i18n-aria-label="common.thought.dialogAria"
+      >
+        <header class="thought-head">
+          <div class="thought-title" data-i18n="common.thought.title">생각</div>
+          <button
+            id="thoughtClose"
+            class="thought-close"
+            type="button"
+            data-i18n="common.thought.close"
+          >
+            닫기
+          </button>
+        </header>
+        <article id="readme_section" class="thought-content"></article>
+      </div>
+    </section>
   </body>
 </html>

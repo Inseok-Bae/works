@@ -2,8 +2,9 @@ import { format } from 'date-fns';
 
 const conversations_presenter = document.getElementById('conversations_presenter');
 
-export function appendMessage({ by, when }) {
+export function appendMessage({ by, when }, speakerNames = {}) {
   const side = by === 'murmurer' ? 'right' : 'left';
+  const speakerLabel = speakerNames[by] ?? by;
 
   Array.from(conversations_presenter.children)
     .slice(0, Math.max(0, conversations_presenter.children.length - 4))
@@ -24,7 +25,7 @@ export function appendMessage({ by, when }) {
     `
       <div class="msg ${side} enter">
         <div class="stack">
-          <div class="meta meta--top">${by}</div>
+          <div class="meta meta--top">${speakerLabel}</div>
           <div class="bubble"></div>
           <time class="meta meta--bottom" datetime="${when.toISOString()}">${format(when, 'HH:mm:ss')}</time>
         </div>

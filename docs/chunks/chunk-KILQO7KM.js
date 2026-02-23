@@ -56453,17 +56453,899 @@ function get_random_increase(prev = 0, normalRange = [1, 10], spikeRange = [110,
   const normalIncrease = Math.floor(Math.random() * (maxN - minN + 1)) + minN;
   return prev + normalIncrease;
 }
+function splitThoughtReadme(source) {
+  if (typeof source !== "string") return { original: "", translation: "" };
+  const lines = source.split(/\r?\n/);
+  const delimiterIndex = lines.findIndex((line) => line.trim() === "---");
+  if (delimiterIndex === -1) {
+    return { original: source, translation: "" };
+  }
+  const original = lines.slice(0, delimiterIndex).join("\n").trim();
+  const translation = lines.slice(delimiterIndex + 1).join("\n").trim();
+  return { original, translation };
+}
+function selectThoughtReadmeByLanguage(source, languageTag) {
+  const { original, translation } = splitThoughtReadme(source);
+  if (!translation) return original || source;
+  const tag = (languageTag || "").toLowerCase();
+  if (tag.startsWith("ko")) return original || source;
+  return translation || original || source;
+}
 function render_readme(target, source, language = "markdown") {
   const element = typeof target === "string" ? document.getElementById(target) : target;
   if (!element) return;
+  const activeLanguage = typeof document !== "undefined" ? document.documentElement.getAttribute("lang") : null;
+  const resolvedSource = selectThoughtReadmeByLanguage(source, activeLanguage);
   let highlighted;
   try {
-    highlighted = es_default.highlight(source, { language }).value;
+    highlighted = es_default.highlight(resolvedSource, { language }).value;
   } catch {
-    highlighted = es_default.highlightAuto(source).value;
+    highlighted = es_default.highlightAuto(resolvedSource).value;
   }
   element.classList.add("readme-block");
   element.innerHTML = `<pre><code class="language-${language}">${highlighted}</code></pre>`;
+}
+
+// utils/thought-overlay.js
+function initThoughtOverlay({
+  overlayId = "thoughtOverlay",
+  closeId = "thoughtClose",
+  menuToggleId = "thoughtMenuToggle",
+  menuId = "thoughtMenu",
+  openActionId = "thoughtActionOpen",
+  indexActionId = "thoughtActionIndex",
+  indexHref = "../index.html",
+  startOpen = true
+} = {}) {
+  const overlay = document.getElementById(overlayId);
+  const closeButton = document.getElementById(closeId);
+  const menuToggleButton = document.getElementById(menuToggleId);
+  const menu = document.getElementById(menuId);
+  const openAction = document.getElementById(openActionId);
+  const indexAction = document.getElementById(indexActionId);
+  if (!overlay) {
+    return {
+      open: () => {
+      },
+      close: () => {
+      },
+      closeMenu: () => {
+      },
+      isOpen: () => false,
+      isMenuOpen: () => false
+    };
+  }
+  let isOpenState = Boolean(startOpen);
+  let isMenuOpenState = false;
+  const sync = () => {
+    overlay.hidden = !isOpenState;
+    if (menuToggleButton) {
+      menuToggleButton.hidden = isOpenState;
+      menuToggleButton.setAttribute("aria-expanded", String(!isOpenState && isMenuOpenState));
+    }
+    if (menu) {
+      menu.hidden = isOpenState || !isMenuOpenState;
+    }
+    document.body.classList.toggle("thought-overlay-open", isOpenState);
+  };
+  const open = () => {
+    isOpenState = true;
+    isMenuOpenState = false;
+    sync();
+  };
+  const close = () => {
+    isOpenState = false;
+    sync();
+  };
+  const closeMenu = () => {
+    if (!isMenuOpenState) return;
+    isMenuOpenState = false;
+    sync();
+  };
+  const toggleMenu = () => {
+    if (isOpenState) return;
+    isMenuOpenState = !isMenuOpenState;
+    sync();
+  };
+  closeButton == null ? void 0 : closeButton.addEventListener("click", close);
+  menuToggleButton == null ? void 0 : menuToggleButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleMenu();
+  });
+  openAction == null ? void 0 : openAction.addEventListener("click", () => {
+    open();
+  });
+  if (indexAction) {
+    if (indexAction.tagName === "A") {
+      const href = indexAction.getAttribute("href");
+      if (!href || href.length === 0) {
+        indexAction.setAttribute("href", indexHref);
+      }
+    } else {
+      indexAction.addEventListener("click", () => {
+        window.location.href = indexHref;
+      });
+    }
+  }
+  overlay.addEventListener("pointerdown", (event) => {
+    if (event.target === overlay) close();
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!isMenuOpenState || !menu || !menuToggleButton) return;
+    const target = event.target;
+    if (menu.contains(target) || menuToggleButton.contains(target)) return;
+    closeMenu();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (isOpenState) {
+      close();
+      return;
+    }
+    closeMenu();
+  });
+  sync();
+  return {
+    open,
+    close,
+    closeMenu,
+    isOpen: () => isOpenState,
+    isMenuOpen: () => isMenuOpenState
+  };
+}
+
+// i18n/translations.json
+var translations_default = {
+  ko: {
+    common: {
+      thought: {
+        menuAria: "\uC791\uD488 \uBA54\uB274",
+        reopen: "\uAE00 \uB2E4\uC2DC \uBCF4\uAE30",
+        backToIndex: "\uBAA9\uCC28\uB85C \uB3CC\uC544\uAC00\uAE30",
+        dialogAria: "\uC6D0\uBB38\uACFC \uBC88\uC5ED",
+        title: "\uC0DD\uAC01",
+        close: "\uB2EB\uAE30"
+      },
+      language: {
+        menuAria: "\uC5B8\uC5B4 \uBA54\uB274",
+        toggleAria: "\uC5B8\uC5B4 \uC120\uD0DD",
+        toggleTitle: "{language}\uB85C \uBCF4\uAE30",
+        options: {
+          auto: "\uAE30\uBCF8\uAC12(\uBE0C\uB77C\uC6B0\uC800)",
+          ko: "\uD55C\uAD6D\uC5B4",
+          en: "English",
+          zh: "\u4E2D\u6587",
+          ja: "\u65E5\u672C\u8A9E"
+        }
+      }
+    },
+    index: {
+      documentTitle: "\uBAA9\uCC28",
+      brand: "\uC791\uD488 \uBAA9\uCC28",
+      galleryAria: "\uC791\uD488 \uBAA9\uB85D",
+      footerCredit: "inseok",
+      projects: {
+        murmuring: "\uC911\uC5BC\uAC70\uB9BC",
+        division: "\uBD84\uC5F4",
+        violet: "\uBCF4\uB78F\uBE5B \uBB49\uAC8C\uAD6C\uB984\uACFC \uB0A0\uCE74\uB85C\uC6B4 \uACBD\uACC4",
+        bleedingColors: "\uBC88\uC9D0"
+      }
+    },
+    murmuring: {
+      documentTitle: "\uC911\uC5BC\uAC70\uB9BC",
+      heading: {
+        conversations: "\uB300\uD654",
+        graph: "\uADF8\uB798\uD504"
+      },
+      chart: {
+        conversations: {
+          title: "\uB300\uD654\uC758 \uC2F1\uAC70\uC6C0",
+          yLabel: "\uC2F1\uAC70\uC6C0 (0: \uC544\uC8FC \uC2F1\uAC70\uC6C0)"
+        },
+        regret: {
+          title: "\uC911\uC5BC\uAC70\uB9AC\uB294 \uC790\uC758 \uD6C4\uD68C",
+          yLabel: "\uD6C4\uD68C"
+        },
+        xLabel: "\uC2DC\uAC04",
+        tooltipBy: "\uD654\uC790"
+      },
+      speakers: {
+        wind: "\uBC14\uB78C",
+        speaker: "\uBC1C\uD654\uC790",
+        murmurer: "\uC911\uC5BC\uAC70\uB9AC\uB294 \uC790"
+      }
+    },
+    division: {
+      documentTitle: "\uBD84\uC5F4"
+    },
+    violet: {
+      documentTitle: "\uBCF4\uB78F\uBE5B \uBB49\uAC8C\uAD6C\uB984\uACFC \uB0A0\uCE74\uB85C\uC6B4 \uACBD\uACC4",
+      canvasAria: "\uC138\uACC4 \uCE94\uBC84\uC2A4",
+      panelAria: "\uC81C\uC5B4 \uD328\uB110",
+      panelTitle: "\uBCF4\uB78F\uBE5B \uBB49\uAC8C\uAD6C\uB984 / \uB0A0\uCE74\uB85C\uC6B4 \uACBD\uACC4",
+      sections: {
+        metrics: "\uC9C0\uD45C",
+        controls: "\uC81C\uC5B4",
+        interpretation: "\uD574\uC11D"
+      },
+      buttons: {
+        zoom: "\uC90C \uC804\uD658",
+        commit: "\uADF8\uB9BC \uAC78\uAE30",
+        reset: "\uBD80\uB4DC\uB7EC\uC6B4 \uCD08\uAE30\uD654",
+        listen: "\uADC0 \uAE30\uC6B8\uC774\uAE30 (\uAE38\uAC8C \uB204\uB974\uAE30)"
+      },
+      hints: {
+        line1: "\uADC0 \uAE30\uC6B8\uC774\uAE30: \uAE38\uAC8C \uB204\uB974\uAE30",
+        line2: "\uD68D: \uD55C \uC190\uAC00\uB77D = \uAC01\uC9C0\uAC8C, \uB450 \uC190\uAC00\uB77D = \uBB49\uAC1C\uAE30",
+        line3: "\uD540\uCE58(\uB610\uB294 \uD720): \uADC0\uB97C \uB2F9\uAE30\uAE30 (\uC7A0\uAE50 \uAC08\uD53C \uC7A1\uAE30)"
+      },
+      footer: {
+        logEntries: "\uB85C\uADF8 \uC218",
+        transport: "\uCF58\uC194 \uC804\uC1A1 + \uB85C\uCEEC \uC800\uC7A5\uC18C"
+      },
+      conceptual: {
+        empty: "\uC544\uC9C1 \uC77D\uD78C \uC6C0\uC9C1\uC784\uC774 \uC5C6\uC2B5\uB2C8\uB2E4."
+      },
+      metrics: {
+        fog: "\uAD6C\uB984",
+        edge: "\uACBD\uACC4",
+        residue: "\uCE58\uC11D",
+        orient: "\uAC08\uD53C",
+        voice: "\uBAA9\uC18C\uB9AC",
+        commit: "\uACE0\uC815\uB3C4",
+        motherDistance: "\uC5C4\uB9C8\uC640\uC758 \uAC70\uB9AC"
+      },
+      overlay: {
+        listener: "\uB4E3\uB294 \uC774",
+        mother: "\uC5C4\uB9C8",
+        voice: "\uBAA9\uC18C\uB9AC",
+        metricFog: "\uAD6C\uB984",
+        metricEdge: "\uACBD\uACC4",
+        metricResidue: "\uCE58\uC11D",
+        metricOrient: "\uAC08\uD53C"
+      }
+    },
+    bleeding: {
+      documentTitle: "\uBC88\uC9D0",
+      canvasAria: "\uBC88\uC9D0 \uC7A5\uBA74",
+      hudAria: "\uC81C\uC5B4 \uBC0F \uB85C\uADF8",
+      title: "\uBC88\uC9D0",
+      buttons: {
+        view: "\uBCF4\uAE30 \uC804\uD658",
+        pause: "\uC77C\uC2DC\uC815\uC9C0",
+        resume: "\uC7AC\uAC1C"
+      },
+      hint: "\uB530\uB73B\uD568\uC740 \uB178\uB791\uC744 \uBC88\uC9C0\uAC8C \uD558\uACE0, \uB664\uC57D\uBCD5\uC740 \uBE68\uAC15\uC73C\uB85C \uC9C0\uC9D1\uB2C8\uB2E4. \uB5A0\uB098\uBA74 \uCD08\uB85D\uC774 \uB36E\uACE0, \uBB3C\uAC10\uC774 \uB9C8\uB974\uBA74 \uC5BC\uB8E9\uB9CC \uB0A8\uC2B5\uB2C8\uB2E4.",
+      concept: {
+        empty: "\uC544\uC9C1 \uD754\uC801\uC774 \uC5C6\uC2B5\uB2C8\uB2E4."
+      },
+      stats: {
+        dryness: "\uB9C8\uB984",
+        wetness: "\uC816\uC74C",
+        warmth: "\uC628\uAE30",
+        burn: "\uC791\uC5F4",
+        flee: "\uB5A0\uB0A8",
+        stainLevel: "\uC5BC\uB8E9",
+        edgeSoftness: "\uACBD\uACC4 \uD750\uB9BC",
+        queueSize: "\uC9C0\uC5F0"
+      }
+    }
+  },
+  en: {
+    common: {
+      thought: {
+        menuAria: "Artwork menu",
+        reopen: "Read text again",
+        backToIndex: "Back to index",
+        dialogAria: "Original text and translation",
+        title: "THOUGHT",
+        close: "Close"
+      },
+      language: {
+        menuAria: "Language menu",
+        toggleAria: "Choose language",
+        toggleTitle: "View in {language}",
+        options: {
+          auto: "Default (Browser)",
+          ko: "\uD55C\uAD6D\uC5B4",
+          en: "English",
+          zh: "\u4E2D\u6587",
+          ja: "\u65E5\u672C\u8A9E"
+        }
+      }
+    },
+    index: {
+      documentTitle: "Index",
+      brand: "Project Index",
+      galleryAria: "Artwork list",
+      footerCredit: "inseok",
+      projects: {
+        murmuring: "Murmuring",
+        division: "Division",
+        violet: "Violet Cloud and Sharp Boundaries",
+        bleedingColors: "Bleeding Colors"
+      }
+    },
+    murmuring: {
+      documentTitle: "Murmuring",
+      heading: {
+        conversations: "Conversations",
+        graph: "Graph"
+      },
+      chart: {
+        conversations: {
+          title: "Conversation Unsaltedness",
+          yLabel: "Unsaltedness (0: very unsalted)"
+        },
+        regret: {
+          title: "Murmurer's Regret",
+          yLabel: "Regret"
+        },
+        xLabel: "Time",
+        tooltipBy: "Speaker"
+      },
+      speakers: {
+        wind: "Wind",
+        speaker: "Speaker",
+        murmurer: "Murmurer"
+      }
+    },
+    division: {
+      documentTitle: "Division"
+    },
+    violet: {
+      documentTitle: "Violet Cloud and Sharp Boundaries",
+      canvasAria: "World canvas",
+      panelAria: "Controls panel",
+      panelTitle: "Violet Cloud / Sharp Boundaries",
+      sections: {
+        metrics: "Metrics",
+        controls: "Controls",
+        interpretation: "Interpretation"
+      },
+      buttons: {
+        zoom: "Toggle Zoom",
+        commit: "Hang Painting",
+        reset: "Soft Reset",
+        listen: "Listen (press & hold)"
+      },
+      hints: {
+        line1: "Listen: press & hold",
+        line2: "Stroke: one finger = sharpen, two fingers = smudge",
+        line3: "Pinch (or wheel): pull an ear (briefly find your bearings)"
+      },
+      footer: {
+        logEntries: "Log entries",
+        transport: "Console transport + localStorage"
+      },
+      conceptual: {
+        empty: "Nothing has surfaced yet."
+      },
+      metrics: {
+        fog: "Cloud",
+        edge: "Boundary",
+        residue: "Tartar",
+        orient: "Bearings",
+        voice: "Voice",
+        commit: "Fixation",
+        motherDistance: "Distance to Mother"
+      },
+      overlay: {
+        listener: "Listener",
+        mother: "Mother",
+        voice: "Voice",
+        metricFog: "cloud",
+        metricEdge: "boundary",
+        metricResidue: "tartar",
+        metricOrient: "bearings"
+      }
+    },
+    bleeding: {
+      documentTitle: "Bleeding Colors",
+      canvasAria: "Bleeding colors scene",
+      hudAria: "Controls and log",
+      title: "Bleeding Colors",
+      buttons: {
+        view: "Toggle View",
+        pause: "Pause",
+        resume: "Resume"
+      },
+      hint: "Warmth bleeds into yellow; harsh light sears it into red. When you pull away, green covers it. When the paint runs out, only a stain remains.",
+      concept: {
+        empty: "No trace yet."
+      },
+      stats: {
+        dryness: "Dryness",
+        wetness: "Wetness",
+        warmth: "Warmth",
+        burn: "Scorch",
+        flee: "Leave",
+        stainLevel: "Stain",
+        edgeSoftness: "Edge Blur",
+        queueSize: "Lag Queue"
+      }
+    }
+  },
+  zh: {
+    common: {
+      thought: {
+        menuAria: "\u4F5C\u54C1\u83DC\u5355",
+        reopen: "\u91CD\u65B0\u67E5\u770B\u6587\u5B57",
+        backToIndex: "\u8FD4\u56DE\u76EE\u5F55",
+        dialogAria: "\u539F\u6587\u4E0E\u7FFB\u8BD1",
+        title: "THOUGHT",
+        close: "\u5173\u95ED"
+      },
+      language: {
+        menuAria: "\u8BED\u8A00\u83DC\u5355",
+        toggleAria: "\u9009\u62E9\u8BED\u8A00",
+        toggleTitle: "\u5207\u6362\u4E3A{language}",
+        options: {
+          auto: "\u9ED8\u8BA4\uFF08\u6D4F\u89C8\u5668\uFF09",
+          ko: "\uD55C\uAD6D\uC5B4",
+          en: "English",
+          zh: "\u4E2D\u6587",
+          ja: "\u65E5\u672C\u8A9E"
+        }
+      }
+    },
+    index: {
+      documentTitle: "\u76EE\u5F55",
+      brand: "\u4F5C\u54C1\u76EE\u5F55",
+      galleryAria: "\u4F5C\u54C1\u5217\u8868",
+      footerCredit: "inseok",
+      projects: {
+        murmuring: "\u4F4E\u8BED",
+        division: "\u5206\u88C2",
+        violet: "\u7D2B\u8272\u4E91\u56E2\u4E0E\u5C16\u9510\u7684\u8FB9\u754C",
+        bleedingColors: "\u6E17\u8272"
+      }
+    },
+    murmuring: {
+      documentTitle: "\u4F4E\u8BED",
+      heading: {
+        conversations: "\u5BF9\u8BDD",
+        graph: "\u56FE\u8868"
+      },
+      chart: {
+        conversations: {
+          title: "\u5BF9\u8BDD\u7684\u5BE1\u6DE1\u5EA6",
+          yLabel: "\u5BE1\u6DE1\u5EA6\uFF080\uFF1A\u5F88\u5BE1\u6DE1\uFF09"
+        },
+        regret: {
+          title: "\u4F4E\u8BED\u8005\u7684\u540E\u6094",
+          yLabel: "\u540E\u6094"
+        },
+        xLabel: "\u65F6\u95F4",
+        tooltipBy: "\u8BDD\u8005"
+      },
+      speakers: {
+        wind: "\u98CE",
+        speaker: "\u53D1\u8A00\u8005",
+        murmurer: "\u4F4E\u8BED\u8005"
+      }
+    },
+    division: {
+      documentTitle: "\u5206\u88C2"
+    },
+    violet: {
+      documentTitle: "\u7D2B\u8272\u4E91\u56E2\u4E0E\u5C16\u9510\u7684\u8FB9\u754C",
+      canvasAria: "\u4E16\u754C\u753B\u5E03",
+      panelAria: "\u63A7\u5236\u9762\u677F",
+      panelTitle: "\u7D2B\u8272\u4E91\u56E2 / \u5C16\u9510\u7684\u8FB9\u754C",
+      sections: {
+        metrics: "\u6307\u6807",
+        controls: "\u63A7\u5236",
+        interpretation: "\u89E3\u8BFB"
+      },
+      buttons: {
+        zoom: "\u5207\u6362\u7F29\u653E",
+        commit: "\u6302\u753B",
+        reset: "\u67D4\u548C\u91CD\u7F6E",
+        listen: "\u503E\u542C\uFF08\u957F\u6309\uFF09"
+      },
+      hints: {
+        line1: "\u503E\u542C\uFF1A\u957F\u6309",
+        line2: "\u7B14\u89E6\uFF1A\u4E00\u6307 = \u8D77\u68F1\u89D2\uFF0C\u53CC\u6307 = \u6655\u5F00",
+        line3: "\u634F\u5408\uFF08\u6216\u6EDA\u8F6E\uFF09\uFF1A\u62C9\u8033\uFF08\u6682\u65F6\u627E\u56DE\u65B9\u4F4D\uFF09"
+      },
+      footer: {
+        logEntries: "\u65E5\u5FD7\u6761\u76EE",
+        transport: "Console \u4F20\u8F93 + localStorage"
+      },
+      conceptual: {
+        empty: "\u8FD8\u6CA1\u6709\u4EFB\u4F55\u52A8\u9759\u88AB\u8BFB\u51FA\u6765\u3002"
+      },
+      metrics: {
+        fog: "\u4E91",
+        edge: "\u8FB9\u754C",
+        residue: "\u7259\u7ED3\u77F3",
+        orient: "\u65B9\u4F4D\u611F",
+        voice: "\u55D3\u97F3",
+        commit: "\u56FA\u5B9A\u5EA6",
+        motherDistance: "\u4E0E\u6BCD\u4EB2\u7684\u8DDD\u79BB"
+      },
+      overlay: {
+        listener: "\u8046\u542C\u8005",
+        mother: "\u6BCD\u4EB2",
+        voice: "\u55D3\u97F3",
+        metricFog: "\u4E91",
+        metricEdge: "\u754C",
+        metricResidue: "\u7259\u7ED3\u77F3",
+        metricOrient: "\u4F4D"
+      }
+    },
+    bleeding: {
+      documentTitle: "\u6E17\u8272",
+      canvasAria: "\u6E17\u8272\u573A\u666F",
+      hudAria: "\u63A7\u5236\u4E0E\u65E5\u5FD7",
+      title: "\u6E17\u8272",
+      buttons: {
+        view: "\u5207\u6362\u89C6\u56FE",
+        pause: "\u6682\u505C",
+        resume: "\u7EE7\u7EED"
+      },
+      hint: "\u6696\u610F\u628A\u9EC4\u6655\u5F00\uFF1B\u70C8\u65E5\u628A\u5B83\u707C\u6210\u7EA2\u3002\u4F60\u63A8\u5F00\u79BB\u53BB\uFF0C\u7EFF\u4FBF\u8986\u4E0A\u6765\u3002\u989C\u6599\u89C1\u5E95\uFF0C\u7EC8\u7A76\u53EA\u5269\u4E00\u5757\u6C61\u8FF9\u3002",
+      concept: {
+        empty: "\u5C1A\u65E0\u75D5\u8FF9\u3002"
+      },
+      stats: {
+        dryness: "\u5E72\u6DB8",
+        wetness: "\u6E7F\u6DA6",
+        warmth: "\u6696\u610F",
+        burn: "\u707C\u70ED",
+        flee: "\u79BB\u5F00",
+        stainLevel: "\u6C61\u8FF9",
+        edgeSoftness: "\u8FB9\u754C\u6A21\u7CCA",
+        queueSize: "\u5EF6\u8FDF"
+      }
+    }
+  },
+  ja: {
+    common: {
+      thought: {
+        menuAria: "\u4F5C\u54C1\u30E1\u30CB\u30E5\u30FC",
+        reopen: "\u6587\u7AE0\u3092\u518D\u8868\u793A",
+        backToIndex: "\u76EE\u6B21\u3078\u623B\u308B",
+        dialogAria: "\u539F\u6587\u3068\u7FFB\u8A33",
+        title: "THOUGHT",
+        close: "\u9589\u3058\u308B"
+      },
+      language: {
+        menuAria: "\u8A00\u8A9E\u30E1\u30CB\u30E5\u30FC",
+        toggleAria: "\u8A00\u8A9E\u3092\u9078\u629E",
+        toggleTitle: "{language}\u3067\u8868\u793A",
+        options: {
+          auto: "\u30C7\u30D5\u30A9\u30EB\u30C8\uFF08\u30D6\u30E9\u30A6\u30B6\uFF09",
+          ko: "\uD55C\uAD6D\uC5B4",
+          en: "English",
+          zh: "\u4E2D\u6587",
+          ja: "\u65E5\u672C\u8A9E"
+        }
+      }
+    },
+    index: {
+      documentTitle: "\u76EE\u6B21",
+      brand: "\u4F5C\u54C1\u76EE\u6B21",
+      galleryAria: "\u4F5C\u54C1\u4E00\u89A7",
+      footerCredit: "inseok",
+      projects: {
+        murmuring: "\u3064\u3076\u3084\u304D",
+        division: "\u5206\u88C2",
+        violet: "\u7D2B\u306E\u96F2\u584A\u3068\u92ED\u3044\u5883\u754C",
+        bleedingColors: "\u306B\u3058\u307F"
+      }
+    },
+    murmuring: {
+      documentTitle: "\u3064\u3076\u3084\u304D",
+      heading: {
+        conversations: "\u4F1A\u8A71",
+        graph: "\u30B0\u30E9\u30D5"
+      },
+      chart: {
+        conversations: {
+          title: "\u4F1A\u8A71\u306E\u5473\u6C17\u306A\u3055",
+          yLabel: "\u5473\u6C17\u306A\u3055\uFF080: \u3068\u3066\u3082\u5473\u6C17\u306A\u3044\uFF09"
+        },
+        regret: {
+          title: "\u3064\u3076\u3084\u304F\u8005\u306E\u5F8C\u6094",
+          yLabel: "\u5F8C\u6094"
+        },
+        xLabel: "\u6642\u9593",
+        tooltipBy: "\u8A71\u8005"
+      },
+      speakers: {
+        wind: "\u98A8",
+        speaker: "\u767A\u8A71\u8005",
+        murmurer: "\u3064\u3076\u3084\u304F\u8005"
+      }
+    },
+    division: {
+      documentTitle: "\u5206\u88C2"
+    },
+    violet: {
+      documentTitle: "\u7D2B\u306E\u96F2\u584A\u3068\u92ED\u3044\u5883\u754C",
+      canvasAria: "\u4E16\u754C\u30AD\u30E3\u30F3\u30D0\u30B9",
+      panelAria: "\u64CD\u4F5C\u30D1\u30CD\u30EB",
+      panelTitle: "\u7D2B\u306E\u96F2\u584A / \u92ED\u3044\u5883\u754C",
+      sections: {
+        metrics: "\u6307\u6A19",
+        controls: "\u64CD\u4F5C",
+        interpretation: "\u89E3\u91C8"
+      },
+      buttons: {
+        zoom: "\u30BA\u30FC\u30E0\u5207\u66FF",
+        commit: "\u7D75\u3092\u639B\u3051\u308B",
+        reset: "\u7DE9\u3084\u304B\u306B\u30EA\u30BB\u30C3\u30C8",
+        listen: "\u8033\u3092\u6F84\u307E\u3059\uFF08\u9577\u62BC\u3057\uFF09"
+      },
+      hints: {
+        line1: "\u8033\u3092\u6F84\u307E\u3059: \u9577\u62BC\u3057",
+        line2: "\u30B9\u30C8\u30ED\u30FC\u30AF: \u4E00\u672C\u6307 = \u89D2\u3070\u3089\u305B\u308B\u3001\u4E8C\u672C\u6307 = \u306B\u3058\u307E\u305B\u308B",
+        line3: "\u30D4\u30F3\u30C1\uFF08\u307E\u305F\u306F\u30DB\u30A4\u30FC\u30EB\uFF09: \u8033\u3092\u5F15\u304F\uFF08\u3057\u3070\u3089\u304F\u65B9\u89D2\u3092\u3064\u304B\u3080\uFF09"
+      },
+      footer: {
+        logEntries: "\u30ED\u30B0\u4EF6\u6570",
+        transport: "Console \u8EE2\u9001 + localStorage"
+      },
+      conceptual: {
+        empty: "\u307E\u3060\u8AAD\u3081\u308B\u52D5\u304D\u306F\u3042\u308A\u307E\u305B\u3093\u3002"
+      },
+      metrics: {
+        fog: "\u96F2",
+        edge: "\u5883\u754C",
+        residue: "\u6B6F\u77F3",
+        orient: "\u65B9\u89D2",
+        voice: "\u58F0",
+        commit: "\u56FA\u5B9A\u5EA6",
+        motherDistance: "\u6BCD\u3068\u306E\u8DDD\u96E2"
+      },
+      overlay: {
+        listener: "\u8074\u304D\u624B",
+        mother: "\u6BCD",
+        voice: "\u58F0",
+        metricFog: "\u96F2",
+        metricEdge: "\u5883",
+        metricResidue: "\u6B6F\u77F3",
+        metricOrient: "\u65B9\u89D2"
+      }
+    },
+    bleeding: {
+      documentTitle: "\u306B\u3058\u307F",
+      canvasAria: "\u306B\u3058\u307F\u306E\u5834\u9762",
+      hudAria: "\u64CD\u4F5C\u3068\u30ED\u30B0",
+      title: "\u306B\u3058\u307F",
+      buttons: {
+        view: "\u8868\u793A\u5207\u66FF",
+        pause: "\u4E00\u6642\u505C\u6B62",
+        resume: "\u518D\u958B"
+      },
+      hint: "\u306C\u304F\u3082\u308A\u306F\u9EC4\u306B\u306B\u3058\u307F\u3001\u70C8\u65E5\u306F\u8D64\u306B\u7126\u304C\u3059\u3002\u96E2\u308C\u308B\u3068\u7DD1\u304C\u8986\u3044\u3001\u7D75\u5177\u304C\u5C3D\u304D\u308C\u3070\u3001\u67D3\u307F\u3060\u3051\u304C\u6B8B\u308B\u3002",
+      concept: {
+        empty: "\u307E\u3060\u75D5\u8DE1\u304C\u3042\u308A\u307E\u305B\u3093\u3002"
+      },
+      stats: {
+        dryness: "\u4E7E\u304D",
+        wetness: "\u6E7F\u308A",
+        warmth: "\u306C\u304F\u3082\u308A",
+        burn: "\u707C\u3051",
+        flee: "\u96E2\u308C",
+        stainLevel: "\u67D3\u307F",
+        edgeSoftness: "\u5883\u754C\u306E\u306B\u3058\u307F",
+        queueSize: "\u9045\u5EF6"
+      }
+    }
+  }
+};
+
+// utils/i18n.js
+var SUPPORTED_LANGUAGES = ["ko", "en", "zh", "ja"];
+var FALLBACK_LANGUAGE = "en";
+var STORAGE_KEY = "works:preferred-language";
+var SWITCHER_ID = "languageSwitcher";
+function asSupportedLanguage(value) {
+  if (!value || typeof value !== "string") return null;
+  const lower = value.toLowerCase();
+  if (lower.startsWith("zh")) return "zh";
+  if (lower.startsWith("ja")) return "ja";
+  if (lower.startsWith("ko")) return "ko";
+  if (lower.startsWith("en")) return "en";
+  return null;
+}
+function getStoredLanguage() {
+  if (typeof localStorage === "undefined") return null;
+  try {
+    return asSupportedLanguage(localStorage.getItem(STORAGE_KEY));
+  } catch {
+    return null;
+  }
+}
+function clearStoredLanguage() {
+  if (typeof localStorage === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+  }
+}
+function setStoredLanguage(language) {
+  if (!language) {
+    clearStoredLanguage();
+    return;
+  }
+  if (typeof localStorage === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, language);
+  } catch {
+  }
+}
+function getByPath(source, path) {
+  if (!source) return void 0;
+  return path.split(".").reduce((acc, key) => {
+    if (acc && Object.prototype.hasOwnProperty.call(acc, key)) return acc[key];
+    return void 0;
+  }, source);
+}
+function interpolate(template, params = {}) {
+  if (!params || typeof params !== "object") return template;
+  return template.replace(/\{(\w+)\}/g, (_14, key) => {
+    if (Object.prototype.hasOwnProperty.call(params, key)) {
+      return String(params[key]);
+    }
+    return `{${key}}`;
+  });
+}
+function detectBrowserLanguage(preferredLanguages = null) {
+  const source = preferredLanguages != null ? preferredLanguages : typeof navigator !== "undefined" ? navigator.languages || [navigator.language] : [FALLBACK_LANGUAGE];
+  const candidates = Array.isArray(source) ? source : [source];
+  for (const locale of candidates) {
+    const supported = asSupportedLanguage(locale);
+    if (supported) return supported;
+  }
+  return FALLBACK_LANGUAGE;
+}
+function createLanguageSwitcher({ language, selectedLanguage, t, onSelect }) {
+  var _a;
+  if (typeof document === "undefined") return;
+  (_a = document.getElementById(SWITCHER_ID)) == null ? void 0 : _a.remove();
+  const root = document.createElement("div");
+  root.id = SWITCHER_ID;
+  root.className = "language-switcher";
+  const toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "language-switcher-toggle";
+  toggle.setAttribute("aria-label", t("common.language.toggleAria"));
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute(
+    "title",
+    t("common.language.toggleTitle", {
+      language: t(`common.language.options.${selectedLanguage != null ? selectedLanguage : "auto"}`)
+    })
+  );
+  toggle.innerHTML = `
+    <span class="language-switcher-icon" aria-hidden="true"></span>
+    <span class="language-switcher-code">${language.toUpperCase()}</span>
+  `;
+  const menu = document.createElement("div");
+  menu.className = "language-switcher-menu";
+  menu.hidden = true;
+  menu.setAttribute("aria-label", t("common.language.menuAria"));
+  const options = ["auto", ...SUPPORTED_LANGUAGES];
+  for (const optionLanguage of options) {
+    const isAuto = optionLanguage === "auto";
+    const isActive = isAuto ? selectedLanguage == null : optionLanguage === selectedLanguage;
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "language-switcher-option";
+    item.dataset.language = optionLanguage;
+    item.dataset.active = String(isActive);
+    item.setAttribute("aria-pressed", String(isActive));
+    item.textContent = t(`common.language.options.${optionLanguage}`);
+    item.addEventListener("click", () => {
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      onSelect(optionLanguage);
+    });
+    menu.appendChild(item);
+  }
+  const closeMenu = () => {
+    menu.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+  };
+  const toggleMenu = () => {
+    const willOpen = menu.hidden;
+    menu.hidden = !willOpen;
+    toggle.setAttribute("aria-expanded", String(willOpen));
+  };
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleMenu();
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (menu.hidden) return;
+    const target = event.target;
+    if (root.contains(target)) return;
+    closeMenu();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    closeMenu();
+  });
+  root.appendChild(toggle);
+  root.appendChild(menu);
+  document.body.appendChild(root);
+}
+function createTranslator(language) {
+  const resolved = SUPPORTED_LANGUAGES.includes(language) ? language : FALLBACK_LANGUAGE;
+  const fallbackDictionary = translations_default[FALLBACK_LANGUAGE] || {};
+  const dictionary = translations_default[resolved] || fallbackDictionary;
+  return (key, params) => {
+    var _a, _b;
+    const raw = (_b = (_a = getByPath(dictionary, key)) != null ? _a : getByPath(fallbackDictionary, key)) != null ? _b : key;
+    if (typeof raw !== "string") return String(raw);
+    return interpolate(raw, params);
+  };
+}
+function applyI18nToDocument(t, root = document) {
+  if (!root || typeof root.querySelectorAll !== "function") return;
+  root.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.getAttribute("data-i18n");
+    if (!key) return;
+    element.textContent = t(key);
+  });
+  const attributeBindings = [
+    ["data-i18n-aria-label", "aria-label"],
+    ["data-i18n-title", "title"]
+  ];
+  attributeBindings.forEach(([dataAttr, targetAttr]) => {
+    root.querySelectorAll(`[${dataAttr}]`).forEach((element) => {
+      const key = element.getAttribute(dataAttr);
+      if (!key) return;
+      element.setAttribute(targetAttr, t(key));
+    });
+  });
+}
+function initI18n({ language = null, withSwitcher = true } = {}) {
+  const selectedLanguage = asSupportedLanguage(language) || getStoredLanguage();
+  const resolvedLanguage = selectedLanguage || detectBrowserLanguage();
+  const t = createTranslator(resolvedLanguage);
+  const setLanguage = (nextLanguage, { reload = true } = {}) => {
+    const resolvedNextLanguage = asSupportedLanguage(nextLanguage);
+    if (resolvedNextLanguage) {
+      setStoredLanguage(resolvedNextLanguage);
+    } else {
+      clearStoredLanguage();
+    }
+    const activeLanguage = resolvedNextLanguage || detectBrowserLanguage();
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("lang", activeLanguage);
+    }
+    if (reload && typeof window !== "undefined") {
+      window.location.reload();
+    }
+    return activeLanguage;
+  };
+  if (typeof document !== "undefined") {
+    document.documentElement.setAttribute("lang", resolvedLanguage);
+    applyI18nToDocument(t, document);
+    if (withSwitcher) {
+      createLanguageSwitcher({
+        language: resolvedLanguage,
+        selectedLanguage,
+        t,
+        onSelect: (selectedOption) => {
+          if (selectedOption === "auto" && selectedLanguage == null) return;
+          if (selectedOption === selectedLanguage) return;
+          setLanguage(selectedOption, { reload: true });
+        }
+      });
+    }
+  }
+  return {
+    language: resolvedLanguage,
+    selectedLanguage,
+    t,
+    setLanguage
+  };
 }
 
 export {
@@ -56475,6 +57357,8 @@ export {
   occasionally,
   get_random_int,
   get_random_increase,
-  render_readme
+  render_readme,
+  initThoughtOverlay,
+  initI18n
 };
-//# sourceMappingURL=chunk-RJNSBOXS.js.map
+//# sourceMappingURL=chunk-KILQO7KM.js.map

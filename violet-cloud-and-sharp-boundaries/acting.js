@@ -16,7 +16,7 @@ const PROJECT_KEY = 'violet-cloud-and-sharp-boundaries';
 const STORAGE_KEY = `${PROJECT_KEY}:interactionLog:v1`;
 
 export class VioletCloudWorld {
-  constructor() {
+  constructor({ language = 'en' } = {}) {
     const seed = Math.floor(Math.random() * 10_000_000) ^ Date.now();
     this.rng = mulberry32(seed);
     this.logRng = mulberry32(seed ^ 0x9e3779b9);
@@ -35,7 +35,7 @@ export class VioletCloudWorld {
     this.orientation = new OrientationMetric();
     this.voice = new VoiceReturnProcess({ rng: this.rng });
     this.painting = new PaintingCommitProcess();
-    this.conceptualLog = new ConceptualLogProcess({ rng: this.logRng });
+    this.conceptualLog = new ConceptualLogProcess({ rng: this.logRng, language });
 
     this.assets = {
       audioBuffer: null,
@@ -198,8 +198,8 @@ export class VioletCloudWorld {
   }
 }
 
-export const acting = () => {
-  const world = new VioletCloudWorld();
+export const acting = ({ language = 'en' } = {}) => {
+  const world = new VioletCloudWorld({ language });
   world.start();
 
   // Seed: first public record

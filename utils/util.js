@@ -52,15 +52,40 @@ export function add_codes(list, code_area_id) {
   });
 }
 
+function splitThoughtReadme(source) {
+  if (typeof source !== 'string') return { original: '', translation: '' };
+  const lines = source.split(/\r?\n/);
+  const delimiterIndex = lines.findIndex((line) => line.trim() === '---');
+  if (delimiterIndex === -1) {
+    return { original: source, translation: '' };
+  }
+  const original = lines.slice(0, delimiterIndex).join('\n').trim();
+  const translation = lines.slice(delimiterIndex + 1).join('\n').trim();
+  return { original, translation };
+}
+
+function selectThoughtReadmeByLanguage(source, languageTag) {
+  const { original, translation } = splitThoughtReadme(source);
+  if (!translation) return original || source;
+
+  const tag = (languageTag || '').toLowerCase();
+  if (tag.startsWith('ko')) return original || source;
+  return translation || original || source;
+}
+
 export function render_readme(target, source, language = 'markdown') {
   const element = typeof target === 'string' ? document.getElementById(target) : target;
   if (!element) return;
 
+  const activeLanguage =
+    typeof document !== 'undefined' ? document.documentElement.getAttribute('lang') : null;
+  const resolvedSource = selectThoughtReadmeByLanguage(source, activeLanguage);
+
   let highlighted;
   try {
-    highlighted = hljs.highlight(source, { language }).value;
+    highlighted = hljs.highlight(resolvedSource, { language }).value;
   } catch {
-    highlighted = hljs.highlightAuto(source).value;
+    highlighted = hljs.highlightAuto(resolvedSource).value;
   }
 
   element.classList.add('readme-block');

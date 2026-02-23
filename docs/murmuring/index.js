@@ -2,11 +2,13 @@ import {
   __publicField,
   autorun,
   get_random_int,
+  initI18n,
+  initThoughtOverlay,
   observable,
   occasionally,
   reaction,
   render_readme
-} from "../chunks/chunk-RJNSBOXS.js";
+} from "../chunks/chunk-KILQO7KM.js";
 
 // node_modules/@kurkle/color/dist/color.esm.js
 function round(v) {
@@ -407,15 +409,15 @@ function rgbString(v) {
 }
 var to = (v) => v <= 31308e-7 ? v * 12.92 : Math.pow(v, 1 / 2.4) * 1.055 - 0.055;
 var from = (v) => v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
-function interpolate(rgb1, rgb2, t) {
+function interpolate(rgb1, rgb2, t2) {
   const r = from(b2n(rgb1.r));
   const g = from(b2n(rgb1.g));
   const b = from(b2n(rgb1.b));
   return {
-    r: n2b(to(r + t * (from(b2n(rgb2.r)) - r))),
-    g: n2b(to(g + t * (from(b2n(rgb2.g)) - g))),
-    b: n2b(to(b + t * (from(b2n(rgb2.b)) - b))),
-    a: rgb1.a + t * (rgb2.a - rgb1.a)
+    r: n2b(to(r + t2 * (from(b2n(rgb2.r)) - r))),
+    g: n2b(to(g + t2 * (from(b2n(rgb2.g)) - g))),
+    b: n2b(to(b + t2 * (from(b2n(rgb2.b)) - b))),
+    a: rgb1.a + t2 * (rgb2.a - rgb1.a)
   };
 }
 function modHSL(v, i, ratio) {
@@ -507,9 +509,9 @@ var Color = class _Color {
     }
     return this;
   }
-  interpolate(color2, t) {
+  interpolate(color2, t2) {
     if (color2) {
-      this._rgb = interpolate(this._rgb, color2._rgb, t);
+      this._rgb = interpolate(this._rgb, color2._rgb, t2);
     }
     return this;
   }
@@ -1084,70 +1086,70 @@ function _scaleRangesChanged(meta) {
   Object.assign(_scaleRanges, newRanges);
   return changed;
 }
-var atEdge = (t) => t === 0 || t === 1;
-var elasticIn = (t, s, p) => -(Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * TAU / p));
-var elasticOut = (t, s, p) => Math.pow(2, -10 * t) * Math.sin((t - s) * TAU / p) + 1;
+var atEdge = (t2) => t2 === 0 || t2 === 1;
+var elasticIn = (t2, s, p) => -(Math.pow(2, 10 * (t2 -= 1)) * Math.sin((t2 - s) * TAU / p));
+var elasticOut = (t2, s, p) => Math.pow(2, -10 * t2) * Math.sin((t2 - s) * TAU / p) + 1;
 var effects = {
-  linear: (t) => t,
-  easeInQuad: (t) => t * t,
-  easeOutQuad: (t) => -t * (t - 2),
-  easeInOutQuad: (t) => (t /= 0.5) < 1 ? 0.5 * t * t : -0.5 * (--t * (t - 2) - 1),
-  easeInCubic: (t) => t * t * t,
-  easeOutCubic: (t) => (t -= 1) * t * t + 1,
-  easeInOutCubic: (t) => (t /= 0.5) < 1 ? 0.5 * t * t * t : 0.5 * ((t -= 2) * t * t + 2),
-  easeInQuart: (t) => t * t * t * t,
-  easeOutQuart: (t) => -((t -= 1) * t * t * t - 1),
-  easeInOutQuart: (t) => (t /= 0.5) < 1 ? 0.5 * t * t * t * t : -0.5 * ((t -= 2) * t * t * t - 2),
-  easeInQuint: (t) => t * t * t * t * t,
-  easeOutQuint: (t) => (t -= 1) * t * t * t * t + 1,
-  easeInOutQuint: (t) => (t /= 0.5) < 1 ? 0.5 * t * t * t * t * t : 0.5 * ((t -= 2) * t * t * t * t + 2),
-  easeInSine: (t) => -Math.cos(t * HALF_PI) + 1,
-  easeOutSine: (t) => Math.sin(t * HALF_PI),
-  easeInOutSine: (t) => -0.5 * (Math.cos(PI * t) - 1),
-  easeInExpo: (t) => t === 0 ? 0 : Math.pow(2, 10 * (t - 1)),
-  easeOutExpo: (t) => t === 1 ? 1 : -Math.pow(2, -10 * t) + 1,
-  easeInOutExpo: (t) => atEdge(t) ? t : t < 0.5 ? 0.5 * Math.pow(2, 10 * (t * 2 - 1)) : 0.5 * (-Math.pow(2, -10 * (t * 2 - 1)) + 2),
-  easeInCirc: (t) => t >= 1 ? t : -(Math.sqrt(1 - t * t) - 1),
-  easeOutCirc: (t) => Math.sqrt(1 - (t -= 1) * t),
-  easeInOutCirc: (t) => (t /= 0.5) < 1 ? -0.5 * (Math.sqrt(1 - t * t) - 1) : 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1),
-  easeInElastic: (t) => atEdge(t) ? t : elasticIn(t, 0.075, 0.3),
-  easeOutElastic: (t) => atEdge(t) ? t : elasticOut(t, 0.075, 0.3),
-  easeInOutElastic(t) {
+  linear: (t2) => t2,
+  easeInQuad: (t2) => t2 * t2,
+  easeOutQuad: (t2) => -t2 * (t2 - 2),
+  easeInOutQuad: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 : -0.5 * (--t2 * (t2 - 2) - 1),
+  easeInCubic: (t2) => t2 * t2 * t2,
+  easeOutCubic: (t2) => (t2 -= 1) * t2 * t2 + 1,
+  easeInOutCubic: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 : 0.5 * ((t2 -= 2) * t2 * t2 + 2),
+  easeInQuart: (t2) => t2 * t2 * t2 * t2,
+  easeOutQuart: (t2) => -((t2 -= 1) * t2 * t2 * t2 - 1),
+  easeInOutQuart: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 * t2 : -0.5 * ((t2 -= 2) * t2 * t2 * t2 - 2),
+  easeInQuint: (t2) => t2 * t2 * t2 * t2 * t2,
+  easeOutQuint: (t2) => (t2 -= 1) * t2 * t2 * t2 * t2 + 1,
+  easeInOutQuint: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 * t2 * t2 : 0.5 * ((t2 -= 2) * t2 * t2 * t2 * t2 + 2),
+  easeInSine: (t2) => -Math.cos(t2 * HALF_PI) + 1,
+  easeOutSine: (t2) => Math.sin(t2 * HALF_PI),
+  easeInOutSine: (t2) => -0.5 * (Math.cos(PI * t2) - 1),
+  easeInExpo: (t2) => t2 === 0 ? 0 : Math.pow(2, 10 * (t2 - 1)),
+  easeOutExpo: (t2) => t2 === 1 ? 1 : -Math.pow(2, -10 * t2) + 1,
+  easeInOutExpo: (t2) => atEdge(t2) ? t2 : t2 < 0.5 ? 0.5 * Math.pow(2, 10 * (t2 * 2 - 1)) : 0.5 * (-Math.pow(2, -10 * (t2 * 2 - 1)) + 2),
+  easeInCirc: (t2) => t2 >= 1 ? t2 : -(Math.sqrt(1 - t2 * t2) - 1),
+  easeOutCirc: (t2) => Math.sqrt(1 - (t2 -= 1) * t2),
+  easeInOutCirc: (t2) => (t2 /= 0.5) < 1 ? -0.5 * (Math.sqrt(1 - t2 * t2) - 1) : 0.5 * (Math.sqrt(1 - (t2 -= 2) * t2) + 1),
+  easeInElastic: (t2) => atEdge(t2) ? t2 : elasticIn(t2, 0.075, 0.3),
+  easeOutElastic: (t2) => atEdge(t2) ? t2 : elasticOut(t2, 0.075, 0.3),
+  easeInOutElastic(t2) {
     const s = 0.1125;
     const p = 0.45;
-    return atEdge(t) ? t : t < 0.5 ? 0.5 * elasticIn(t * 2, s, p) : 0.5 + 0.5 * elasticOut(t * 2 - 1, s, p);
+    return atEdge(t2) ? t2 : t2 < 0.5 ? 0.5 * elasticIn(t2 * 2, s, p) : 0.5 + 0.5 * elasticOut(t2 * 2 - 1, s, p);
   },
-  easeInBack(t) {
+  easeInBack(t2) {
     const s = 1.70158;
-    return t * t * ((s + 1) * t - s);
+    return t2 * t2 * ((s + 1) * t2 - s);
   },
-  easeOutBack(t) {
+  easeOutBack(t2) {
     const s = 1.70158;
-    return (t -= 1) * t * ((s + 1) * t + s) + 1;
+    return (t2 -= 1) * t2 * ((s + 1) * t2 + s) + 1;
   },
-  easeInOutBack(t) {
+  easeInOutBack(t2) {
     let s = 1.70158;
-    if ((t /= 0.5) < 1) {
-      return 0.5 * (t * t * (((s *= 1.525) + 1) * t - s));
+    if ((t2 /= 0.5) < 1) {
+      return 0.5 * (t2 * t2 * (((s *= 1.525) + 1) * t2 - s));
     }
-    return 0.5 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2);
+    return 0.5 * ((t2 -= 2) * t2 * (((s *= 1.525) + 1) * t2 + s) + 2);
   },
-  easeInBounce: (t) => 1 - effects.easeOutBounce(1 - t),
-  easeOutBounce(t) {
+  easeInBounce: (t2) => 1 - effects.easeOutBounce(1 - t2),
+  easeOutBounce(t2) {
     const m = 7.5625;
     const d = 2.75;
-    if (t < 1 / d) {
-      return m * t * t;
+    if (t2 < 1 / d) {
+      return m * t2 * t2;
     }
-    if (t < 2 / d) {
-      return m * (t -= 1.5 / d) * t + 0.75;
+    if (t2 < 2 / d) {
+      return m * (t2 -= 1.5 / d) * t2 + 0.75;
     }
-    if (t < 2.5 / d) {
-      return m * (t -= 2.25 / d) * t + 0.9375;
+    if (t2 < 2.5 / d) {
+      return m * (t2 -= 2.25 / d) * t2 + 0.9375;
     }
-    return m * (t -= 2.625 / d) * t + 0.984375;
+    return m * (t2 -= 2.625 / d) * t2 + 0.984375;
   },
-  easeInOutBounce: (t) => t < 0.5 ? effects.easeInBounce(t * 2) * 0.5 : effects.easeOutBounce(t * 2 - 1) * 0.5 + 0.5
+  easeInOutBounce: (t2) => t2 < 0.5 ? effects.easeInBounce(t2 * 2) * 0.5 : effects.easeOutBounce(t2 * 2 - 1) * 0.5 + 0.5
 };
 function isPatternOrGradient(value) {
   if (value && typeof value === "object") {
@@ -2242,7 +2244,7 @@ function _parseObjectDataRadialScale(meta, data, start, count) {
 var EPSILON = Number.EPSILON || 1e-14;
 var getPoint = (points, i) => i < points.length && !points[i].skip && points[i];
 var getValueAxis = (indexAxis) => indexAxis === "x" ? "y" : "x";
-function splineCurve(firstPoint, middlePoint, afterPoint, t) {
+function splineCurve(firstPoint, middlePoint, afterPoint, t2) {
   const previous = firstPoint.skip ? middlePoint : firstPoint;
   const current = middlePoint;
   const next = afterPoint.skip ? middlePoint : afterPoint;
@@ -2252,8 +2254,8 @@ function splineCurve(firstPoint, middlePoint, afterPoint, t) {
   let s12 = d12 / (d01 + d12);
   s01 = isNaN(s01) ? 0 : s01;
   s12 = isNaN(s12) ? 0 : s12;
-  const fa = t * s01;
-  const fb = t * s12;
+  const fa = t2 * s01;
+  const fb = t2 * s12;
   return {
     previous: {
       x: current.x - fa * (next.x - previous.x),
@@ -2571,19 +2573,19 @@ function readUsedSize(element, property) {
   const matches = value && value.match(/^(\d+)(\.\d+)?px$/);
   return matches ? +matches[1] : void 0;
 }
-function _pointInLine(p1, p2, t, mode) {
+function _pointInLine(p1, p2, t2, mode) {
   return {
-    x: p1.x + t * (p2.x - p1.x),
-    y: p1.y + t * (p2.y - p1.y)
+    x: p1.x + t2 * (p2.x - p1.x),
+    y: p1.y + t2 * (p2.y - p1.y)
   };
 }
-function _steppedInterpolation(p1, p2, t, mode) {
+function _steppedInterpolation(p1, p2, t2, mode) {
   return {
-    x: p1.x + t * (p2.x - p1.x),
-    y: mode === "middle" ? t < 0.5 ? p1.y : p2.y : mode === "after" ? t < 1 ? p1.y : p2.y : t > 0 ? p2.y : p1.y
+    x: p1.x + t2 * (p2.x - p1.x),
+    y: mode === "middle" ? t2 < 0.5 ? p1.y : p2.y : mode === "after" ? t2 < 1 ? p1.y : p2.y : t2 > 0 ? p2.y : p1.y
   };
 }
-function _bezierInterpolation(p1, p2, t, mode) {
+function _bezierInterpolation(p1, p2, t2, mode) {
   const cp1 = {
     x: p1.cp2x,
     y: p1.cp2y
@@ -2592,12 +2594,12 @@ function _bezierInterpolation(p1, p2, t, mode) {
     x: p2.cp1x,
     y: p2.cp1y
   };
-  const a = _pointInLine(p1, cp1, t);
-  const b = _pointInLine(cp1, cp2, t);
-  const c = _pointInLine(cp2, p2, t);
-  const d = _pointInLine(a, b, t);
-  const e = _pointInLine(b, c, t);
-  return _pointInLine(d, e, t);
+  const a = _pointInLine(p1, cp1, t2);
+  const b = _pointInLine(cp1, cp2, t2);
+  const c = _pointInLine(cp2, p2, t2);
+  const d = _pointInLine(a, b, t2);
+  const e = _pointInLine(b, c, t2);
+  return _pointInLine(d, e, t2);
 }
 var getRightToLeftAdapter = function(rectX, width) {
   return {
@@ -3373,17 +3375,17 @@ function defaultClip(xScale, yScale, allowedOverflow) {
   };
 }
 function toClip(value) {
-  let t, r, b, l;
+  let t2, r, b, l;
   if (isObject(value)) {
-    t = value.top;
+    t2 = value.top;
     r = value.right;
     b = value.bottom;
     l = value.left;
   } else {
-    t = r = b = l = value;
+    t2 = r = b = l = value;
   }
   return {
-    top: t,
+    top: t2,
     right: r,
     bottom: b,
     left: l,
@@ -7666,7 +7668,7 @@ var Scale = class _Scale extends Element {
       return 0;
     }
     const ticks = this.ticks;
-    const index2 = ticks.findIndex((t) => t.value === value);
+    const index2 = ticks.findIndex((t2) => t2.value === value);
     if (index2 >= 0) {
       const opts = grid.setContext(this.getContext(index2));
       return opts.lineWidth;
@@ -9913,8 +9915,8 @@ var LineElement = class extends Element {
         result.push(p1);
         continue;
       }
-      const t = Math.abs((value - p1[property]) / (p2[property] - p1[property]));
-      const interpolated = _interpolate(p1, p2, t, options.stepped);
+      const t2 = Math.abs((value - p1[property]) / (p2[property] - p1[property]));
+      const interpolated = _interpolate(p1, p2, t2, options.stepped);
       interpolated[property] = point[property];
       result.push(interpolated);
     }
@@ -18548,7 +18550,15 @@ function getSpeakerColor(speaker) {
     point: "rgb(153, 102, 255)"
   };
 }
-function init_graph_presenter({ graph_space, data, yLabel, title, legends }) {
+function init_graph_presenter({
+  graph_space,
+  data,
+  yLabel,
+  title,
+  legends,
+  xLabel = "Time",
+  tooltipByLabel = "By"
+}) {
   return new Chart(graph_space, {
     type: "line",
     data: {
@@ -18592,7 +18602,7 @@ function init_graph_presenter({ graph_space, data, yLabel, title, legends }) {
           callbacks: {
             label: function(context) {
               const dataPoint = context.raw;
-              return `By: ${dataPoint.label}`;
+              return `${tooltipByLabel}: ${dataPoint.label}`;
             }
           }
         }
@@ -18613,7 +18623,7 @@ function init_graph_presenter({ graph_space, data, yLabel, title, legends }) {
           },
           title: {
             display: true,
-            text: "Time"
+            text: xLabel
           }
         },
         y: {
@@ -18637,7 +18647,7 @@ function update_graph_presenter(conversationsChart, data) {
 }
 
 // raw-file:C:\Users\qodls\Desktop\source\works\murmuring\README.md
-var README_default = "\uB300\uD654\uC5D0\uC11C \uB0B4\uAC00 \uBC49\uB294 \uB9D0\uB4E4\uC740 \uC911\uC5BC\uAC70\uB9BC\uC5D0 \uAC00\uAE5D\uB2E4. \uB610\uD55C \uC2F1\uAC81\uB2E4.\r\n\uBE44\uC2B7\uD55C \uCE5C\uAD6C\uC640 \uB09C \uC6B0\uB9AC\uB97C \uC5B8\uC194\uD2F0\uC5BC\uC2A4\uB77C\uACE0 \uBD80\uB974\uACE4 \uD588\uB2E4.\r\n\r\n---\r\n\r\nThe things I say are more like murmurs in a conversation \u2014 quiet, almost flavorless.\r\nA friend who\u2019s much like me and I used to call ourselves the Unsalted.\r\n";
+var README_default = "\uB300\uD654\uC5D0\uC11C \uB0B4\uAC00 \uBC49\uB294 \uB9D0\uB4E4\uC740 \uC911\uC5BC\uAC70\uB9BC\uC5D0 \uAC00\uAE5D\uB2E4. \uB610\uD55C \uC2F1\uAC81\uB2E4.\r\n\uBE44\uC2B7\uD55C \uCE5C\uAD6C\uC640 \uB09C \uC6B0\uB9AC\uB97C \uC5B8\uC194\uD2F0\uC5BC\uC2A4\uB77C\uACE0 \uBD80\uB974\uACE4 \uD588\uB2E4.\r\n\r\n---\r\n\r\nThe words I spit out in conversation are closer to murmurs \u2014 quiet, almost flavorless.\nA friend much like me and I used to call ourselves the Unsalted.\n";
 
 // models/conversations.js
 var Conversations = class {
@@ -18743,35 +18753,39 @@ var acting = () => {
 };
 
 // murmuring/utils.js
-var speakerNames = {
-  wind: "Wind",
-  speaker: "Mr. Speaker",
-  murmurer: "Mr. Murmurer"
-};
-function toData(origin) {
+function getSpeakerNames(t2) {
+  return {
+    wind: t2("murmuring.speakers.wind"),
+    speaker: t2("murmuring.speakers.speaker"),
+    murmurer: t2("murmuring.speakers.murmurer")
+  };
+}
+function toData(origin, speakerNames2) {
   return origin.map((record) => ({
     x: record.when.getTime(),
     y: record.content,
-    label: speakerNames[record.by],
+    label: speakerNames2[record.by],
     by: record.by
   }));
 }
-function makeSpeakerLegend(speaker) {
+function makeSpeakerLegend(speaker, speakerNames2) {
   return {
-    text: speakerNames[speaker],
+    text: speakerNames2[speaker],
     fillStyle: getSpeakerColor(speaker).point,
     strokeStyle: getSpeakerColor(speaker).point,
     lineWidth: 0,
     pointStyle: "circle",
     hidden: false,
-    index: speakerNames.length
+    index: Object.keys(speakerNames2).length
   };
 }
 
 // murmuring/chat.js
 var conversations_presenter = document.getElementById("conversations_presenter");
-function appendMessage({ by, when }) {
+function appendMessage({ by, when }, speakerNames2 = {}) {
+  var _a;
   const side = by === "murmurer" ? "right" : "left";
+  const speakerLabel = (_a = speakerNames2[by]) != null ? _a : by;
   Array.from(conversations_presenter.children).slice(0, Math.max(0, conversations_presenter.children.length - 4)).filter((el) => !el.classList.contains("leaving")).forEach((el) => {
     el.classList.add("leaving");
     el.addEventListener(
@@ -18787,7 +18801,7 @@ function appendMessage({ by, when }) {
     `
       <div class="msg ${side} enter">
         <div class="stack">
-          <div class="meta meta--top">${by}</div>
+          <div class="meta meta--top">${speakerLabel}</div>
           <div class="bubble"></div>
           <time class="meta meta--bottom" datetime="${when.toISOString()}">${format(when, "HH:mm:ss")}</time>
         </div>
@@ -18800,32 +18814,39 @@ function appendMessage({ by, when }) {
 
 // murmuring/index.js
 var { public_conversations, murmurer_regret } = acting();
+var { t } = initI18n();
+var speakerNames = getSpeakerNames(t);
 var conversations_graph_space = document.getElementById("conversations_graph_presenter").getContext("2d");
 var conversations_graph_presenter = init_graph_presenter({
   graph_space: conversations_graph_space,
-  yLabel: "Blah Scale (0: super blah)",
-  title: "Conversations Blah Scale",
-  legends: Object.keys(speakerNames).map((speaker) => makeSpeakerLegend(speaker)),
-  data: toData(public_conversations.records)
+  yLabel: t("murmuring.chart.conversations.yLabel"),
+  title: t("murmuring.chart.conversations.title"),
+  xLabel: t("murmuring.chart.xLabel"),
+  tooltipByLabel: t("murmuring.chart.tooltipBy"),
+  legends: Object.keys(speakerNames).map((speaker) => makeSpeakerLegend(speaker, speakerNames)),
+  data: toData(public_conversations.records, speakerNames)
 });
 var regret_graph_space = document.getElementById("regret_graph_presenter").getContext("2d");
 var regret_graph_presenter = init_graph_presenter({
   graph_space: regret_graph_space,
-  yLabel: "Regret Scale",
-  title: "Murmurer Regret Scale",
-  legends: [makeSpeakerLegend("murmurer")],
-  data: toData(murmurer_regret)
+  yLabel: t("murmuring.chart.regret.yLabel"),
+  title: t("murmuring.chart.regret.title"),
+  xLabel: t("murmuring.chart.xLabel"),
+  tooltipByLabel: t("murmuring.chart.tooltipBy"),
+  legends: [makeSpeakerLegend("murmurer", speakerNames)],
+  data: toData(murmurer_regret, speakerNames)
 });
 render_readme("readme_section", README_default);
+initThoughtOverlay();
 autorun(() => {
-  update_graph_presenter(conversations_graph_presenter, toData(public_conversations.records));
-  appendMessage(public_conversations.getLastRecord());
+  update_graph_presenter(conversations_graph_presenter, toData(public_conversations.records, speakerNames));
+  appendMessage(public_conversations.getLastRecord(), speakerNames);
   if (public_conversations.records.length > 500) {
     window.location.reload();
   }
 });
 autorun(() => {
-  update_graph_presenter(regret_graph_presenter, toData(murmurer_regret));
+  update_graph_presenter(regret_graph_presenter, toData(murmurer_regret, speakerNames));
 });
 /*! Bundled license information:
 
