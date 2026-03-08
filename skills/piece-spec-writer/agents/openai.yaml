@@ -1,0 +1,5 @@
+interface:
+  display_name: "Piece Spec Writer"
+  short_description: "Lock one direction into a piece spec"
+  default_prompt: "Use $piece-spec-writer to turn the chosen direction into a locked artwork spec with medium, rhythm, interaction, and logging contracts."
+

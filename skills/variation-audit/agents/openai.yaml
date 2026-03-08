@@ -1,0 +1,5 @@
+interface:
+  display_name: "Variation Audit"
+  short_description: "Check a proposal against repeated patterns"
+  default_prompt: "Use $variation-audit to compare this proposal against recent works and identify repeated patterns, weak novelty, and required changes."
+

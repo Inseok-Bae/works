@@ -1,0 +1,5 @@
+interface:
+  display_name: "Thought Anatomizer"
+  short_description: "Break a THOUGHT into reusable structure"
+  default_prompt: "Use $thought-anatomizer to turn this THOUGHT into a structured analysis with a title, folder slug, and translation priorities."
+

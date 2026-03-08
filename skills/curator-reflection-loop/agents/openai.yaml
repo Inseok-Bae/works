@@ -1,0 +1,4 @@
+interface:
+  display_name: "Curator Reflection Loop"
+  short_description: "Review, record, and sync curator learning"
+  default_prompt: "Use $curator-reflection-loop to review this piece, record the curator session, and sync reusable lessons into studio memory."
