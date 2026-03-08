@@ -60,7 +60,7 @@ export function add_codes(list, code_area_id) {
   });
 }
 
-function normalizeThoughtLanguage(languageTag) {
+export function normalizeThoughtLanguage(languageTag) {
   const tag = (languageTag || '').toLowerCase();
   if (tag.startsWith('ko')) return 'ko';
   if (tag.startsWith('zh')) return 'zh';
@@ -102,7 +102,7 @@ function splitThoughtReadme(source) {
   return { localized: null, original, translation };
 }
 
-function selectThoughtReadmeByLanguage(source, languageTag) {
+export function resolveLocalizedReadme(source, languageTag) {
   const { localized, original, translation } = splitThoughtReadme(source);
   const language = normalizeThoughtLanguage(languageTag);
 
@@ -121,7 +121,7 @@ export function render_readme(target, source, language = 'markdown') {
 
   const activeLanguage =
     typeof document !== 'undefined' ? document.documentElement.getAttribute('lang') : null;
-  const resolvedSource = selectThoughtReadmeByLanguage(source, activeLanguage);
+  const resolvedSource = resolveLocalizedReadme(source, activeLanguage);
 
   element.classList.add('readme-block');
   element.innerHTML = '';

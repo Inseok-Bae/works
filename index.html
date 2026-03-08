@@ -164,6 +164,52 @@
         color: var(--ink);
       }
 
+      .project-note {
+        margin-top: 16px;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+        max-width: 760px;
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      .project-note[hidden] {
+        display: none !important;
+      }
+
+      body.is-ready .project-note {
+        animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 120ms;
+      }
+
+      .project-note-label {
+        margin-bottom: 6px;
+        font-size: var(--fs-meta);
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 620;
+      }
+
+      .project-note-title {
+        margin: 0 0 8px;
+        font-size: clamp(13px, 1.2vw, 15px);
+        line-height: 1.32;
+        letter-spacing: -0.012em;
+        font-weight: 560;
+      }
+
+      .project-note-body {
+        color: rgba(17, 18, 23, 0.82);
+      }
+
+      .project-note-body p {
+        margin: 0 0 9px;
+        font-size: clamp(12px, 1.02vw, 13.5px);
+        line-height: 1.66;
+        letter-spacing: -0.006em;
+      }
+
       .credit {
         margin-top: 10px;
         font-size: var(--fs-meta);
@@ -176,7 +222,7 @@
 
       body.is-ready .credit {
         animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        animation-delay: 130ms;
+        animation-delay: 150ms;
       }
 
       .language-switcher {
@@ -332,11 +378,21 @@
         .tile-label.long {
           font-size: clamp(13px, 3.5vw, 16px);
         }
+
+        .project-note-title {
+          font-size: 13px;
+        }
+
+        .project-note-body p {
+          font-size: 12.5px;
+          line-height: 1.62;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
         .mast,
         .tile,
+        .project-note,
         .credit {
           opacity: 1 !important;
           transform: none !important;
@@ -363,12 +419,24 @@
 
       <main class="gallery" id="gallery" data-i18n-aria-label="index.galleryAria"></main>
 
+      <section
+        class="project-note"
+        id="projectNote"
+        hidden
+        data-i18n-aria-label="index.projectReadmeAria"
+      >
+        <div class="project-note-label" data-i18n="index.projectReadmeLabel">project</div>
+        <div class="project-note-body" id="projectReadmeBody"></div>
+      </section>
+
       <footer class="credit">
         <span data-i18n="index.footerCredit">inseok</span>
       </footer>
     </div>
 
-    <script>
+    <script type="module">
+      import { resolveLocalizedReadme } from './shared/utils/util.js';
+
       const PROJECTS = [
         { folder: 'artworks/murmuring', key: 'index.projects.murmuring' },
         { folder: 'artworks/division', key: 'index.projects.division' },
@@ -382,6 +450,8 @@
 
       const gallery = document.getElementById('gallery');
       const workCount = document.getElementById('workCount');
+      const projectNote = document.getElementById('projectNote');
+      const projectReadmeBody = document.getElementById('projectReadmeBody');
 
       function asSupportedLanguage(value) {
         if (!value || typeof value !== 'string') return null;
@@ -477,6 +547,53 @@
         });
 
         workCount.textContent = String(PROJECTS.length).padStart(2, '0');
+      }
+
+      function renderProjectReadmeContent(source) {
+        if (!projectNote || !projectReadmeBody) return;
+
+        projectReadmeBody.innerHTML = '';
+        const blocks = source
+          .split(/\r?\n\s*\r?\n/)
+          .map((block) => block.trim())
+          .filter(Boolean);
+
+        if (!blocks.length) {
+          projectNote.hidden = true;
+          return;
+        }
+
+        const [title, ...paragraphs] = blocks;
+        const heading = document.createElement('h2');
+        heading.className = 'project-note-title';
+        heading.textContent = title;
+        projectReadmeBody.appendChild(heading);
+
+        for (const paragraph of paragraphs) {
+          const element = document.createElement('p');
+          element.textContent = paragraph.replace(/\s*\n\s*/g, ' ');
+          projectReadmeBody.appendChild(element);
+        }
+
+        projectNote.hidden = false;
+      }
+
+      async function loadProjectReadme(language) {
+        if (!projectNote || !projectReadmeBody) return;
+
+        projectNote.hidden = true;
+        projectReadmeBody.innerHTML = '';
+
+        try {
+          const response = await fetch('./README.md');
+          if (!response.ok) return;
+          const source = await response.text();
+          const resolved = resolveLocalizedReadme(source, language).trim();
+          if (!resolved) return;
+          renderProjectReadmeContent(resolved);
+        } catch (_) {
+          projectNote.hidden = true;
+        }
       }
 
       function createLanguageSwitcher(currentLanguage, selectedLanguage, t) {
@@ -586,6 +703,7 @@
 
         applyStaticI18n(t);
         renderProjectTiles(t);
+        await loadProjectReadme(language);
         createLanguageSwitcher(language, selectedLanguage, t);
 
         window.requestAnimationFrame(() => {

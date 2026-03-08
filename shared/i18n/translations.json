@@ -32,7 +32,9 @@
         "division": "분열",
         "violet": "보랏빛 뭉게구름과 날카로운 경계",
         "bleedingColors": "번짐"
-      }
+      },
+      "projectReadmeLabel": "프로젝트",
+      "projectReadmeAria": "프로젝트 글"
     },
     "murmuring": {
       "documentTitle": "중얼거림",
@@ -175,7 +177,9 @@
         "division": "Division",
         "violet": "Violet Cloud and Sharp Boundaries",
         "bleedingColors": "Bleeding Colors"
-      }
+      },
+      "projectReadmeLabel": "project",
+      "projectReadmeAria": "project statement"
     },
     "murmuring": {
       "documentTitle": "Murmuring",
@@ -318,7 +322,9 @@
         "division": "分裂",
         "violet": "紫色云团与尖锐的边界",
         "bleedingColors": "渗色"
-      }
+      },
+      "projectReadmeLabel": "项目",
+      "projectReadmeAria": "项目说明"
     },
     "murmuring": {
       "documentTitle": "低语",
@@ -461,7 +467,9 @@
         "division": "分裂",
         "violet": "紫の雲塊と鋭い境界",
         "bleedingColors": "にじみ"
-      }
+      },
+      "projectReadmeLabel": "プロジェクト",
+      "projectReadmeAria": "プロジェクトステートメント"
     },
     "murmuring": {
       "documentTitle": "つぶやき",

@@ -1,4 +1,4 @@
-﻿import { existsSync, readdirSync } from 'node:fs';
+import { existsSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -30,7 +30,10 @@ function discoverPageInputs(slugs) {
 }
 
 function discoverStaticCopyTargets(slugs) {
-  const targets = [{ src: 'shared/i18n/**/*', dest: 'i18n' }];
+  const targets = [
+    { src: 'shared/i18n/**/*', dest: 'i18n' },
+    { src: 'README.md', dest: '.' },
+  ];
 
   for (const slug of slugs) {
     const assetDir = join(artworksRootDir, slug, 'assets');
