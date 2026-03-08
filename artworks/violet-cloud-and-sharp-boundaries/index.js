@@ -1,11 +1,17 @@
-﻿import { autorun } from 'mobx';
+import { autorun } from 'mobx';
 import readme_source from './README.md?raw';
 import { render_readme } from '../../shared/utils/util.js';
 import { initThoughtOverlay } from '../../shared/utils/thought-overlay.js';
 import { initI18n } from '../../shared/utils/i18n.js';
 import { acting } from './acting.js';
 
-const { language, t } = initI18n();
+let thoughtOverlayController;
+const { language, t } = initI18n({
+  utilityActions: [
+    { labelKey: 'common.thought.reopen', onSelect: () => thoughtOverlayController?.open() },
+    { labelKey: 'common.thought.backToIndex', href: '../../index.html' },
+  ],
+});
 const { world, publicState } = acting({ language });
 
 const canvas = document.getElementById('stage');
@@ -16,7 +22,7 @@ const metricsEl = document.getElementById('metrics');
 const conceptualLogEl = document.getElementById('conceptualLog');
 
 render_readme('readme_section', readme_source);
-initThoughtOverlay();
+thoughtOverlayController = initThoughtOverlay();
 
 function clamp01(value) {
   if (value < 0) return 0;

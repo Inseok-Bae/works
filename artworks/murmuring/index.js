@@ -9,7 +9,13 @@ import { initThoughtOverlay } from '../../shared/utils/thought-overlay.js';
 import { initI18n } from '../../shared/utils/i18n.js';
 
 const { public_conversations, murmurer_regret } = acting();
-const { t } = initI18n();
+let thoughtOverlayController;
+const { t } = initI18n({
+  utilityActions: [
+    { labelKey: 'common.thought.reopen', onSelect: () => thoughtOverlayController?.open() },
+    { labelKey: 'common.thought.backToIndex', href: '../../index.html' },
+  ],
+});
 const speakerNames = getSpeakerNames(t);
 
 const conversations_graph_space = document
@@ -39,7 +45,7 @@ const regret_graph_presenter = init_graph_presenter({
 });
 
 render_readme('readme_section', readme_source);
-initThoughtOverlay();
+thoughtOverlayController = initThoughtOverlay();
 
 autorun(() => {
   update_graph_presenter(conversations_graph_presenter, toData(public_conversations.records, speakerNames));

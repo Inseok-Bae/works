@@ -16,12 +16,18 @@ import {
 } from './layout.js';
 
 const { world } = acting();
-initI18n();
+let thoughtOverlayController;
+initI18n({
+  utilityActions: [
+    { labelKey: 'common.thought.reopen', onSelect: () => thoughtOverlayController?.open() },
+    { labelKey: 'common.thought.backToIndex', href: '../../index.html' },
+  ],
+});
 
 const canvas = document.getElementById('world_canvas');
 const ctx = canvas.getContext('2d');
 render_readme('readme_section', readme_source);
-initThoughtOverlay();
+thoughtOverlayController = initThoughtOverlay();
 
 const resize_canvas = () => {
   const dpr = window.devicePixelRatio || 1;

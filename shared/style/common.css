@@ -271,13 +271,41 @@ body.thought-overlay-open {
 }
 
 .thought-menu-toggle {
-  display: none !important;
+  appearance: none;
+  position: fixed;
+  top: calc(max(14px, env(safe-area-inset-top)) + 52px);
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 1240;
+  min-width: 42px;
+  height: 34px;
+  border: 1px solid var(--thought-menu-toggle-border);
+  background: var(--thought-menu-toggle-bg);
+  color: var(--thought-menu-toggle-text);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  cursor: pointer;
+  box-shadow: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.thought-menu-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.thought-menu-toggle:active {
+  transform: translateY(0);
 }
 
 .thought-menu-icon {
-  width: 18px;
+  width: 16px;
   display: grid;
-  gap: 4px;
+  gap: 3px;
 }
 
 .thought-menu-icon span {
@@ -286,21 +314,39 @@ body.thought-overlay-open {
   height: 2px;
   border-radius: 999px;
   background: currentColor;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.thought-menu-toggle[aria-expanded='true'] .thought-menu-icon span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.thought-menu-toggle[aria-expanded='true'] .thought-menu-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.thought-menu-toggle[aria-expanded='true'] .thought-menu-icon span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .thought-menu {
   position: fixed;
-  top: calc(max(14px, env(safe-area-inset-top)) + 52px);
+  top: calc(max(14px, env(safe-area-inset-top)) + 92px);
   right: max(14px, env(safe-area-inset-right));
-  z-index: 1240;
-  min-width: 0;
+  z-index: 1239;
+  min-width: 176px;
   display: grid;
-  gap: 8px;
-  padding-top: 10px;
-  border: none;
-  background: transparent;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--thought-menu-border);
+  border-radius: 10px;
+  background: var(--thought-menu-bg);
   color: var(--thought-menu-text);
-  box-shadow: none;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .thought-menu[hidden] {
@@ -309,53 +355,41 @@ body.thought-overlay-open {
 
 .thought-menu-item {
   appearance: none;
-  min-height: 30px;
-  padding: 0 0 0 14px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-  border: none;
-  background: transparent;
-  color: var(--thought-menu-text);
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: var(--thought-menu-item-bg);
+  color: inherit;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.2;
   font-weight: 620;
-  text-align: right;
+  letter-spacing: -0.01em;
+  text-align: left;
   text-decoration: none;
+    white-space: nowrap;
   cursor: pointer;
-  transition: color 160ms ease;
-}
-
-.thought-menu-item::after {
-  content: '';
-  width: 3px;
-  height: 22px;
-  border-radius: 999px;
-  background: var(--thought-menu-border);
-  transition: background 160ms ease, height 180ms ease;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
 
 .thought-menu-item:hover {
-  color: var(--thought-menu-toggle-text);
-}
-
-.thought-menu-item:hover::after {
-  height: 30px;
-  background: var(--thought-menu-toggle-border);
+  background: var(--thought-menu-item-hover-bg);
+  border-color: var(--thought-menu-border);
 }
 
 .thought-menu-item:active {
-  color: var(--thought-menu-toggle-text);
+  transform: translateY(1px);
 }
 
 .thought-menu-item:focus-visible,
+.thought-menu-toggle:focus-visible,
 .thought-close:focus-visible {
   outline: 2px solid var(--thought-menu-toggle-text);
-  outline-offset: 3px;
-  border-radius: 999px;
+  outline-offset: 2px;
 }
 
 .thought-menu-toggle[hidden] {
@@ -363,42 +397,25 @@ body.thought-overlay-open {
 }
 
 @media (max-width: 800px) {
+  .thought-menu-toggle {
+    top: calc(max(10px, env(safe-area-inset-top)) + 48px);
+    right: max(10px, env(safe-area-inset-right));
+    min-width: 40px;
+    height: 32px;
+    padding: 0 9px;
+  }
+
   .thought-menu {
-    top: auto;
-    right: auto;
-    left: 50%;
-    bottom: max(10px, env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    display: flex;
-    gap: 6px;
-    padding: 6px;
-    border: 1px solid var(--thought-menu-border);
-    border-radius: 999px;
-    background: var(--thought-menu-bg);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    top: calc(max(10px, env(safe-area-inset-top)) + 86px);
+    right: max(10px, env(safe-area-inset-right));
+    min-width: 164px;
+    padding: 7px;
   }
 
   .thought-menu-item {
-    min-height: 34px;
-    padding: 0 12px;
-    justify-content: center;
-    border: 1px solid transparent;
-    border-radius: 999px;
-    background: var(--thought-menu-item-bg);
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    text-transform: none;
-  }
-
-  .thought-menu-item::after {
-    display: none;
-  }
-
-  .thought-menu-item:hover {
-    border-color: var(--thought-menu-border);
-    background: var(--thought-menu-item-hover-bg);
+    font-size: 12.5px;
+    padding: 9px 10px;
+    white-space: nowrap;
   }
 }
 
@@ -411,7 +428,7 @@ body.thought-overlay-open {
 
 .language-switcher-toggle {
   appearance: none;
-  min-width: 56px;
+  min-width: 96px;
   height: 36px;
   border-radius: 8px;
   border: 1px solid var(--language-switcher-border);
@@ -420,10 +437,12 @@ body.thought-overlay-open {
   padding: 0 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 600;
+  justify-content: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 650;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   box-shadow: none;
   transition:
@@ -441,47 +460,54 @@ body.thought-overlay-open {
 }
 
 .language-switcher-icon {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
-  display: inline-block;
-  position: relative;
-  opacity: 0.9;
+  width: 14px;
+  display: grid;
+  gap: 3px;
 }
 
-.language-switcher-icon::before,
-.language-switcher-icon::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border: 1px solid currentColor;
+.language-switcher-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
   border-radius: 999px;
-  opacity: 0.75;
+  background: currentColor;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
 }
 
-.language-switcher-icon::before {
-  width: 4px;
-  height: 10px;
+.language-switcher-toggle[aria-expanded='true'] .language-switcher-icon span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
 }
 
-.language-switcher-icon::after {
-  width: 10px;
-  height: 4px;
+.language-switcher-toggle[aria-expanded='true'] .language-switcher-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.language-switcher-toggle[aria-expanded='true'] .language-switcher-icon span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.language-switcher-label {
+  line-height: 1;
 }
 
 .language-switcher-code {
   min-width: 2ch;
+  padding: 2px 5px;
+  border-radius: 999px;
+  border: 1px solid var(--language-switcher-border);
+  background: var(--language-switcher-item-bg);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.06em;
   text-align: center;
 }
-
 .language-switcher-menu {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  width: 188px;
+  min-width: 208px;
   padding: 8px;
   border-radius: 10px;
   border: 1px solid var(--language-switcher-border);
@@ -496,18 +522,33 @@ body.thought-overlay-open {
   display: none !important;
 }
 
+
+.language-switcher-separator {
+  height: 1px;
+  border-radius: 999px;
+  background: var(--language-switcher-border);
+  opacity: 0.55;
+  margin: 2px 2px 4px;
+}
+
+.language-switcher-action {
+  letter-spacing: -0.01em;
+}
 .language-switcher-option {
   appearance: none;
+  display: block;
   width: 100%;
   border: 1px solid transparent;
   border-radius: 8px;
   background: var(--language-switcher-item-bg);
   color: inherit;
   text-align: left;
+  text-decoration: none;
   font-size: 13px;
   line-height: 1.2;
   font-weight: 600;
   padding: 9px 10px;
+    white-space: nowrap;
   cursor: pointer;
   transition:
     transform 160ms ease,

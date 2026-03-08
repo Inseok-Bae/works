@@ -79,7 +79,7 @@ function detectBrowserLanguage(preferredLanguages = null) {
   return FALLBACK_LANGUAGE;
 }
 
-function createLanguageSwitcher({ language, selectedLanguage, t, onSelect }) {
+function createLanguageSwitcher({ language, selectedLanguage, t, onSelect, utilityActions = [] }) {
   if (typeof document === 'undefined') return;
 
   document.getElementById(SWITCHER_ID)?.remove();
@@ -91,23 +91,24 @@ function createLanguageSwitcher({ language, selectedLanguage, t, onSelect }) {
   const toggle = document.createElement('button');
   toggle.type = 'button';
   toggle.className = 'language-switcher-toggle';
-  toggle.setAttribute('aria-label', t('common.language.toggleAria'));
+  const utilityAria = `${t('common.thought.menuAria')} ¡¤ ${t('common.language.menuAria')}`;
+  toggle.setAttribute('aria-label', utilityAria);
   toggle.setAttribute('aria-expanded', 'false');
-  toggle.setAttribute(
-    'title',
-    t('common.language.toggleTitle', {
-      language: t(`common.language.options.${selectedLanguage ?? 'auto'}`),
-    })
-  );
+  toggle.setAttribute('title', utilityAria);
   toggle.innerHTML = `
-    <span class="language-switcher-icon" aria-hidden="true"></span>
+    <span class="language-switcher-icon" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="language-switcher-label" aria-hidden="true">MENU</span>
     <span class="language-switcher-code">${language.toUpperCase()}</span>
   `;
 
   const menu = document.createElement('div');
   menu.className = 'language-switcher-menu';
   menu.hidden = true;
-  menu.setAttribute('aria-label', t('common.language.menuAria'));
+  menu.setAttribute('aria-label', utilityAria);
 
   const options = ['auto', ...SUPPORTED_LANGUAGES];
   for (const optionLanguage of options) {
@@ -127,6 +128,54 @@ function createLanguageSwitcher({ language, selectedLanguage, t, onSelect }) {
       onSelect(optionLanguage);
     });
     menu.appendChild(item);
+  }
+
+  const visibleActions = Array.isArray(utilityActions)
+    ? utilityActions.filter((action) => {
+        if (!action || typeof action !== 'object') return false;
+        if (typeof action.isVisible === 'function') return Boolean(action.isVisible());
+        return true;
+      })
+    : [];
+
+  if (visibleActions.length > 0) {
+    const separator = document.createElement('div');
+    separator.className = 'language-switcher-separator';
+    separator.setAttribute('aria-hidden', 'true');
+    menu.appendChild(separator);
+
+    for (const action of visibleActions) {
+      const item = action.href ? document.createElement('a') : document.createElement('button');
+      if (!action.href) {
+        item.type = 'button';
+      } else {
+        item.href = action.href;
+      }
+
+      const label =
+        typeof action.label === 'string'
+          ? action.label
+          : action.labelKey
+            ? t(action.labelKey)
+            : '';
+      if (!label) continue;
+
+      item.className = 'language-switcher-option language-switcher-action';
+      item.textContent = label;
+      if (action.ariaLabelKey) {
+        item.setAttribute('aria-label', t(action.ariaLabelKey));
+      }
+
+      item.addEventListener('click', (event) => {
+        menu.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        if (typeof action.onSelect === 'function') {
+          action.onSelect(event);
+        }
+      });
+
+      menu.appendChild(item);
+    }
   }
 
   const closeMenu = () => {
@@ -205,7 +254,7 @@ export function applyI18nToDocument(t, root = document) {
   });
 }
 
-export function initI18n({ language = null, withSwitcher = true } = {}) {
+export function initI18n({ language = null, withSwitcher = true, utilityActions = [] } = {}) {
   const selectedLanguage = asSupportedLanguage(language) || getStoredLanguage();
   const resolvedLanguage = selectedLanguage || detectBrowserLanguage();
   const t = createTranslator(resolvedLanguage);
@@ -234,6 +283,7 @@ export function initI18n({ language = null, withSwitcher = true } = {}) {
       createLanguageSwitcher({
         language: resolvedLanguage,
         selectedLanguage,
+        utilityActions,
         t,
         onSelect: (selectedOption) => {
           if (selectedOption === 'auto' && selectedLanguage == null) return;

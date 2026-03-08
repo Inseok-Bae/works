@@ -5,7 +5,13 @@ import { render_readme } from '../../shared/utils/util.js';
 import { initThoughtOverlay } from '../../shared/utils/thought-overlay.js';
 import { initI18n } from '../../shared/utils/i18n.js';
 
-const { language, t } = initI18n();
+let thoughtOverlayController;
+const { language, t } = initI18n({
+  utilityActions: [
+    { labelKey: 'common.thought.reopen', onSelect: () => thoughtOverlayController?.open() },
+    { labelKey: 'common.thought.backToIndex', href: '../../index.html' },
+  ],
+});
 const { world, publicState } = acting({ language, autoStart: false, timeScale: 1.25 });
 
 const canvas = document.getElementById('scene');
@@ -15,7 +21,8 @@ const oortCanvas = document.getElementById('oortHud');
 const oortCtx = oortCanvas ? oortCanvas.getContext('2d') : null;
 
 render_readme('readme_section', readme_source);
-const thoughtOverlay = initThoughtOverlay();
+thoughtOverlayController = initThoughtOverlay();
+const thoughtOverlay = thoughtOverlayController;
 
 let loopStarted = false;
 let loopEnded = false;
