@@ -747,7 +747,7 @@
         projectReadmeBody.innerHTML = '';
 
         try {
-          const response = await fetch('./README.md');
+          const response = await fetch('./README.md', { cache: 'no-store' });
           if (!response.ok) return;
           const source = await response.text();
           const resolved = resolveLocalizedReadme(source, language).trim();
@@ -912,7 +912,9 @@
 
         let catalog = null;
         try {
-          const response = await fetch('./i18n/translations.json');
+          const i18nUrl = new URL('./i18n/translations.json', window.location.href);
+          i18nUrl.searchParams.set('v', '20260308');
+          const response = await fetch(i18nUrl, { cache: 'no-store' });
           if (response.ok) {
             catalog = await response.json();
           }

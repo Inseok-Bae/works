@@ -184,7 +184,9 @@ export function applyI18nToDocument(t, root = document) {
   root.querySelectorAll('[data-i18n]').forEach((element) => {
     const key = element.getAttribute('data-i18n');
     if (!key) return;
-    element.textContent = t(key);
+    const translated = t(key);
+    if (translated === key) return;
+    element.textContent = translated;
   });
 
   const attributeBindings = [
@@ -196,7 +198,9 @@ export function applyI18nToDocument(t, root = document) {
     root.querySelectorAll(`[${dataAttr}]`).forEach((element) => {
       const key = element.getAttribute(dataAttr);
       if (!key) return;
-      element.setAttribute(targetAttr, t(key));
+      const translated = t(key);
+      if (translated === key) return;
+      element.setAttribute(targetAttr, translated);
     });
   });
 }

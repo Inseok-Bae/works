@@ -26,18 +26,18 @@ export function initThoughtOverlay({
   }
 
   let isOpenState = Boolean(startOpen);
-  let isMenuOpenState = false;
 
   const sync = () => {
     overlay.hidden = !isOpenState;
 
     if (menuToggleButton) {
-      menuToggleButton.hidden = isOpenState;
-      menuToggleButton.setAttribute('aria-expanded', String(!isOpenState && isMenuOpenState));
+      // The artwork utility menu now behaves like a fixed section navigator.
+      menuToggleButton.hidden = true;
+      menuToggleButton.setAttribute('aria-expanded', 'false');
     }
 
     if (menu) {
-      menu.hidden = isOpenState || !isMenuOpenState;
+      menu.hidden = isOpenState;
     }
 
     document.body.classList.toggle('thought-overlay-open', isOpenState);
@@ -45,7 +45,6 @@ export function initThoughtOverlay({
 
   const open = () => {
     isOpenState = true;
-    isMenuOpenState = false;
     sync();
   };
 
@@ -55,22 +54,10 @@ export function initThoughtOverlay({
   };
 
   const closeMenu = () => {
-    if (!isMenuOpenState) return;
-    isMenuOpenState = false;
-    sync();
-  };
-
-  const toggleMenu = () => {
-    if (isOpenState) return;
-    isMenuOpenState = !isMenuOpenState;
-    sync();
+    // Menu is always visible while the overlay is closed.
   };
 
   closeButton?.addEventListener('click', close);
-  menuToggleButton?.addEventListener('click', (event) => {
-    event.stopPropagation();
-    toggleMenu();
-  });
 
   openAction?.addEventListener('click', () => {
     open();
@@ -93,20 +80,11 @@ export function initThoughtOverlay({
     if (event.target === overlay) close();
   });
 
-  document.addEventListener('pointerdown', (event) => {
-    if (!isMenuOpenState || !menu || !menuToggleButton) return;
-    const target = event.target;
-    if (menu.contains(target) || menuToggleButton.contains(target)) return;
-    closeMenu();
-  });
-
   window.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return;
     if (isOpenState) {
       close();
-      return;
     }
-    closeMenu();
   });
 
   sync();
@@ -116,6 +94,6 @@ export function initThoughtOverlay({
     close,
     closeMenu,
     isOpen: () => isOpenState,
-    isMenuOpen: () => isMenuOpenState,
+    isMenuOpen: () => !isOpenState && Boolean(menu) && !menu.hidden,
   };
 }
