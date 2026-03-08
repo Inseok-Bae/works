@@ -60,24 +60,58 @@ export function add_codes(list, code_area_id) {
   });
 }
 
+function normalizeThoughtLanguage(languageTag) {
+  const tag = (languageTag || '').toLowerCase();
+  if (tag.startsWith('ko')) return 'ko';
+  if (tag.startsWith('zh')) return 'zh';
+  if (tag.startsWith('ja')) return 'ja';
+  if (tag.startsWith('en')) return 'en';
+  return 'en';
+}
+
 function splitThoughtReadme(source) {
-  if (typeof source !== 'string') return { original: '', translation: '' };
-  const lines = source.split(/\r?\n/);
-  const delimiterIndex = lines.findIndex((line) => line.trim() === '---');
-  if (delimiterIndex === -1) {
-    return { original: source, translation: '' };
+  if (typeof source !== 'string') {
+    return { localized: null, original: '', translation: '' };
   }
+
+  const sections = source
+    .split(/\r?\n---\r?\n/)
+    .map((section) => section.trim())
+    .filter(Boolean);
+
+  const localized = {};
+  for (const section of sections) {
+    const lines = section.split(/\r?\n/);
+    const marker = lines[0]?.trim().match(/^<!--\s*lang:(ko|en|zh|ja)\s*-->$/);
+    if (!marker) continue;
+    localized[marker[1]] = lines.slice(1).join('\n').trim();
+  }
+
+  if (Object.keys(localized).length > 0) {
+    return { localized, original: '', translation: '' };
+  }
+
+  const delimiterIndex = source.split(/\r?\n/).findIndex((line) => line.trim() === '---');
+  if (delimiterIndex === -1) {
+    return { localized: null, original: source.trim(), translation: '' };
+  }
+
+  const lines = source.split(/\r?\n/);
   const original = lines.slice(0, delimiterIndex).join('\n').trim();
   const translation = lines.slice(delimiterIndex + 1).join('\n').trim();
-  return { original, translation };
+  return { localized: null, original, translation };
 }
 
 function selectThoughtReadmeByLanguage(source, languageTag) {
-  const { original, translation } = splitThoughtReadme(source);
-  if (!translation) return original || source;
+  const { localized, original, translation } = splitThoughtReadme(source);
+  const language = normalizeThoughtLanguage(languageTag);
 
-  const tag = (languageTag || '').toLowerCase();
-  if (tag.startsWith('ko')) return original || source;
+  if (localized) {
+    return localized[language] || localized.en || localized.ko || localized.zh || localized.ja || source;
+  }
+
+  if (!translation) return original || source;
+  if (language === 'ko') return original || source;
   return translation || original || source;
 }
 
