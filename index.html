@@ -35,7 +35,11 @@
         box-sizing: border-box;
       }
 
-      html,
+      html {
+        min-height: 100%;
+        scroll-behavior: smooth;
+      }
+
       body {
         min-height: 100%;
       }
@@ -53,9 +57,13 @@
       }
 
       .frame {
-        max-width: var(--frame-max);
+        max-width: calc(var(--frame-max) + 120px);
         margin: 0 auto;
         padding: clamp(18px, 2.8vw, 32px) clamp(14px, 3vw, 32px) clamp(14px, 2.2vw, 22px);
+        display: grid;
+        grid-template-columns: minmax(0, var(--frame-max)) 88px;
+        column-gap: clamp(18px, 2.4vw, 30px);
+        align-items: start;
       }
 
       .mast {
@@ -92,16 +100,96 @@
         font-weight: 620;
       }
 
-      .brand {
-        margin: 0;
-        font-size: var(--fs-head);
+      .mast,
+      .project-note,
+      .gallery-section,
+      .credit {
+        grid-column: 1;
+      }
+
+      .section-nav {
+        grid-column: 2;
+        grid-row: 1 / span 4;
+        align-self: start;
+        justify-self: end;
+        position: sticky;
+        top: 74px;
+        display: grid;
+        gap: 8px;
+        padding-top: 10px;
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      .section-nav[hidden] {
+        display: none !important;
+      }
+
+      body.is-ready .section-nav {
+        animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 42ms;
+      }
+
+      .section-nav-link {
+        min-height: 30px;
+        padding: 0 0 0 14px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        color: var(--muted);
+        font-size: var(--fs-meta);
         line-height: 1;
-        letter-spacing: -0.024em;
-        font-weight: 570;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 620;
+        text-decoration: none;
+        transition: color 140ms ease;
+      }
+
+      .section-nav-link::after {
+        content: '';
+        width: 3px;
+        height: 22px;
+        border-radius: 999px;
+        background: rgba(17, 18, 23, 0.18);
+        transition: background 140ms ease, height 180ms ease;
+      }
+
+      .section-nav-link:hover {
+        color: var(--ink);
+      }
+
+      .section-nav-link:hover::after {
+        background: rgba(17, 18, 23, 0.36);
+      }
+
+      .section-nav-link[data-active='true'] {
+        color: var(--ink);
+      }
+
+      .section-nav-link[data-active='true']::after {
+        height: 32px;
+        background: var(--ink);
+      }
+
+      .section-nav-link:focus-visible {
+        outline: 2px solid #1f2430;
+        outline-offset: 4px;
+        border-radius: 999px;
+      }
+
+      #prefaceSection,
+      #worksSection {
+        scroll-margin-top: 22px;
+      }
+
+      .gallery-section {
+        margin-top: clamp(16px, 1.9vw, 22px);
       }
 
       .gallery {
-        margin-top: clamp(8px, 1.2vw, 10px);
+        margin-top: 0;
       }
 
       .tile {
@@ -121,7 +209,7 @@
 
       body.is-ready .tile {
         animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        animation-delay: calc(var(--order) * 38ms + 30ms);
+        animation-delay: calc(var(--order) * 38ms + 64ms);
       }
 
       .tile:focus-visible {
@@ -165,9 +253,7 @@
       }
 
       .project-note {
-        margin-top: 16px;
-        padding-top: 10px;
-        border-top: 1px solid var(--line);
+        margin-top: 12px;
         max-width: 760px;
         opacity: 0;
         transform: translateY(6px);
@@ -179,7 +265,7 @@
 
       body.is-ready .project-note {
         animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        animation-delay: 120ms;
+        animation-delay: 18ms;
       }
 
       .project-note-label {
@@ -358,11 +444,13 @@
 
       @media (max-width: 800px) {
         .frame {
-          padding: 14px 12px 14px;
+          max-width: var(--frame-max);
+          display: block;
+          padding: 14px 12px calc(72px + env(safe-area-inset-bottom)) 12px;
         }
 
-        .brand {
-          font-size: clamp(20px, 5.8vw, 30px);
+        .gallery-section {
+          margin-top: 14px;
         }
 
         .tile {
@@ -387,10 +475,68 @@
           font-size: 12.5px;
           line-height: 1.62;
         }
+
+        #prefaceSection,
+        #worksSection {
+          scroll-margin-top: 16px;
+        }
+
+        .section-nav {
+          position: fixed;
+          left: 50%;
+          right: auto;
+          bottom: max(10px, env(safe-area-inset-bottom));
+          top: auto;
+          grid-column: auto;
+          grid-row: auto;
+          display: flex;
+          gap: 6px;
+          padding: 6px;
+          border: 1px solid rgba(17, 18, 23, 0.1);
+          border-radius: 999px;
+          background: rgba(245, 245, 247, 0.9);
+          box-shadow: 0 10px 28px rgba(17, 18, 23, 0.12);
+          backdrop-filter: blur(14px);
+          transform: translateX(-50%);
+          opacity: 1;
+          z-index: 1200;
+        }
+
+        body.is-ready .section-nav {
+          animation: none;
+          transform: translateX(-50%);
+          opacity: 1;
+        }
+
+        .section-nav-link {
+          min-height: 34px;
+          padding: 0 12px;
+          justify-content: center;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.56);
+        }
+
+        .section-nav-link::after {
+          display: none;
+        }
+
+        .section-nav-link[data-active='true'] {
+          background: var(--ink);
+          color: #f5f5f7;
+        }
+
+        .section-nav-link:focus-visible {
+          outline-offset: 2px;
+        }
       }
 
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
         .mast,
+        .section-nav,
         .tile,
         .project-note,
         .credit {
@@ -399,6 +545,7 @@
           animation: none !important;
         }
 
+        .section-nav-link,
         .tile,
         .tile-arrow,
         .language-switcher-option {
@@ -411,22 +558,28 @@
     <div class="frame">
       <header class="mast">
         <div class="mast-top">
-          <div class="mast-label" data-i18n="index.documentTitle">Index</div>
+          <div class="mast-label" data-i18n="index.kicker">inseok</div>
           <div class="mast-count" id="workCount" aria-live="polite">00</div>
         </div>
-        <h1 class="brand" data-i18n="index.brand">Project Index</h1>
       </header>
 
-      <main class="gallery" id="gallery" data-i18n-aria-label="index.galleryAria"></main>
+      <nav class="section-nav" id="sectionNav" data-i18n-aria-label="index.sectionNavAria">
+        <a class="section-nav-link" href="#prefaceSection" data-section-link="prefaceSection" data-active="true" data-i18n="index.sections.preface">Preface</a>
+        <a class="section-nav-link" href="#worksSection" data-section-link="worksSection" data-active="false" data-i18n="index.sections.works">Works</a>
+      </nav>
 
       <section
         class="project-note"
-        id="projectNote"
+        id="prefaceSection"
         hidden
         data-i18n-aria-label="index.projectReadmeAria"
       >
-        <div class="project-note-label" data-i18n="index.projectReadmeLabel">project</div>
+        <div class="project-note-label" data-i18n="index.projectReadmeLabel">preface</div>
         <div class="project-note-body" id="projectReadmeBody"></div>
+      </section>
+
+      <section class="gallery-section" id="worksSection" data-i18n-aria-label="index.galleryAria">
+        <div class="gallery" id="gallery"></div>
       </section>
 
       <footer class="credit">
@@ -450,8 +603,11 @@
 
       const gallery = document.getElementById('gallery');
       const workCount = document.getElementById('workCount');
-      const projectNote = document.getElementById('projectNote');
+      const projectNote = document.getElementById('prefaceSection');
       const projectReadmeBody = document.getElementById('projectReadmeBody');
+      const sectionNav = document.getElementById('sectionNav');
+      const sectionNavLinks = Array.from(document.querySelectorAll('[data-section-link]'));
+      let sectionObserver = null;
 
       function asSupportedLanguage(value) {
         if (!value || typeof value !== 'string') return null;
@@ -596,6 +752,74 @@
         }
       }
 
+      function setActiveSection(sectionId) {
+        sectionNavLinks.forEach((link) => {
+          const isActive = link.dataset.sectionLink === sectionId;
+          link.dataset.active = String(isActive);
+          if (isActive) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      function initializeSectionNav() {
+        if (!sectionNav) return;
+
+        if (sectionObserver) {
+          sectionObserver.disconnect();
+          sectionObserver = null;
+        }
+
+        const pairs = sectionNavLinks
+          .map((link) => {
+            const target = document.getElementById(link.dataset.sectionLink);
+            const visible = Boolean(target) && !target.hidden;
+            link.hidden = !visible;
+            return visible ? { link, target } : null;
+          })
+          .filter(Boolean);
+
+        if (!pairs.length) {
+          sectionNav.hidden = true;
+          return;
+        }
+
+        sectionNav.hidden = false;
+
+        pairs.forEach(({ link, target }) => {
+          link.onclick = (event) => {
+            event.preventDefault();
+            setActiveSection(target.id);
+            target.scrollIntoView({
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+              block: 'start',
+            });
+            history.replaceState(null, '', '#' + target.id);
+          };
+        });
+
+        const initialTarget =
+          pairs.find(({ target }) => target.id === window.location.hash.slice(1))?.target || pairs[0].target;
+        setActiveSection(initialTarget.id);
+
+        sectionObserver = new IntersectionObserver(
+          (entries) => {
+            const activeEntry = entries
+              .filter((entry) => entry.isIntersecting)
+              .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (activeEntry) {
+              setActiveSection(activeEntry.target.id);
+            }
+          },
+          {
+            rootMargin: '-22% 0px -48% 0px',
+            threshold: [0.16, 0.32, 0.52, 0.72],
+          }
+        );
+
+        pairs.forEach(({ target }) => sectionObserver.observe(target));
+      }
+
       function createLanguageSwitcher(currentLanguage, selectedLanguage, t) {
         document.getElementById('languageSwitcher')?.remove();
 
@@ -704,6 +928,7 @@
         applyStaticI18n(t);
         renderProjectTiles(t);
         await loadProjectReadme(language);
+        initializeSectionNav();
         createLanguageSwitcher(language, selectedLanguage, t);
 
         window.requestAnimationFrame(() => {

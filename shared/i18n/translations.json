@@ -23,9 +23,9 @@
       }
     },
     "index": {
-      "documentTitle": "목차",
-      "brand": "작품 목차",
-      "galleryAria": "작품 목록",
+      "documentTitle": "작품",
+      "brand": "작품",
+      "galleryAria": "작품 섹션",
       "footerCredit": "inseok",
       "projects": {
         "murmuring": "중얼거림",
@@ -33,8 +33,14 @@
         "violet": "보랏빛 뭉게구름과 날카로운 경계",
         "bleedingColors": "번짐"
       },
-      "projectReadmeLabel": "프로젝트",
-      "projectReadmeAria": "프로젝트 글"
+      "projectReadmeLabel": "서문",
+      "projectReadmeAria": "프로젝트 서문",
+      "kicker": "inseok",
+      "sectionNavAria": "페이지 섹션 탐색",
+      "sections": {
+        "preface": "서문",
+        "works": "작품"
+      }
     },
     "murmuring": {
       "documentTitle": "중얼거림",
@@ -168,9 +174,9 @@
       }
     },
     "index": {
-      "documentTitle": "Index",
-      "brand": "Project Index",
-      "galleryAria": "Artwork list",
+      "documentTitle": "Works",
+      "brand": "Works",
+      "galleryAria": "Works section",
       "footerCredit": "inseok",
       "projects": {
         "murmuring": "Murmuring",
@@ -178,8 +184,14 @@
         "violet": "Violet Cloud and Sharp Boundaries",
         "bleedingColors": "Bleeding Colors"
       },
-      "projectReadmeLabel": "project",
-      "projectReadmeAria": "project statement"
+      "projectReadmeLabel": "preface",
+      "projectReadmeAria": "project preface",
+      "kicker": "inseok",
+      "sectionNavAria": "Page section navigation",
+      "sections": {
+        "preface": "Preface",
+        "works": "Works"
+      }
     },
     "murmuring": {
       "documentTitle": "Murmuring",
@@ -313,9 +325,9 @@
       }
     },
     "index": {
-      "documentTitle": "目录",
-      "brand": "作品目录",
-      "galleryAria": "作品列表",
+      "documentTitle": "作品",
+      "brand": "作品",
+      "galleryAria": "作品区",
       "footerCredit": "inseok",
       "projects": {
         "murmuring": "低语",
@@ -323,8 +335,14 @@
         "violet": "紫色云团与尖锐的边界",
         "bleedingColors": "渗色"
       },
-      "projectReadmeLabel": "项目",
-      "projectReadmeAria": "项目说明"
+      "projectReadmeLabel": "前言",
+      "projectReadmeAria": "项目前言",
+      "kicker": "inseok",
+      "sectionNavAria": "页面分区导航",
+      "sections": {
+        "preface": "前言",
+        "works": "作品"
+      }
     },
     "murmuring": {
       "documentTitle": "低语",
@@ -458,9 +476,9 @@
       }
     },
     "index": {
-      "documentTitle": "目次",
-      "brand": "作品目次",
-      "galleryAria": "作品一覧",
+      "documentTitle": "作品",
+      "brand": "作品",
+      "galleryAria": "作品セクション",
       "footerCredit": "inseok",
       "projects": {
         "murmuring": "つぶやき",
@@ -468,8 +486,14 @@
         "violet": "紫の雲塊と鋭い境界",
         "bleedingColors": "にじみ"
       },
-      "projectReadmeLabel": "プロジェクト",
-      "projectReadmeAria": "プロジェクトステートメント"
+      "projectReadmeLabel": "序文",
+      "projectReadmeAria": "プロジェクト序文",
+      "kicker": "inseok",
+      "sectionNavAria": "ページセクションナビゲーション",
+      "sections": {
+        "preface": "序文",
+        "works": "作品"
+      }
     },
     "murmuring": {
       "documentTitle": "つぶやき",
