@@ -6,195 +6,209 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <style>
       :root {
-        --bg: #f6f4ef;
-        --ink: #111111;
-        --muted: rgba(17, 17, 17, 0.6);
-        --line: rgba(17, 17, 17, 0.2);
-        --line-soft: rgba(17, 17, 17, 0.08);
-        --accent: #111111;
+        --bg: #f5f5f7;
+        --ink: #111217;
+        --muted: #59616f;
+        --line: rgba(17, 18, 23, 0.14);
+        --line-strong: rgba(17, 18, 23, 0.24);
+        --frame-max: 980px;
+        --fs-meta: 11px;
+        --fs-head: clamp(22px, 3.6vw, 36px);
+        --fs-item: clamp(15px, 1.35vw, 20px);
+        --fs-item-long: clamp(14px, 1.1vw, 17px);
         --sans:
+          'SF Pro Display',
+          'SUIT Variable',
+          'Pretendard Variable',
           'Noto Sans KR',
-          ui-sans-serif,
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
+          'Apple SD Gothic Neo',
+          'Segoe UI',
           sans-serif;
-        --language-switcher-bg: #0f0f10;
-        --language-switcher-text: #f7f7f5;
-        --language-switcher-border: rgba(17, 17, 17, 0.35);
+        --language-switcher-bg: rgba(20, 21, 26, 0.92);
+        --language-switcher-text: #f7f8fc;
+        --language-switcher-border: rgba(255, 255, 255, 0.16);
         --language-switcher-item-bg: rgba(255, 255, 255, 0.04);
         --language-switcher-item-hover: rgba(255, 255, 255, 0.12);
       }
+
       * {
         box-sizing: border-box;
       }
+
       html,
       body {
-        height: 100%;
+        min-height: 100%;
       }
+
       body {
         margin: 0;
         font-family: var(--sans);
         color: var(--ink);
-        background: var(--bg);
-        letter-spacing: 0.01em;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0)),
+          linear-gradient(180deg, var(--bg) 0%, #eef0f3 100%);
+        letter-spacing: -0.004em;
         text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
       }
+
       .frame {
-        min-height: 100dvh;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        padding: clamp(40px, 8vh, 80px) clamp(24px, 8vw, 96px) clamp(36px, 6vh, 72px);
-        gap: 32px;
-        max-width: 1120px;
+        max-width: var(--frame-max);
         margin: 0 auto;
-        position: relative;
+        padding: clamp(18px, 2.8vw, 32px) clamp(14px, 3vw, 32px) clamp(14px, 2.2vw, 22px);
       }
-      .frame::before {
-        content: '';
-        position: absolute;
-        inset: 0 auto 0 0;
-        width: 1px;
-        background: var(--line-soft);
+
+      .mast {
+        border-bottom: 1px solid var(--line-strong);
+        padding-bottom: clamp(8px, 1.5vw, 12px);
+        opacity: 0;
+        transform: translateY(6px);
       }
-      header.mast {
-        display: grid;
+
+      body.is-ready .mast {
+        animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      .mast-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
         gap: 10px;
-        border-bottom: 1px solid var(--line);
-        padding-bottom: 18px;
+        margin-bottom: 6px;
       }
+
       .mast-label {
-        font-size: 11px;
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
+        font-size: var(--fs-meta);
         color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 620;
       }
+
+      .mast-count {
+        font-size: var(--fs-meta);
+        color: var(--muted);
+        letter-spacing: 0.14em;
+        font-weight: 620;
+      }
+
       .brand {
-        font-size: clamp(28px, 5.2vw, 64px);
-        font-family: var(--sans);
-        font-weight: 500;
-        letter-spacing: 0.08em;
+        margin: 0;
+        font-size: var(--fs-head);
+        line-height: 1;
+        letter-spacing: -0.024em;
+        font-weight: 570;
       }
+
       .gallery {
-        display: grid;
-        border-top: 1px solid var(--line);
-        position: relative;
-        margin-left: 22px;
+        margin-top: clamp(8px, 1.2vw, 10px);
       }
-      .gallery::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: var(--line-soft);
-      }
+
       .tile {
-        position: relative;
+        --order: 0;
         display: grid;
-        grid-template-columns: 56px minmax(0, 1fr) auto;
+        grid-template-columns: 48px minmax(0, 1fr) 20px;
         align-items: center;
-        gap: 16px;
-        padding: 18px 4px 18px 26px;
-        border-bottom: 1px solid var(--line-soft);
+        gap: 8px;
+        min-height: 58px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--line);
         text-decoration: none;
         color: inherit;
-        background: transparent;
-        transform: translateX(0);
-        transition:
-          transform 0.2s ease,
-          background 0.2s ease,
-          color 0.2s ease;
+        opacity: 0;
+        transform: translateY(6px);
       }
-      .tile:hover {
-        transform: translateX(6px);
-        background: rgba(17, 17, 17, 0.03);
+
+      body.is-ready .tile {
+        animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: calc(var(--order) * 38ms + 30ms);
       }
-      .tile::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        border: 1px solid var(--line);
-        background: var(--bg);
-        transform: translate(-50%, -50%);
-      }
+
       .tile:focus-visible {
-        outline: 2px solid #111;
+        outline: 2px solid #1f2430;
         outline-offset: 2px;
       }
+
       .tile-index {
-        font-size: 12px;
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
+        font-size: var(--fs-meta);
+        line-height: 1;
         color: var(--muted);
-        font-weight: 600;
+        letter-spacing: 0.12em;
+        font-weight: 620;
       }
+
       .tile-label {
-        font-size: clamp(20px, 2.8vw, 34px);
-        font-family: var(--sans);
-        font-weight: 500;
-        letter-spacing: 0.03em;
+        font-size: var(--fs-item);
+        line-height: 1.06;
+        letter-spacing: -0.016em;
+        font-weight: 560;
+        text-wrap: balance;
       }
+
+      .tile-label.long {
+        font-size: var(--fs-item-long);
+        font-weight: 540;
+        letter-spacing: -0.012em;
+        line-height: 1.12;
+      }
+
       .tile-arrow {
-        font-size: 14px;
+        font-size: 15px;
         color: var(--muted);
-        transition: transform 0.18s ease;
+        justify-self: end;
+        transition: transform 140ms ease, color 140ms ease;
       }
+
       .tile:hover .tile-arrow {
-        transform: translateX(6px);
+        transform: translateX(2px);
+        color: var(--ink);
       }
-      footer {
-        margin-top: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+
+      .credit {
+        margin-top: 10px;
+        font-size: var(--fs-meta);
         color: var(--muted);
-        font-size: 12px;
-        border-top: 1px solid var(--line);
-        padding-top: 14px;
-        letter-spacing: 0.2em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(6px);
       }
+
+      body.is-ready .credit {
+        animation: reveal-up 280ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 130ms;
+      }
+
       .language-switcher {
         position: fixed;
-        top: max(14px, env(safe-area-inset-top));
-        right: max(14px, env(safe-area-inset-right));
+        top: max(10px, env(safe-area-inset-top));
+        right: max(10px, env(safe-area-inset-right));
         z-index: 1300;
       }
+
       .language-switcher-toggle {
         appearance: none;
-        min-width: 56px;
-        height: 36px;
-        border-radius: 8px;
+        min-width: 52px;
+        height: 34px;
+        border-radius: 10px;
         border: 1px solid var(--language-switcher-border);
         background: var(--language-switcher-bg);
         color: var(--language-switcher-text);
-        padding: 0 10px;
+        padding: 0 9px;
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 11px;
+        font-weight: 680;
         letter-spacing: 0.08em;
         cursor: pointer;
-        box-shadow: none;
-        transition:
-          transform 180ms ease,
-          border-color 180ms ease,
-          background 180ms ease;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
       }
-      .language-switcher-toggle:hover {
-        transform: translateY(-1px);
-      }
+
       .language-switcher-toggle:active {
-        transform: translateY(0);
+        transform: translateY(1px);
       }
+
       .language-switcher-icon {
         width: 12px;
         height: 12px;
@@ -204,6 +218,7 @@
         position: relative;
         opacity: 0.9;
       }
+
       .language-switcher-icon::before,
       .language-switcher-icon::after {
         content: '';
@@ -215,89 +230,123 @@
         border-radius: 999px;
         opacity: 0.75;
       }
+
       .language-switcher-icon::before {
         width: 4px;
         height: 10px;
       }
+
       .language-switcher-icon::after {
         width: 10px;
         height: 4px;
       }
+
       .language-switcher-code {
         min-width: 2ch;
         text-align: center;
       }
+
       .language-switcher-menu {
         position: absolute;
         top: calc(100% + 8px);
         right: 0;
-        width: 188px;
+        width: 178px;
         padding: 8px;
-        border-radius: 10px;
+        border-radius: 12px;
         border: 1px solid var(--language-switcher-border);
         background: var(--language-switcher-bg);
         color: var(--language-switcher-text);
         display: grid;
         gap: 6px;
-        box-shadow: none;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(10px);
       }
+
       .language-switcher-menu[hidden] {
         display: none !important;
       }
+
       .language-switcher-option {
         appearance: none;
         width: 100%;
+        min-height: 32px;
         border: 1px solid transparent;
         border-radius: 8px;
         background: var(--language-switcher-item-bg);
         color: inherit;
         text-align: left;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 1.2;
-        font-weight: 600;
-        padding: 9px 10px;
+        font-weight: 620;
+        padding: 8px 10px;
         cursor: pointer;
-        transition:
-          transform 160ms ease,
-          border-color 160ms ease,
-          background 160ms ease;
+        transition: border-color 140ms ease, background 140ms ease;
       }
+
       .language-switcher-option:hover {
         border-color: var(--language-switcher-border);
         background: var(--language-switcher-item-hover);
       }
-      .language-switcher-option:active {
-        transform: translateY(1px);
-      }
+
       .language-switcher-option[data-active='true'] {
         border-color: var(--language-switcher-border);
         background: var(--language-switcher-item-hover);
       }
+
       .language-switcher-toggle:focus-visible,
       .language-switcher-option:focus-visible {
         outline: 2px solid var(--language-switcher-text);
         outline-offset: 2px;
       }
-      @media (max-width: 720px) {
-        .frame {
-          padding: 32px 20px 32px;
-          gap: 26px;
+
+      @keyframes reveal-up {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
         }
-        .gallery {
-          margin-left: 14px;
-        }
-        .tile {
-          grid-template-columns: 44px minmax(0, 1fr) auto;
-          padding: 16px 2px 16px 20px;
-        }
-        .brand {
-          letter-spacing: 0.04em;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
       }
+
+      @media (max-width: 800px) {
+        .frame {
+          padding: 14px 12px 14px;
+        }
+
+        .brand {
+          font-size: clamp(20px, 5.8vw, 30px);
+        }
+
+        .tile {
+          grid-template-columns: 40px minmax(0, 1fr) 18px;
+          min-height: 50px;
+          padding: 6px 0;
+        }
+
+        .tile-label {
+          font-size: clamp(14px, 4.2vw, 18px);
+        }
+
+        .tile-label.long {
+          font-size: clamp(13px, 3.5vw, 16px);
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
+        .mast,
         .tile,
-        .tile-arrow {
-          transition: none;
+        .credit {
+          opacity: 1 !important;
+          transform: none !important;
+          animation: none !important;
+        }
+
+        .tile,
+        .tile-arrow,
+        .language-switcher-option {
+          transition: none !important;
         }
       }
     </style>
@@ -305,23 +354,26 @@
   <body>
     <div class="frame">
       <header class="mast">
-        <div class="mast-label" data-i18n="index.documentTitle">Index</div>
-        <div class="brand" data-i18n="index.brand">Project Index</div>
+        <div class="mast-top">
+          <div class="mast-label" data-i18n="index.documentTitle">Index</div>
+          <div class="mast-count" id="workCount" aria-live="polite">00</div>
+        </div>
+        <h1 class="brand" data-i18n="index.brand">Project Index</h1>
       </header>
 
       <main class="gallery" id="gallery" data-i18n-aria-label="index.galleryAria"></main>
 
-      <footer>
+      <footer class="credit">
         <span data-i18n="index.footerCredit">inseok</span>
       </footer>
     </div>
 
     <script>
       const PROJECTS = [
-        { folder: 'murmuring', key: 'index.projects.murmuring' },
-        { folder: 'division', key: 'index.projects.division' },
-        { folder: 'violet-cloud-and-sharp-boundaries', key: 'index.projects.violet' },
-        { folder: 'bleeding-colors', key: 'index.projects.bleedingColors' },
+        { folder: 'artworks/murmuring', key: 'index.projects.murmuring' },
+        { folder: 'artworks/division', key: 'index.projects.division' },
+        { folder: 'artworks/violet-cloud-and-sharp-boundaries', key: 'index.projects.violet' },
+        { folder: 'artworks/bleeding-colors', key: 'index.projects.bleedingColors' },
       ];
 
       const SUPPORTED_LANGUAGES = ['ko', 'en', 'zh', 'ja'];
@@ -329,6 +381,7 @@
       const STORAGE_KEY = 'works:preferred-language';
 
       const gallery = document.getElementById('gallery');
+      const workCount = document.getElementById('workCount');
 
       function asSupportedLanguage(value) {
         if (!value || typeof value !== 'string') return null;
@@ -409,17 +462,21 @@
           const title = t(key);
           const href = `./${folder}/index.html`;
           const order = String(index + 1).padStart(2, '0');
+          const labelClass = [...String(title)].length > 14 ? 'tile-label long' : 'tile-label';
+
           gallery.insertAdjacentHTML(
             'beforeend',
             `
-          <a class="tile" href="${href}">
+          <a class="tile" href="${href}" style="--order:${index};">
             <span class="tile-index">${order}</span>
-            <span class="tile-label">${title}</span>
-            <span class="tile-arrow" aria-hidden="true">→</span>
+            <span class="${labelClass}">${title}</span>
+            <span class="tile-arrow" aria-hidden="true">&rarr;</span>
           </a>
         `
           );
         });
+
+        workCount.textContent = String(PROJECTS.length).padStart(2, '0');
       }
 
       function createLanguageSwitcher(currentLanguage, selectedLanguage, t) {
@@ -508,7 +565,7 @@
 
         let catalog = null;
         try {
-          const response = await fetch('./i18n/translations.json', { cache: 'no-store' });
+          const response = await fetch('./i18n/translations.json');
           if (response.ok) {
             catalog = await response.json();
           }
@@ -530,6 +587,10 @@
         applyStaticI18n(t);
         renderProjectTiles(t);
         createLanguageSwitcher(language, selectedLanguage, t);
+
+        window.requestAnimationFrame(() => {
+          document.body.classList.add('is-ready');
+        });
       }
 
       boot();

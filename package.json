@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently -n watch,serve -c green,blue \"node scripts/build.mjs --watch\" \"live-server docs --port=3000 --open=index.html\"",
+    "dev": "vite",
     "start": "npm run dev",
-    "build": "node scripts/build.mjs",
+    "build": "vite build",
+    "preview": "vite preview --host",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -15,17 +16,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^9.0.1",
-    "esbuild": "^0.23.0",
-    "live-server": "^1.2.2",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "vite": "^5.4.19",
+    "vite-plugin-static-copy": "^1.0.6"
   },
   "dependencies": {
     "chart.js": "^4.5.0",
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^4.1.0",
-    "highlight.js": "^11.11.1",
-    "mobx": "^6.13.7",
-    "sleep-promise": "^9.1.0"
+    "mobx": "^6.13.7"
   }
 }

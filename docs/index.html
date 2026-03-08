@@ -318,10 +318,10 @@
 
     <script>
       const PROJECTS = [
-        { folder: 'murmuring', key: 'index.projects.murmuring' },
-        { folder: 'division', key: 'index.projects.division' },
-        { folder: 'violet-cloud-and-sharp-boundaries', key: 'index.projects.violet' },
-        { folder: 'bleeding-colors', key: 'index.projects.bleedingColors' },
+        { folder: 'artworks/murmuring', key: 'index.projects.murmuring' },
+        { folder: 'artworks/division', key: 'index.projects.division' },
+        { folder: 'artworks/violet-cloud-and-sharp-boundaries', key: 'index.projects.violet' },
+        { folder: 'artworks/bleeding-colors', key: 'index.projects.bleedingColors' },
       ];
 
       const SUPPORTED_LANGUAGES = ['ko', 'en', 'zh', 'ja'];
@@ -415,7 +415,7 @@
           <a class="tile" href="${href}">
             <span class="tile-index">${order}</span>
             <span class="tile-label">${title}</span>
-            <span class="tile-arrow" aria-hidden="true">→</span>
+            <span class="tile-arrow" aria-hidden="true">&rarr;</span>
           </a>
         `
           );
@@ -508,7 +508,7 @@
 
         let catalog = null;
         try {
-          const response = await fetch('./i18n/translations.json', { cache: 'no-store' });
+          const response = await fetch('./i18n/translations.json');
           if (response.ok) {
             catalog = await response.json();
           }
@@ -536,3 +536,6 @@
     </script>
   </body>
 </html>
+
+
+

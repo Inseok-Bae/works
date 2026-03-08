@@ -1,4 +1,4 @@
-코드를 통해 표현되는 것들
+﻿코드를 통해 표현되는 것들
 
 이 작업은 AI를 단순히 결과물을 만들어내는 도구가 아니라, 서로 다른 신호와 형식 사이를 오가며 감각과 행위를 조직하는 매체적 조건으로 다룬다. 짧은 문장, 메모, 기록, 메시지 같은 일상적 언어는 여기서 단순한 입력이 아니라 구조의 씨앗이 된다. 그것은 모델과 규칙으로 번역되고, 다시 시간 속의 반응과 소프트웨어의 동작으로 나타난다. 내 관심은 완성된 이미지나 텍스트 자체보다, 의미가 구조가 되고 구조가 다시 경험으로 변하는 그 전이의 과정에 있다.
 
@@ -17,3 +17,10 @@ What AI performs here is closer to translation than production. Natural language
 The user still approaches this software through the familiar form of a GUI, and that fact itself is an important part of the work. While language is internally transformed into rules and code, states and causality, what the user ultimately encounters is the limited surface of the screen. Here, the GUI is not simply a shell or an outdated interface, but the final layer of translation that briefly holds a fluid and unstable generative process in place and hardens it into a perceptible form. These works therefore implement a process in which thoughts and records become structure, that structure operates in time, and finally remains as traces on the screen. The probabilistic nature of AI, the limits of context, cost, delay, and the constraints of interface are not background conditions, but elements that determine the form and rhythm of the work.
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+## Source Layout
+
+- `artworks/`: piece-specific source code (`index.html`, `index.js`, `acting.js`, `entities/`, `utils/`, `assets/`)
+- `shared/`: global reusable modules (`models/`, `utils/`, `style/`, `i18n/`)
+- `dist/`: build output artifact for GitHub Pages deployment
+- `.github/workflows/pages.yml`: Pages CI/CD pipeline
+

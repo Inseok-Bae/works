@@ -1,0 +1,1 @@
+function r({project:t,sender:n}={}){const e=t||"unknown-project",c=typeof n=="function"?n:o=>{console.log("[programmatic-log]",o)};return{send(o){const a={channel:"programmatic",project:e,sentAt:Date.now(),payload:o};c(a)}}}export{r as c};

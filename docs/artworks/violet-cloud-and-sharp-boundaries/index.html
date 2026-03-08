@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-i18n="violet.documentTitle">보랏�?구름�??�카로운 경계</title>
-    <script type="module" crossorigin src="../assets/violet-cloud-and-sharp-boundaries-Di6TrVHF.js"></script>
-    <link rel="modulepreload" crossorigin href="../chunks/i18n-6b_Lrr9y.js">
-    <link rel="modulepreload" crossorigin href="../chunks/mobx-stack-C0iOcqbN.js">
-    <link rel="modulepreload" crossorigin href="../chunks/programmatic-log-transport-Dx31d68V.js">
-    <link rel="stylesheet" crossorigin href="../assets/violet-cloud-and-sharp-boundaries-BzdCh5ZZ.css">
+    <title data-i18n="violet.documentTitle">Violet Cloud and Sharp Boundaries</title>
+    <script type="module" crossorigin src="../../assets/artworks/violet-cloud-and-sharp-boundaries/index-CtSti4aE.js"></script>
+    <link rel="modulepreload" crossorigin href="../../chunks/i18n-6b_Lrr9y.js">
+    <link rel="modulepreload" crossorigin href="../../chunks/mobx-stack-C0iOcqbN.js">
+    <link rel="modulepreload" crossorigin href="../../chunks/programmatic-log-transport-Dx31d68V.js">
+    <link rel="stylesheet" crossorigin href="../../assets/index-BzdCh5ZZ.css">
   </head>
   <body>
     <div id="app">
@@ -16,48 +16,50 @@
 
       <aside id="panel" data-i18n-aria-label="violet.panelAria">
         <header class="panel-header">
-          <div class="panel-title" data-i18n="violet.panelTitle">보랏�?구름 / ?�카로운 경계</div>
+          <div class="panel-title" data-i18n="violet.panelTitle">Violet Cloud / Sharp Boundaries</div>
         </header>
 
         <section class="panel-section">
-          <div class="section-title" data-i18n="violet.sections.metrics">지??/div>
+          <div class="section-title" data-i18n="violet.sections.metrics">Metrics</div>
           <div id="metrics" class="metrics"></div>
         </section>
 
         <section class="panel-section">
-          <div class="section-title" data-i18n="violet.sections.controls">?�어</div>
+          <div class="section-title" data-i18n="violet.sections.controls">Controls</div>
           <div class="controls">
-            <button id="zoomToggle" type="button" data-i18n="violet.buttons.zoom">�??�환</button>
+            <button id="zoomToggle" type="button" data-i18n="violet.buttons.zoom">Toggle Zoom</button>
             <button id="commitPainting" type="button" data-i18n="violet.buttons.commit">
-              그림 고정
+              Commit Painting
             </button>
             <button id="resetSoft" type="button" data-i18n="violet.buttons.reset">
-              ?�만??초기??            </button>
+              Soft Reset
+            </button>
             <button id="listenHold" type="button" data-i18n="violet.buttons.listen">
-              ?�기 (?�르�??��?)
+              Listen (Hold)
             </button>
           </div>
           <div class="hint">
-            <div class="hint-line" data-i18n="violet.hints.line1">?�기: 길게 ?�르�?/div>
+            <div class="hint-line" data-i18n="violet.hints.line1">Listen: Hold to sustain</div>
             <div class="hint-line" data-i18n="violet.hints.line2">
-              ?? ???��???= ?�명?�게, ???��???= 번�?�?            </div>
+              Stroke: one finger sharpens, two fingers smudge
+            </div>
             <div class="hint-line" data-i18n="violet.hints.line3">
-              ?��??�는 ??: 귀�??�기�?(?�시??방향 보정)
+              Pinch or wheel: pull ear for temporary orientation correction
             </div>
           </div>
         </section>
 
         <section class="panel-section">
-          <div class="section-title" data-i18n="violet.sections.interpretation">?�석</div>
+          <div class="section-title" data-i18n="violet.sections.interpretation">Interpretation</div>
           <div id="conceptualLog" class="conceptual-log" aria-live="polite"></div>
         </section>
 
         <footer class="panel-footer">
           <span
-            ><span data-i18n="violet.footer.logEntries">로그 ??/span>:
+            ><span data-i18n="violet.footer.logEntries">Log Entries</span>:
             <strong id="logCount">0</strong></span
           >
-          <span class="muted" data-i18n="violet.footer.transport">console ?�송 + localStorage</span>
+          <span class="muted" data-i18n="violet.footer.transport">console transport + localStorage</span>
         </footer>
       </aside>
     </div>
@@ -90,15 +92,16 @@
         type="button"
         data-i18n="common.thought.reopen"
       >
-        글 ?�시 보기
+        Open Thought
       </button>
       <a
         id="thoughtActionIndex"
         class="thought-menu-item"
-        href="../index.html"
+        href="../../index.html"
         data-i18n="common.thought.backToIndex"
       >
-        목차�??�아가�?      </a>
+        Back to Index
+      </a>
     </nav>
 
     <section id="thoughtOverlay" class="thought-overlay">
@@ -109,14 +112,14 @@
         data-i18n-aria-label="common.thought.dialogAria"
       >
         <header class="thought-head">
-          <div class="thought-title" data-i18n="common.thought.title">?�각</div>
+          <div class="thought-title" data-i18n="common.thought.title">Thought</div>
           <button
             id="thoughtClose"
             class="thought-close"
             type="button"
             data-i18n="common.thought.close"
           >
-            ?�기
+            Close
           </button>
         </header>
         <article id="readme_section" class="thought-content"></article>
@@ -124,5 +127,3 @@
     </section>
   </body>
 </html>
-
-

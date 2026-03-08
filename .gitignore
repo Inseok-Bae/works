@@ -30,3 +30,6 @@ Thumbs.db
 # Local meta/rules artifacts (do not commit)
 AGENTS.md
 **/curation/session-*.md
+
+# Vite output
+dist/

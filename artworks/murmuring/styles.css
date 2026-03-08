@@ -1,0 +1,128 @@
+@import '../../shared/style/common.css';
+
+:root {
+  --readme-bg: linear-gradient(180deg, #f9fcff 0%, #f3f8ff 100%);
+  --readme-border: #d6e3f3;
+  --readme-text: #2f3f54;
+  --readme-shadow: 0 8px 20px rgba(111, 137, 167, 0.14);
+  --readme-scroll-thumb: rgba(110, 142, 179, 0.55);
+  --readme-scroll-track: rgba(110, 142, 179, 0.16);
+  --thought-overlay-bg: rgba(10, 16, 28, 0.64);
+  --thought-card-bg: linear-gradient(170deg, rgba(246, 251, 255, 0.97) 0%, rgba(237, 245, 255, 0.98) 100%);
+  --thought-card-border: rgba(136, 167, 201, 0.45);
+  --thought-card-text: #10233d;
+  --thought-close-bg: rgba(21, 59, 103, 0.08);
+  --language-switcher-bg: rgba(16, 35, 61, 0.95);
+  --language-switcher-text: rgba(246, 251, 255, 0.96);
+  --language-switcher-border: rgba(246, 251, 255, 0.28);
+  --language-switcher-item-bg: rgba(255, 255, 255, 0.08);
+  --language-switcher-item-hover: rgba(255, 255, 255, 0.18);
+  --thought-menu-toggle-bg: var(--language-switcher-bg);
+  --thought-menu-toggle-text: var(--language-switcher-text);
+  --thought-menu-toggle-border: var(--language-switcher-border);
+  --thought-menu-bg: var(--language-switcher-bg);
+  --thought-menu-text: var(--language-switcher-text);
+  --thought-menu-border: var(--language-switcher-border);
+  --thought-menu-item-bg: var(--language-switcher-item-bg);
+  --thought-menu-item-hover-bg: var(--language-switcher-item-hover);
+}
+
+.graph_presenter_container {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.graph_presenter {
+  min-height: 300px;
+}
+
+#code_block {
+  font-size: clamp(12px, 1.5vw, 20px);
+}
+
+#conversations_presenter {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 10px;
+}
+
+.msg {
+  display: flex;
+  width: 100%;
+  transition:
+    max-height 240ms ease,
+    opacity 240ms ease,
+    margin 240ms ease,
+    padding 240ms ease,
+    transform 240ms ease;
+  max-height: 200px;
+  will-change: max-height, opacity, margin, padding, transform;
+}
+
+.msg.left {
+  justify-content: flex-start;
+}
+.msg.right {
+  justify-content: flex-end;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.msg.enter {
+  animation: fadeSlideIn 220ms ease-out both;
+}
+
+.msg.leaving {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transform: translateY(-4px);
+}
+
+.stack {
+  max-width: 75%;
+  min-width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+.msg.right .stack {
+  align-items: flex-end;
+}
+
+.bubble {
+  width: 100%;
+  min-height: 10px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background: #f2f3f5;
+  line-height: 1.4;
+  word-break: break-word;
+}
+.msg.right .bubble {
+  background: #cfe9ff;
+}
+
+.meta {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.meta--top {
+  margin: 0 0 4px;
+}
+.meta--bottom {
+  margin: 4px 0 0;
+}
+
