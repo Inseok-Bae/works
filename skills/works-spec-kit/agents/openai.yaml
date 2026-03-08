@@ -1,0 +1,5 @@
+interface:
+  display_name: "Works Spec Kit"
+  short_description: "Run the staged thought-to-piece workflow"
+  default_prompt: "Use $works-spec-kit to take this THOUGHT through analysis, divergence, spec writing, curator review, implementation planning, and memory sync."
+

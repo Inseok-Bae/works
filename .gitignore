@@ -29,5 +29,4 @@ Thumbs.db
 
 # Local meta/rules artifacts (do not commit)
 AGENTS.md
-skills/
 **/curation/session-*.md

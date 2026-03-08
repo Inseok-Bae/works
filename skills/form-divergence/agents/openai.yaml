@@ -1,0 +1,4 @@
+interface:
+  display_name: "Form Divergence"
+  short_description: "Generate 3 materially different directions"
+  default_prompt: "Use $form-divergence to turn this analysis into three structurally different artwork directions and recommend one."

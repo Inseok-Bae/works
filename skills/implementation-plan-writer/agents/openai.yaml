@@ -1,0 +1,5 @@
+interface:
+  display_name: "Implementation Plan Writer"
+  short_description: "Write the concrete file-by-file build plan"
+  default_prompt: "Use $implementation-plan-writer to convert this locked piece spec into a concrete `plan.md` with exact files, modules, inputs, and validation steps."
+
